@@ -106,12 +106,9 @@ object Problem13 extends App with Timer {
 53503534226472524250874054075591789781264330331690"""
     val rows = input.split("\n").map(_.trim)
     rows.map(i => math.BigDecimal(i))
-    
+
   }
 
-  
-
-  
   val (result, time) = profile {
     numbers.sum.toString().substring(0, 10)
   }

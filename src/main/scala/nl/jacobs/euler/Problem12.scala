@@ -8,7 +8,7 @@ object Problem12 extends App with Timer {
   lazy val triangular: Stream[Int] = Stream.from(2).scanLeft(1)(_ + _)
 
   val (result, time) = profile {
-    triangular.filter(i => count(i) > 500).head
+    triangular.filter(n => count(n) > 500).head
   }
   println(s"result:[$result] took [$time] ms")
 

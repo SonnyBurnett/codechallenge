@@ -47,7 +47,5 @@ object Problem11 extends App with Timer {
 
   println(s"result:[$result] took [$time] ms")
 
-  //  println(grid(0).foreach(println))
-  //  println(getPointAt(2, 0));
 
 }
