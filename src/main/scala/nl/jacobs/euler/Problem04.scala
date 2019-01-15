@@ -1,6 +1,6 @@
 package nl.jacobs.euler
 
-object Problem4 extends App with Timer {
+object Problem04 extends App with Timer {
 
   val (result, time) = profile {
     (for (

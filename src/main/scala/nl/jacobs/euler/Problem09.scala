@@ -1,6 +1,6 @@
 package nl.jacobs.euler
 
-object Problem9 extends App with Timer {
+object Problem09 extends App with Timer {
   //There exists exactly one Pythagorean triplet for which a + b + c = 1000.
   //Find the product abc.
 
