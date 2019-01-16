@@ -8,7 +8,7 @@ object Problem23 extends App with Timer {
   val (result, time) = profile {
     val abundant = (0 to 28123).map(divisor).zipWithIndex.filter(p => p._1 > p._2).map(_._2)
     val exclude = {
-      (for (i <- 0 until abundant.size; j <- 0 until abundant.size; val sum = abundant(i) + abundant(j)) yield (sum))
+      (for (i <- 0 until abundant.size; j <- abundant.indexOf(abundant(i)) until abundant.size; val sum = abundant(i) + abundant(j); if(sum < 28124) ) yield (sum))
     }
     (1 to 28123 diff exclude).sum
   }
