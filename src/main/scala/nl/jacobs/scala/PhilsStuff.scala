@@ -32,5 +32,5 @@ object PhilsStuff {
   e1.add(e2)
   d1.add(d2)
   
-  e1.add(d1)
+ // --> KAN NIET :-) e1.add(d1)
 }
