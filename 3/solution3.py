@@ -3,5 +3,6 @@ def isprime(i):
         return True
     else:
         return False
-primelist = [i for i in range(2,40000) if isprime(i)]
+# Only check for odd numbers if prime
+primelist = [i for i in range(1,40000, 2) if isprime(i)]
 print(max([z for z in primelist if 600851475143 % z == 0]))
