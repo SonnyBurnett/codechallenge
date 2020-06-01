@@ -1,3 +1,5 @@
+# This program solves the https://projecteuler.net/problem=12
+
 from functools import reduce
 from itertools import combinations
 from time import time
@@ -8,7 +10,7 @@ i = 1
 triangle = 0
 current_max = 0
 
-def _calc(big): #get all prime factors of a number
+def _calc(big): #function to get all prime factors of a number
   ret = []
   if (None == big or big < 2):
     return ret
@@ -35,7 +37,7 @@ while True:
       for r in range(len(temp_var)):
         answers.append(reduce(lambda x, y: x * y, temp_var[r]))
 
-  answers.insert(0, 1) #insert 1 to the answers
+  answers.insert(0, 1) #insert 1 to the answers, the triangle number was added by multiplication of prime factors
   answers = sorted(list(set(answers))) #eliminate duplicates and sort the list of factors
 
   if (len(answers) > current_max): #track current max number of factors
