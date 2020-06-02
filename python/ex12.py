@@ -40,47 +40,48 @@ def triangle_numbers():
     In the case of 3 (3): (1 + 1) = 2.
 """
 
-factors = {}
 
+class FactorCache:
+    def __init__(self):
+        self.factors = {}
 
-def record_factors(n):
-    if n < 2:
-        return
-    if n in factors:
-        return
-    for i in itertools.count(2, 1):
-        divided = n / i
-        if divided.is_integer():
-            d = int(divided)
-            # note that if n is prime, d will be 1
-            if d == 1:
-                factors[n] = [i]
-            else:
-                factors[n] = [d, i]
-                record_factors(i)
-                record_factors(d)
+    def record_factors(self, n):
+        if n < 2:
             return
+        if n in self.factors:
+            return
+        for i in itertools.count(2, 1):
+            divided = n / i
+            if divided.is_integer():
+                d = int(divided)
+                # note that if n is prime, d will be 1
+                if d == 1:
+                    self.factors[n] = [i]
+                else:
+                    self.factors[n] = [d, i]
+                    self.record_factors(i)
+                    self.record_factors(d)
+                return
+
+    def prime_factors(self, n):
+        if n < 2:
+            return
+        if n not in self.factors:
+            self.record_factors(n)
+        fs = self.factors[n]
+        if len(fs) == 1:
+            return fs
+        else:
+            smallers = self.prime_factors(fs[0]) + self.prime_factors(fs[1])
+            smallers.sort()
+            return smallers
 
 
-def prime_factors(n):
-    if n < 2:
-        return
-    if n not in factors:
-        record_factors(n)
-    fs = factors[n]
-    if len(fs) == 1:
-        return fs
-    else:
-        smallers = prime_factors(fs[0]) + prime_factors(fs[1])
-        smallers.sort()
-        return smallers
-
-
-def nr_of_divisors(n):
+def nr_of_divisors(n, factor_cache=FactorCache()):
     if n == 1:
         return 1
 
-    primes = prime_factors(n)
+    primes = factor_cache.prime_factors(n)
 
     nr_of_divisors = 1
     former_prime = 1
@@ -96,10 +97,11 @@ def nr_of_divisors(n):
     return nr_of_divisors
 
 
-def first_triangle_with_more_divisors_than(n):
+def first_triangle_with_more_divisors_than(n, factor_cache=FactorCache()):
     for t in triangle_numbers():
-        if nr_of_divisors(t) > n:
+        if nr_of_divisors(t, factor_cache) > n:
             return t
 
 
-print("The first triangle number with over 500 divisors is {}".format(first_triangle_with_more_divisors_than(500)))
+print("The first triangle number with over 500 divisors is {}".format(
+    first_triangle_with_more_divisors_than(500, FactorCache())))
