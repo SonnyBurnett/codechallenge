@@ -7,3 +7,11 @@ def test_natural_generator():
     assert next(N) == 2
     assert next(N) == 3
     assert next(N) == 4
+
+
+def test_triangle_numbers_generator():
+    T = ex12.triangle_numbers()
+    assert next(T) == 1
+    assert next(T) == 3
+    assert next(T) == 6
+    assert next(T) == 10
