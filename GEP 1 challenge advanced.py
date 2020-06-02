@@ -63,3 +63,4 @@ while divisors(check) <= 500:
     seriesLastTerm += 1
 
 print(check)
+print("I copied from internet just to learn something, no credits needed")
