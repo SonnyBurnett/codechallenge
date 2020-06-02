@@ -69,3 +69,9 @@ def test_nr_of_divisors():
     assert ex12.nr_of_divisors(15) == 4
     assert ex12.nr_of_divisors(21) == 4
     assert ex12.nr_of_divisors(28) == 6
+
+
+def test_first_triangle_with_more_divisors_than():
+    assert ex12.first_triangle_with_more_divisors_than(1) == 3
+    assert ex12.first_triangle_with_more_divisors_than(2) == 6
+    assert ex12.first_triangle_with_more_divisors_than(5) == 28

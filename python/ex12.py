@@ -94,3 +94,12 @@ def nr_of_divisors(n):
             former_prime = p
 
     return nr_of_divisors
+
+
+def first_triangle_with_more_divisors_than(n):
+    for t in triangle_numbers():
+        if nr_of_divisors(t) > n:
+            return t
+
+
+print("The first triangle number with over 500 divisors is {}".format(first_triangle_with_more_divisors_than(500)))
