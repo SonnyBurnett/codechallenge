@@ -59,3 +59,13 @@ def test_prime_factors():
     assert ex12.prime_factors(3) == [3]
     assert ex12.prime_factors(4) == [2, 2]
     assert ex12.prime_factors(28) == [2, 2, 7]
+
+
+def test_nr_of_divisors():
+    assert ex12.nr_of_divisors(1) == 1
+    assert ex12.nr_of_divisors(3) == 2
+    assert ex12.nr_of_divisors(6) == 4
+    assert ex12.nr_of_divisors(10) == 4
+    assert ex12.nr_of_divisors(15) == 4
+    assert ex12.nr_of_divisors(21) == 4
+    assert ex12.nr_of_divisors(28) == 6

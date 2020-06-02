@@ -74,3 +74,23 @@ def prime_factors(n):
         smallers = prime_factors(fs[0]) + prime_factors(fs[1])
         smallers.sort()
         return smallers
+
+
+def nr_of_divisors(n):
+    if n == 1:
+        return 1
+
+    primes = prime_factors(n)
+
+    nr_of_divisors = 1
+    former_prime = 1
+    nr_of_current_prime = 0
+
+    for p in primes:
+        nr_of_current_prime += 1
+        if p != former_prime:
+            nr_of_divisors *= (nr_of_current_prime + 1)
+            nr_of_current_prime = 0
+            former_prime = p
+
+    return nr_of_divisors
