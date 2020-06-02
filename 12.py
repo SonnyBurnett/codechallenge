@@ -10,44 +10,53 @@ i = 1
 triangle = 0
 current_max = 0
 
-def _calc(big): #function to get all prime factors of a number
+#function to get all prime factors of a number
+def _calc_prime_factors(number):
   ret = []
-  if (None == big or big < 2):
+  if (None == number or number < 2):
     return ret
-  for x in range(2, big + 1):
-    while (big % x == 0):
+  for x in range(2, number + 1):
+    while (number % x == 0):
       ret.append(x)
-      big = int(big / x)
-      if (big == 1):
+      number = int(number / x)
+      if (number == 1):
         #reached the end of the divisions, no need to loop further
         return ret
   return ret
-  
+
+#combine and multiply all prime factors
+def _combine_prime_factors(primes):
+  combined_primes = []
+  if (len(primes) >= 2):
+    for k in reversed(range(len(primes))):
+      #combinations creates iterator with all possible combinations of elements in
+      #primes array, size is determined by second parameter
+      temp_var = list(combinations(primes, k + 1))
+      for r in range(len(temp_var)):
+        #reduce is used to apply the function to all items in the sequence
+        combined_primes.append(reduce(lambda x, y: x * y, temp_var[r]))
+  else:
+    combined_primes = primes
+
+  #insert 1 to the answers
+  combined_primes.insert(0, 1)
+  #eliminate duplicates and sort the list of factors
+  combined_primes = sorted(list(set(combined_primes)))
+  return combined_primes
 
 while True:
   triangle += i
-  factors = _calc(triangle)
-  results = sorted(factors)
 
-  answers = []
-  #combine and multiply all prime factors
-  if (len(results) >= 2):
-    for k in reversed(range(len(results))):
-      #combinations creates iterator with all possible combinations of elements in
-      #results array, size is determined by second parameter
-      temp_var = list(combinations(results, k + 1))
-      for r in range(len(temp_var)):
-        #reduce is used to apply the function to all items in the sequence
-        answers.append(reduce(lambda x, y: x * y, temp_var[r]))
+  factors = _calc_prime_factors(triangle)
+  answers = _combine_prime_factors(factors)
 
-  answers.insert(0, 1) #insert 1 to the answers, the triangle number was added by multiplication of prime factors
-  answers = sorted(list(set(answers))) #eliminate duplicates and sort the list of factors
-
-  if (len(answers) > current_max): #track current max number of factors
+  #track max number of combined factors
+  if (len(answers) > current_max): 
     current_max = len(answers)
     print("Current status: ", i, triangle, current_max)
 
-  if (len(answers) > 500): #got the number that has more than 500 factors
+  #got the number that has more than 500 factors
+  if (len(answers) > 500): 
     print("Current factors: ", answers)
     break
   
