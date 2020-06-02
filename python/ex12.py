@@ -28,3 +28,15 @@ def triangle_numbers():
     for n in naturals():
         t += n
         yield t
+
+
+"""
+1.  Factorize into primes
+2.  Count how many times the primes (not counting 1 to the set of primes) occur, e.g. 28 = 2^2 * 7^1.
+    Now, every divisor is any combination of none to all of those primes. That gives a possible number of combinations
+    equal to the product of the times the different primes occur plus 1.
+    In the case of 28, this is (2 + 1) * (1 + 1) = 6.
+    In the case of 21 (3 * 7): (1 + 1) * (1 + 1) = 4.
+    In the case of 3 (3): (1 + 1) = 2.
+"""
+
