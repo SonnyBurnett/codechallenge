@@ -1,2 +1,2 @@
-pylama==7.7.1
+autopep8==1.5.3
 pytest==5.4.2
