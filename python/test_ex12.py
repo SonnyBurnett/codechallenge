@@ -1,4 +1,5 @@
 import ex12
+import sys
 
 
 def test_natural_generator():
@@ -17,9 +18,44 @@ def test_triangle_numbers_generator():
     assert next(T) == 10
 
 
-def divisors(n):
-    return [1]
+# note that this test is flaky due to use of internal state that should not only be private but is also influenced by
+# the order of the tests - fine for now though
+def test_factor_recording():
+    # 1 is not considered prime, so don't record it as a factor
+    ex12.record_factors(1)
+    assert len(ex12.factors) == 0
+
+    # see factor recording of 4: going down its greatest dividers until arriving at primes
+    ex12.record_factors(4)
+    assert ex12.factors == {
+        2: [2],
+        4: [2, 2]
+    }
+
+    # see factor recording of 28: the structure for that is added
+    ex12.record_factors(28)
+    assert ex12.factors == {
+        2: [2],
+        4: [2, 2],
+        7: [7],
+        14: [7, 2],
+        28: [14, 2]
+    }
+
+    # running it again does not change the factor cache
+    ex12.record_factors(28)
+    assert ex12.factors == {
+        2: [2],
+        4: [2, 2],
+        7: [7],
+        14: [7, 2],
+        28: [14, 2]
+    }
 
 
-def test_divisors():
-    assert divisors(1) == [1]
+def test_prime_factors():
+    assert ex12.prime_factors(1) == None
+    assert ex12.prime_factors(2) == [2]
+    assert ex12.prime_factors(3) == [3]
+    assert ex12.prime_factors(4) == [2, 2]
+    assert ex12.prime_factors(28) == [2, 2, 7]

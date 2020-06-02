@@ -40,3 +40,37 @@ def triangle_numbers():
     In the case of 3 (3): (1 + 1) = 2.
 """
 
+factors = {}
+
+
+def record_factors(n):
+    if n < 2:
+        return
+    if n in factors:
+        return
+    for i in itertools.count(2, 1):
+        divided = n / i
+        if divided.is_integer():
+            d = int(divided)
+            # note that if n is prime, d will be 1
+            if d == 1:
+                factors[n] = [i]
+            else:
+                factors[n] = [d, i]
+                record_factors(i)
+                record_factors(d)
+            return
+
+
+def prime_factors(n):
+    if n < 2:
+        return
+    if n not in factors:
+        record_factors(n)
+    fs = factors[n]
+    if len(fs) == 1:
+        return fs
+    else:
+        smallers = prime_factors(fs[0]) + prime_factors(fs[1])
+        smallers.sort()
+        return smallers
