@@ -19,22 +19,25 @@ def _calc(big): #function to get all prime factors of a number
       ret.append(x)
       big = int(big / x)
       if (big == 1):
+        #reached the end of the divisions, no need to loop further
         return ret
   return ret
   
 
 while True:
   triangle += i
-  factors = []
   factors = _calc(triangle)
-
   results = sorted(factors)
 
   answers = []
-  if (len(results) >= 2): #combine and multiply all prime factors
+  #combine and multiply all prime factors
+  if (len(results) >= 2):
     for k in reversed(range(len(results))):
+      #combinations creates iterator with all possible combinations of elements in
+      #results array, size is determined by second parameter
       temp_var = list(combinations(results, k + 1))
       for r in range(len(temp_var)):
+        #reduce is used to apply the function to all items in the sequence
         answers.append(reduce(lambda x, y: x * y, temp_var[r]))
 
   answers.insert(0, 1) #insert 1 to the answers, the triangle number was added by multiplication of prime factors
