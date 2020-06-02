@@ -15,3 +15,11 @@ def test_triangle_numbers_generator():
     assert next(T) == 3
     assert next(T) == 6
     assert next(T) == 10
+
+
+def divisors(n):
+    return [1]
+
+
+def test_divisors():
+    assert divisors(1) == [1]
