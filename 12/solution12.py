@@ -11,11 +11,13 @@ def create_triangle_number_list(max_triangle_number):
     return triangle_number_list
 
 def number_of_divisors(triangle_number):
-    return len([divisor for divisor in range(1,triangle_number+1) if triangle_number % divisor == 0])
+    return len([divisor for divisor in range(1,round(triangle_number/2)+1) if triangle_number % divisor == 0])
 
-for triangle_nr in create_triangle_number_list(100000):
+for triangle_nr in create_triangle_number_list(1000000):
     if not isprime(triangle_nr):
         divisors = number_of_divisors(triangle_nr)
+        print("Triangle nr: {}".format(triangle_nr))
+        print("Number of divisors: {}".format(divisors))
         if divisors > 200:
             print("\t found at: {}".format(triangle_nr))
             print("\t Number of divisors: {}".format(divisors))
