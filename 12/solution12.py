@@ -7,7 +7,7 @@ def create_triangle_number_list(max_triangle_number):
 
 def number_of_divisors(number):
     # Only iterate till the square-root and multiple number of elements by 2
-    # since a*b = b*a
+    # since a*b = b*a, added plus 1 for the small numbers
     return 2 * len([divisor for divisor in range(1, round(number**0.5)+1) if number % divisor == 0])
 
 
