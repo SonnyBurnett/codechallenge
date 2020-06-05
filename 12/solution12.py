@@ -15,6 +15,7 @@ def number_of_divisors(number):
 
 
 def print_and_stop_after_first_divisor_limit_found(number, divisor_limit):
+    # Determine number of divisors
     no_divisors = number_of_divisors(number)
     if no_divisors > divisor_limit:
         print(number, no_divisors)
