@@ -1,23 +1,25 @@
-def isprime(i):
-    if len([x for x in range(2,i) if i % (x) == 0 and i != x]) == 0:
-        return True
-    else:
-        return False
+import math
+
 
 def create_triangle_number_list(max_triangle_number):
     triangle_number_list = [1]
     for addition in range(2, max_triangle_number):
-        triangle_number_list.append(triangle_number_list[len(triangle_number_list)-1]+addition)
+        triangle_number_list.append(triangle_number_list[len(triangle_number_list) - 1] + addition)
     return triangle_number_list
 
-def number_of_divisors(triangle_number):
-    return len([divisor for divisor in range(1,round(triangle_number/2)+1) if triangle_number % divisor == 0])
 
-for triangle_nr in create_triangle_number_list(1000000):
-    if not isprime(triangle_nr):
-        divisors = number_of_divisors(triangle_nr)
-        print("Triangle nr: {}".format(triangle_nr))
-        print("Number of divisors: {}".format(divisors))
-        if divisors > 200:
-            print("\t found at: {}".format(triangle_nr))
-            print("\t Number of divisors: {}".format(divisors))
+def number_of_divisors(number):
+    return 2 * len([divisor for divisor in range(1, round(math.sqrt(number) + 1)) if number % divisor == 0])
+
+
+def print_and_stop_after_first_divisor_limit_found(number, divisor_limit):
+    no_divisors = number_of_divisors(number)
+    if no_divisors > divisor_limit:
+        print(number, no_divisors)
+        exit(0)
+
+
+# Iterate over the list of created Triangle numbers. for each Triangle number call the function to print
+# the number of Divisors, given the limit.
+[print_and_stop_after_first_divisor_limit_found(triangle_nr, 500) for triangle_nr in
+ create_triangle_number_list(1000000)]
