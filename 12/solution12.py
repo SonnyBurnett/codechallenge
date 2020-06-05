@@ -9,6 +9,8 @@ def create_triangle_number_list(max_triangle_number):
 
 
 def number_of_divisors(number):
+    # Only iterate till the square-root and multiple number of elements by 2
+    # since a*b = b*a
     return 2 * len([divisor for divisor in range(1, round(math.sqrt(number) + 1)) if number % divisor == 0])
 
 
