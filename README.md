@@ -32,12 +32,12 @@ The notebooks contain a directed step to step explaining the how the problem is 
 
 You can use the direct link to jump to the Jupyler Notebook, no local installation is needed on GitHub.
 
-####Beginner problems:
-1. .[Project Euler Problem 1 notebook](notebooks\Project Euler Problem 1.ipymb): 'notebooks\Project Euler Problem 1.ipymb'
+####Beginner problems:  
+1. [Project Euler Problem 1 notebook](https://github.com/Sre14/sre14-ep/blob/master/notebooks/Project%20Euler%20Problem%201.ipynb): 'notebooks\Project Euler Problem 1.ipymb'
     is for guiding you through the solution for the first project Euler assignment. 
 
-####Expert problems:
-12. [Project Euler Problem 12 notebook](notebooks\Project Euler Problem 12.ipymb: 'notebooks\Project Euler Problem 12.ipymb'
+####Expert problems:  
+12. [Project Euler Problem 12 notebook](https://github.com/Sre14/sre14-ep/blob/master/notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
     is for guiding you through the solution for the twelfth project Euler assignment.
 
 ## Deployment
