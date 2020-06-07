@@ -26,11 +26,11 @@ Set-up the code by either clone the repertory or download it as a whole and extr
 ## Running the notebooks
 
 The notebooks contain a directed step to step explaining the how the problem is solved, executes the solution and even
- loads the python file to show it in GitHub. Here below the relative links have been added.
+ loads the python file in GitHub you already see the preview. Here below the direct links have been added.
 
 ### Current problems notebooks
 
-You can use the direct link to jump to the Jupyler Notebook, no local installation is needed on GitHub.
+You can use the direct link to jump to the Jupyler Notebook preview, no local installation is needed on GitHub.
 
 ####Beginner problems:  
 1. [Project Euler Problem 1 notebook](https://github.com/Sre14/sre14-ep/blob/master/notebooks/Project%20Euler%20Problem%201.ipynb): 'notebooks\Project Euler Problem 1.ipymb'
@@ -43,8 +43,8 @@ You can use the direct link to jump to the Jupyler Notebook, no local installati
 ## Deployment
 
 No additional notes about how to deploy this on a live system, follow the installation instruction above.
-GitHub directly support the working Jupyter Notebook in the browser of your choosing supported by GitHub.
-The project is structured as following:
+GitHub directly support the Jupyter Notebook for a preview in the browser of your choosing supported by GitHub.
+The project is structured as following if you want to run the cells in the notebook:
 
 ```
 ├── LICENSE
@@ -116,3 +116,4 @@ Building this framework to demonstrate the solutions was a challenge on its own,
 * https://www.python.org/dev/peps/pep-0008/
 * https://drivendata.github.io/cookiecutter-data-science/
 * https://www.jetbrains.com/help/pycharm/
+* https://reproducible-science-curriculum.github.io/sharing-RR-Jupyter/01-sharing-github/
