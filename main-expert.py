@@ -1,3 +1,7 @@
+'''
+Author: Mike van den Berge
+Date: 06-Jun-2020
+'''
 import math
 
 def triangles(n):
