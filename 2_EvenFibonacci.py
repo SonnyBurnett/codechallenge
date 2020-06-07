@@ -1,4 +1,9 @@
 def calculate_fibonacci(max):
+  '''
+  This function returns a list of all fibonacci numbers below the value of max.
+  It accepts one argument:
+  - max, which should be an integer
+  '''
   fib1=1
   fib2=2
   fibonacci=[fib1,fib2]
@@ -10,6 +15,11 @@ def calculate_fibonacci(max):
   return(fibonacci)
 
 def evens_from_list(MixedList):
+  '''
+  This function returns a list of all even numbers in the input list.
+  It accepts one argument:
+  - MixedList, which should be list of integers
+  '''
   evensList=[x for x in MixedList if x % 2 == 0]
   return(evensList)
 
