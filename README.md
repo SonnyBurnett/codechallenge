@@ -28,17 +28,17 @@ Set-up the code by either clone the repertory or download it as a whole and extr
 The notebooks contain a directed step to step explaining the how the problem is solved, executes the solution and even
  loads the python file to show it.
 
-##### Current problems notebooks
+### Current problems notebooks
 
-```
-Beginner problems:
-1. \notebooks\Project Euler Problem 1.ipymb 
+You can use the direct link to jump to the Jupyler Notebook, no local installation is needed on GitHub.
+
+####Beginner problems:
+1. .[notebooks\Project Euler Problem 1.ipymb]
     is for guiding you through the solution for the first project Euler assignment. 
 
-Expert problems:
-12. \notebooks\Project Euler Problem 2.ipymb 
+####Expert problems:
+12. [notebooks\Project Euler Problem 2.ipymb]
     is for guiding you through the solution for the twelfth project Euler assignment.
-```
 
 ## Deployment
 
