@@ -20,3 +20,14 @@ def list_factors(num):
             factors.add(limit) 
         i += 1
     return factors
+
+
+def fibonacci():
+    """
+    Fibonacci Generator
+    """
+    start, new = 0, 1
+    while True:
+        yield start
+        start, new = new, start + new
+        
