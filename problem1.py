@@ -3,6 +3,7 @@
 #   Euler challenge 01
 #   Frank G.M. Nijssen
 #   ING – Tech GEP Ops Eng IT4IT / ServiceNow LCM
+#   Euler ID: fgmni
 #
 #   -------------------------------------------------------------------------------------------------------------
 #   Description
