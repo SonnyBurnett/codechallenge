@@ -90,8 +90,7 @@ class TriangleCalculatorInator(tk.Frame):
                               command=self.master.destroy)
         self.quit.pack(side="right", anchor="e", padx=5, pady=5)
 
-    # Uses the string entered in the entrybox self.entry, "cleans it up" a bit and feeds it to find_triangle_with_factor
-    # It then stores the returned values in designated class variables
+    # Uses the string entered in the entrybox self.entry, "cleans it up" a bit and creates a calculation thread
     def command_user_input_cleanup(self):
         wrong_input_counter = self.variable_wrong_input_counter.get()
         user_input = self.variable_input.get()
@@ -147,7 +146,7 @@ class TriangleCalculatorInator(tk.Frame):
             wrong_input_counter = 0
             self.variable_wrong_input_counter.set(wrong_input_counter)
 
-    # creates a thread to do the calculations, as it may take some time with large numbers.
+    # method used by thread to do the calculations, as it may take some time with large numbers.
     # Had some problems with passing the arguments via the threading module, as it wanted an iterable item as arguments
     # Added "dummy"-argument as a quick fix
     def command_calculate(self, dummy, factor_target):      # dummy isn't used, but is needed to keep things working
