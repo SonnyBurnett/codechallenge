@@ -35,6 +35,8 @@ You can use the direct link to jump to the Jupyler Notebook preview, no local in
 ####Beginner problems:  
 1. [Project Euler Problem 1 notebook](https://github.com/Sre14/sre14-ep/blob/master/notebooks/Project%20Euler%20Problem%201.ipynb): 'notebooks\Project Euler Problem 1.ipymb'
     is for guiding you through the solution for the first project Euler assignment. 
+2. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%202.ipynb): 'notebooks\Project Euler Problem 2.ipymb'
+    is for guiding you through the solution for the second project Euler assignment. 
 
 ####Expert problems:  
 12. [Project Euler Problem 12 notebook](https://github.com/Sre14/sre14-ep/blob/master/notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
