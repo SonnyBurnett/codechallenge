@@ -8,10 +8,12 @@ def sum_fibo(n_max, n_add):
     fn, f1, f2 = 0, 1, 1
 
     while fn <= n_max:
-        fn, f1, f2 = (f2 + f1), f2, fn
+        fn = f2 + f1
+        f1, f2 = f2, fn
 
     for i in range(1, n_add, 1):
-        fn, f1, f2 = (f2 + f1), f2, fn
+        fn = f2 + f1
+        f1, f2 = f2, fn
 
     return fn
 
