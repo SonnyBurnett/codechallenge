@@ -16,4 +16,4 @@ for i in range(999,900,-1):
       continue
   continue
 
-print("The highest palindrome result of two 3-digit numbers is: "+str(max(palindromes)))
+print("The highest palindrome result of the product of two 3-digit numbers is: "+str(max(palindromes)))
