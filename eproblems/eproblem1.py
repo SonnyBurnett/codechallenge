@@ -1,5 +1,5 @@
 def sum_total(n, m):
-    """Calculate the sum up to the number given in parameter a in steps of parameter b.
+    """Calculate the sum up to the number given in parameter n in steps of parameter m.
 
     :param n: fist number indicates the total sum that needs to be calculated
     :param m: second number is the step size of the sum(s)
