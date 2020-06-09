@@ -1,13 +1,13 @@
-# Assignment 1 GEP coding challenge Python
+# Assignment 1 GEP coding challenge Python beginner
 
-Foobar is a Python library for dealing with word pluralization.
+This python code is delivering the answer to the GEP Python coding challenge for beginners
 
 ## Installation
 
 Clone this respository
 
 ```bash
-git clone xxx
+git clone https://github.com/mikevdberge/mikevdberge.git
 ```
 
 ## Usage
