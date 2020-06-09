@@ -1,25 +1,21 @@
-def highest_score(hand):
-    highest = 2
-    for card in hand:
-        if values.index(card[0]) > highest:
-            highest = values.index(card[0])
-    return highest+2
+def find_highest_card(hand):
+    return [max([values.index(card[0]) for card in hand if values.index(card[0])]) + 2]
 
-# def highest_card(hand):
-#     return score
-#
-# def score_one_pair(hand):
-#     return score
-#
-# def score_two_pairs(hand):
-#     return score
-#
-# def score_three_of_a_kind(hand):
-#     return score
-#
-# def score_straight(hand):
-#     return score
-#
+
+def find_value_occurrences(hand):
+    value_list = [values.index(card[0]) for card in hand]
+    return [[value+2, value_list.count(value)] for value in set(value_list)]
+
+
+def find_suite_occurrences(hand):
+    suite_list = [suite.index(card[1]) for card in hand]
+    return [[suite[color], suite_list.count(color)] for color in set(suite_list)]
+
+
+def score_straight(hand):
+    value_list = [values.index(card[0]) for card in hand]
+    return value_list
+
 # def score_flush(hand):
 #     return score
 #
@@ -35,11 +31,11 @@ def highest_score(hand):
 # def score_royal_flush(hand):
 #     return 100
 
-colors = ['H', 'D', 'S', 'C']
-values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+suite = ['H', 'D', 'S', 'C']
+values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
-hand_player1 = ['5H','5C','6S','7S','KD']
-print(highest_score(hand))
+hand_player1 = ['2H', '2C', '4S', '4S', '6S']
+print(find_suite_occurrences(hand_player1))
 
 # score_flush(hand)
 number_of_players = 2
