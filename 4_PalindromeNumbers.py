@@ -9,11 +9,6 @@ def isPalindrome(num):
     return False
 
 palindromes=[]
-for i in range(999,900,-1):
-  for j in range(999,900,-1):
-    if isPalindrome(i*j):
-      palindromes.append(i*j)
-      continue
-  continue
+[palindromes.append(i*j) for i in range(999,900,-1) for j in range(999,900,-1) if isPalindrome(i*j)]
 
 print("The highest palindrome result of the product of two 3-digit numbers is: "+str(max(palindromes)))
