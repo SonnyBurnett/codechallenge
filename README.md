@@ -2,6 +2,23 @@
 
 Project Euler Problems in Jupyter Notebooks and using Python 3.8+
 
+## Table of contents
+* [Getting Started](#Getting Started)
+    * [Prerequisites](#Prerequisites)
+    * [Installing](#Installing)
+* [Running the notebooks](#Running the notebooks)
+    * [Current problems notebooks](#Current problems notebooks)
+    * [Beginner problems](#Beginner problems:)
+    * [Expert problems](#Expert problems:)
+* [Deployment](#Deployment)
+* [Built With](#Built With)
+* [Tests](#Tests)
+* [Contributing](#Contributing)
+* [Versioning](#Versioning)
+* [Authors](#Authors)
+* [License](#License)
+* [Acknowledgments](#Acknowledgments)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for calculating project
@@ -50,44 +67,50 @@ The project is structured as following if you want to run the cells in the noteb
 
 ```
 ├── LICENSE
-├── README.md          This top-level README for developers using this project.
+├── README.md               This top-level README for developers using this project.
 |
-├── data               This is the data directory needed for the eproblems.
-│   └── none.txt        Contains the todo for reusable text in the future.
+├── data                    This is the data directory needed for the eproblems.
+│   └── none.txt                Contains the todo for reusable text in the future.
 |
-├── docs               A documentation directory for reusable documentation text in the future.
-│   └── none.txt        Contains the todo for reusable text in the future.
+├── docs                    A documentation directory for reusable documentation text in the future.
+│   └── none.txt                Contains the todo for reusable text in the future.
 |
-├── eproblems          Sources for use in this project for the solutions, 
-|   |                     Naming convention is a tailing number behind "eproblem".
-|   |                     This number is not a version, but indicates the project Euler problem identification.
-│   ├── __init__.py     Makes eproblems a Python module.
-│   └── eproblem##.py   One or more numbered python scripts for the specific project Euler problem.
+├── eproblems               Sources for use in this project for the solutions, 
+|   |                         Naming convention is a tailing number behind "eproblem".
+|   |                         This number is not a version, but indicates the project Euler problem identification.
+│   ├── __init__.py             Makes eproblems a Python module.
+│   └── eproblem##.py           One or more numbered python scripts for the specific project Euler problem.
 |
-├── example             A directory for automatically running the project Euler problems using either
-|   |                     examples given in the assignments and/or using the correct parameters for the solutions.
-│   └── none.txt        Contains the todo for example in the future.
+├── example                 A directory for automatically running the project Euler problems using either
+|   |                        examples given in the assignments and/or using the correct parameters for the solutions.
+│   └── none.txt                Contains the todo for example in the future.
 |
-├── notebooks          Jupyter notebooks. Naming convention is a tailing number behind "Project Euler Problem ".ipymb,
-│                         the project euler problem identification.
+├── notebooks               Jupyter notebooks. Naming convention is a tailing number behind "Project Euler Problem ".ipymb,
+│                             the project euler problem identification.
 │
-├── src                Sources for use in this project other than used for the solutions, but for notebooks.
-│   ├── __init__.py     Makes src a Python module.
-│   └── toggle_cell.py  Script to create exploratory and results oriented visualizations
+├── src                     Sources for use in this project other than used for the solutions, but for notebooks.
+│   ├── __init__.py             Makes src a Python module.
+│   └── toggle_cell.py          Script to create exploratory and results oriented visualizations
 |
-├── tests              A directory for reusable tests in the future.
-│   └── none.txt        Contains the todo for tests in the future.
+├── tests                   A directory for reusable tests in the future.
+│   └── test_eproblem##.py      One or more numbered unittest python scripts for the specific project Euler problem.
 |
-└── requirements.txt   The requirements file for reproducing the environment, e.g.
-                          generated with `conda list` and appended with PyCharm feedback.
+└── requirements.txt        The requirements file for reproducing the environment, e.g.
+                              generated with `conda list` and appended with PyCharm feedback.
 ```
-
 ## Built With
 
+Anything that was used to write, compile, execute and stored for this project:
 * [Anaconda individual edition](https://www.anaconda.com/products/individual) - Python distribution platform.
 * [Jupyter Notebook](https://jupyter.org/) - The Jupyter Notebook.
 * [JetBrains PyCharm](https://www.jetbrains.com/pycharm/) - PC PyCharm - The Python IDE for Professional Developers.
 * [GitHub](https://github.com/) - A Git repository hosting service.
+
+## Tests
+
+The tests where executed with PyCharm:
+    * Configure the configuration by adding a Python Test > Unittests by target module name for the test_eproblem##.py
+     you want to test.
 
 ## Contributing
 
@@ -119,3 +142,5 @@ Building this framework to demonstrate the solutions was a challenge on its own,
 * https://drivendata.github.io/cookiecutter-data-science/
 * https://www.jetbrains.com/help/pycharm/
 * https://reproducible-science-curriculum.github.io/sharing-RR-Jupyter/01-sharing-github/
+* https://www.jetbrains.com/help/pycharm/testing-your-first-python-application.html
+* https://docs.python.org/3/library/unittest.html
