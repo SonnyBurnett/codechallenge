@@ -5,6 +5,7 @@ from SumOfMultiples import multiples
 class TestFunction(unittest.TestCase):
     def test_function(self):
         self.assertEqual(sum(multiples(10,[3,5])),23)
+        self.assertEqual(sum(multiples(10,[3,5,2])),37)
 
     def test_value_errors(self):
         self.assertRaises(ValueError, multiples, 1,[1,1])
