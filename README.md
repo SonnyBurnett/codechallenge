@@ -3,15 +3,15 @@
 Project Euler Problems in Jupyter Notebooks and using Python 3.8+
 
 ## Table of contents
-* [Getting Started](#Getting Started)
+* [Getting Started](#Getting-Started)
     * [Prerequisites](#Prerequisites)
     * [Installing](#Installing)
-* [Running the notebooks](#Running the notebooks)
-    * [Current problems notebooks](#Current problems notebooks)
-    * [Beginner problems](#Beginner problems:)
-    * [Expert problems](#Expert problems:)
+* [Running the notebooks](#Running-the-notebooks)
+    * [Current problems notebooks](#Current-problems-notebooks)
+    * [Beginner problems](#Beginner-problems:)
+    * [Expert problems](#Expert-problems:)
 * [Deployment](#Deployment)
-* [Built With](#Built With)
+* [Built With](#Built-With)
 * [Tests](#Tests)
 * [Contributing](#Contributing)
 * [Versioning](#Versioning)
