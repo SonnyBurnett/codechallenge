@@ -1,5 +1,4 @@
 import unittest
-#PrimeFactors = __import__('3_PrimeFactors')
 from PrimeFactors import get_prime_factors
 
 class TestFunction(unittest.TestCase):
