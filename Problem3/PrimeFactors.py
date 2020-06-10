@@ -10,11 +10,9 @@ def __next_prime(max):
       return i
   return max
 
-def get_prime_factors(max):
-  if type(max) != int:
-    raise TypeError("max should be of type integer")
+def get_prime_factors(max: int):
   if max<=0:
-    raise ValueError("max should be a positive integer")
+    raise ValueError("input should be a positive integer")
 
   orig_max=max
   primes=[]
@@ -33,8 +31,8 @@ def get_prime_factors(max):
   return primes
 
 def main():
-  max=600851475143
-  print("The prime factors of "+str(max)+" are: "+str(get_prime_factors(max)))
+  c=600851475143
+  print("The largest prime factor of "+str(c)+" is: "+str(max(get_prime_factors(c))))
 
 if __name__ == '__main__':
     main()
