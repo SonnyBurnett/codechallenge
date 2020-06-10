@@ -8,7 +8,7 @@ class TestFunction(unittest.TestCase):
 
     def test_value_errors(self):
         self.assertRaises(ValueError, highest_palindrome, 1)
-        self.assertRaises(ValueError, highest_palindrome, 10)
+        self.assertRaises(ValueError, highest_palindrome, 6)
 
     def test_type_errors(self):
         self.assertRaises(TypeError, highest_palindrome, "Test")
