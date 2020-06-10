@@ -1,8 +1,8 @@
 import unittest
 from EvenFibonacci import calculate_fibonacci as cf
 
-class TestFibonacci(unittest.TestCase):
-    def test_fibonacci(self):
+class TestFunction(unittest.TestCase):
+    def test_function(self):
         self.assertEqual(cf(10), [1, 2, 3, 5, 8])
 
     def test_value_errors(self):
