@@ -24,10 +24,9 @@ The program is structured as follow:
 * The scores are saved into a `results.csv` comma-separated file
 * the number of won hands fo Player1 is finally displayed
 
-## Test 
+## Tests 
 
 * Unit tests are performed using pytest
 * test file is test.py       
-
- 
+* pytest execution is automated in the pipeline 
  
