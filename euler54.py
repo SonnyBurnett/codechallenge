@@ -129,8 +129,8 @@ def get_score(hands):
                 values1.sort()
                 values2 = [v for v, _ in hand2]
                 values2.sort()
-                high1 = max([x for x in values1 if x not in values2])
-                high2 = max([x for x in values2 if x not in values1])
+                high1 = max(x for x in values1 if x not in values2)
+                high2 = max(x for x in values2 if x not in values1)
                 score1 = 1 if high1 > high2 else 0
                 score2 = 1 if high1 < high2 else 0
 
@@ -151,16 +151,16 @@ def convert_card_value(val):
     """
     if val == 'T':
         return 10
-    elif val == 'J':
+    if val == 'J':
         return 11
-    elif val == 'Q':
+    if val == 'Q':
         return 12
-    elif val == 'K':
+    if val == 'K':
         return 13
-    elif val == 'A':
+    if val == 'A':
         return 14
-    else:
-        return int(val)
+
+    return int(val)
 
 
 def main():
