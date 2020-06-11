@@ -1,5 +1,5 @@
+#!/bin/usr/env python
 #
-# url: https://projecteuler.net/problem=54
 #
 
 import pandas as pd
@@ -109,7 +109,7 @@ def get_score(hands):
     # if ranks tie... and also detect the High Card rank
     # TODO solve the high rank
     if rank1 == rank2:
-        if rank1 == Rank.TwoPairs or rank1 == Rank.FullHouse:
+        if rank1 == Rank.TwoPairs:
             if max(v10, v11) > max(v20, v21):
                 score1 = 1
             else:
@@ -119,17 +119,28 @@ def get_score(hands):
                 score1 = 1
                 if rank1 == Rank.Nothing:
                     rank1 = rank1.HighCard
-            else:
+            elif v10 < v20:
                 score2 = 1
                 if rank2 == Rank.Nothing:
                     rank2 = rank2.HighCard
+            # case where we need to iterate on finding the higher card
+            else:
+                values1 = [v for v, _ in hand1]
+                values1.sort()
+                values2 = [v for v, _ in hand2]
+                values2.sort()
+                high1 = max([x for x in values1 if x not in values2])
+                high2 = max([x for x in values2 if x not in values1])
+                score1 = 1 if high1 > high2 else 0
+                score2 = 1 if high1 < high2 else 0
+
     elif rank1 > rank2:
         score1 = 1
     else:
         score2 = 1
 
     # return the hands, the ranks and the winner score as a pandas serie
-    return hands.append(pd.Series([rank1, score1, rank2, score2]))
+    return [rank1, score1, rank2, score2, hands]
 
 
 def convert_card_value(val):
@@ -153,20 +164,17 @@ def convert_card_value(val):
 
 
 def main():
-    # read the input file into a pandas dataframe
-    # TODO use the real file, not test
-    # input_file = r'p054_poker.txt'
-    # TODO create a test file
-    input_file = r'test.txt'
+
+    input_file = r'p054_poker.txt'
     df = pd.read_csv(input_file, sep=' ', header=None)
     df.columns = ["c11", "c12", "c13", "c14", "c15", "c21", "c22", "c23", "c24", "c25"]
-    # calculate rank & winner for each row of hands
-    score = df.apply(get_score, axis=1, result_type='expand')
-    score.columns = ["c11", "c12", "c13", "c14", "c15", "c21", "c22", "c23", "c24", "c25",
-                     "player1", "score1", "player2", "score2"]
-    # publish results
 
+    score = df.apply(get_score, axis=1, result_type='expand')
+
+    score.columns = ["player1", "score1", "player2", "score2", "hands"]
+    score['hands'] = score['hands'].apply(list)
     score.to_csv('results.csv', index=False)
+
     print(f'Player1 wins: {score["score1"].sum()} hands')
 
 
