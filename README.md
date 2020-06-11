@@ -1,5 +1,7 @@
 # EulerProject  - problem 54
 
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/xmayeur/euler54/?ref=repository-badge)
+
 * url: [problem 54](https://projecteuler.net/problem=54)
 
 ## Problem: how many hands does Player1 win? 
