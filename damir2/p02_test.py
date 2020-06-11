@@ -14,6 +14,8 @@ class Test_p02(unittest.TestCase):
 
   def test_type_errors(self):
     self.assertRaises(TypeError, sum_fibo_with_limit_and_mod_number, 100, '2')
+    self.assertRaises(TypeError, sum_fibo_with_limit_and_mod_number, '100', '2')
+    self.assertRaises(TypeError, sum_fibo_with_limit_and_mod_number, 100.99, '2')
 
   def test_value_errors(self):
     self.assertRaises(ValueError, sum_fibo_with_limit_and_mod_number, 100, -2)

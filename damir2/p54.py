@@ -158,30 +158,49 @@ class Hand:
         return True
     return False
 
-def count_wins():
-  pass
+class Poker():
+  def __init__(self, filename = '', poker_hands = []):
+    self._location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    self.player1_wins = 0
+    if len(filename) > 0:
+      self._read_data_from_file(filename)
+    if len(poker_hands) > 0:
+      self._read_data_from_poker_hands(poker_hands)
+
+  def _read_data_from_poker_hands(self, poker_hands):
+    if (type(poker_hands) not in [str, list]):
+      raise TypeError("Wrong type for poker_hands. Expected str or list of str")
+    if type(poker_hands) == list:
+      for line in poker_hands:
+        self._evaluate_hand(line)
+    else:
+      for line in poker_hands.split('\n'):
+        self._evaluate_hand(line.strip())
+
+  def _read_data_from_file(self, filename):
+    if os.path.exists(os.path.join(self._location, filename)) == False:
+      raise FileNotFoundError("File specified does not exists.")
+
+    with open(os.path.join(self._location, filename)) as poker_file:
+      poker_hand = poker_file.readline()
+      while poker_hand:
+        self._evaluate_hand(poker_hand)
+        poker_hand = poker_file.readline()
+
+  def _evaluate_hand(self, hand_data):
+    hand = Hand(hand_data)
+    if hand.did_player1_win():
+      self.player1_wins += 1
+
+  def euler_solution(self):
+    self._read_data_from_file('p54-poker.txt')
+    #prints: 376
+    print('Player1 wins {} times!'.format(self.player1_wins))
+    return self.player1_wins
 
 def main():
-  __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-  with open(os.path.join(__location__, 'p54-poker.txt')) as poker_hands:
-    data = poker_hands.read().splitlines()
-
-  f = open(os.path.join(__location__, 'p54-poker.txt'))
-
-  line = f.readline()
-  p1_wins = 0
-
-  while line:
-    print(line)
-    hand = Hand(line)
-    if hand.did_player1_win():
-      p1_wins += 1
-      print('Player1 wins this round')
-    line = f.readline()
-  
-  #prints: 376
-  print('Player1 wins {} times!'.format(p1_wins))
-  f.close()
+  _poker = Poker()
+  _poker.euler_solution()
 
 if __name__ == "__main__":
-    main()
+  main()
