@@ -47,17 +47,19 @@ there is a clear winner.
 
 How many hands does Player 1 win?
 '''
+import os
+
 class PlayerHand:
   def __init__(self, round_of_cards):
     self._seen = None
-    self._dupes = None
+    self._duplicates = None
     self._values = []
     self._colors = []
     self.cards_values = {}
-    self.cards = self.read_hand(round_of_cards)
-    self.calculate_highest_value()
+    self.cards = self.__read_hand(round_of_cards)
+    self.__calculate_highest_value()
 
-  def get_card_value(self, card):
+  def __get_card_value(self, card):
     try:
       return int(card)
     except:
@@ -70,33 +72,34 @@ class PlayerHand:
       }
       return translation.get(card)
 
-  def read_hand(self, round_of_cards):
+  def __read_hand(self, round_of_cards):
     cards = []
     seen = {}
-    dupes = []
-    for c in round_of_cards.split():
-      v = self.get_card_value(c[0])
-      self._values.append(v)
-      self._colors.append(c[1])
+    duplicates = []
+    for card in round_of_cards.split():
+      card_value = self.__get_card_value(card[0])
+      self._values.append(card_value)
+      self._colors.append(card[1])
 
-      #calc - do we have a pair?
-      if v not in seen:
-          seen[v] = 1
+      if card_value not in seen:
+          seen[card_value] = 1
       else:
-        if seen[v] == 1:
-          dupes.append(v)
-        seen[v] += 1
+        if seen[card_value] == 1:
+          duplicates.append(card_value)
+        seen[card_value] += 1
     
     self._seen = seen
-    self._dupes = dupes
+    self._duplicates = duplicates
     return cards
   
   def get_highest_card(self):
     return max(self._values)
   
-  def calculate_highest_value(self):
+  def __calculate_highest_value(self):
     '''
-    this should calculate the highest value of all cards
+    this should calculate the highest value of all cards with following value
+    assignments. It is possible to have combinations of values.
+    Function returns dictionary
     0 - High Card: Highest value card.
     1 - One Pair: Two cards of the same value.
     2 - Two Pairs: Two different pairs.
@@ -109,17 +112,17 @@ class PlayerHand:
     9 - Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
     '''
     self.cards_values[0] = self.get_highest_card()
-    #get pairs, three, four
-    for dupe in self._dupes:
-      if self._seen[dupe] == 2:
+    #get pair, two pairs, three, four
+    for duplicate in self._duplicates:
+      if self._seen[duplicate] == 2:
         if 1 not in self.cards_values:
-          self.cards_values[1] = [dupe] #One Pair
+          self.cards_values[1] = [duplicate] #One Pair
         else:
-          self.cards_values[1].append(dupe) #Two Pairs
-      elif self._seen[dupe] == 3: #Three of a Kind
-        self.cards_values[3] = dupe
-      elif self._seen[dupe] == 4: #Four of a Kind
-        self.cards_values[7] == dupe
+          self.cards_values[1].append(duplicate) #Two Pairs
+      elif self._seen[duplicate] == 3: #Three of a Kind
+        self.cards_values[3] = duplicate
+      elif self._seen[duplicate] == 4: #Four of a Kind
+        self.cards_values[7] == duplicate
     #two pairs?
     if 1 in self.cards_values and len(self.cards_values[1]) == 2:
       self.cards_values[2] = self.cards_values[1][0] if self.cards_values[1][0] > self.cards_values[1][1] else self.cards_values[1][1]
@@ -136,7 +139,7 @@ class PlayerHand:
     #Straight Flush
     if 4 in self.cards_values and 5 in self.cards_values:
       self.cards_values = self.cards_values[0]
-      #Do we have a Royal FLush???
+      #Royal FLush
       if self.cards_values[0] == 14:
         self.cards_values[9] = 14
 
@@ -150,26 +153,35 @@ class Hand:
   def did_player1_win(self):
     if self.hand1.highest_value > self.hand2.highest_value:
       return True
-    elif self.hand1.highest_value == self.hand2.highest_value:
-      if self.hand1.cards_values[self.hand1.highest_value] > self.hand2.cards_values[self.hand2.highest_value]:
+    elif (self.hand1.highest_value == self.hand2.highest_value and 
+      self.hand1.cards_values[self.hand1.highest_value] > self.hand2.cards_values[self.hand2.highest_value]):
         return True
     return False
 
+def count_wins():
+  pass
 
-f = open('54-poker.txt')
-line = f.readline()
-p1_wins = 0
+def main():
+  __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+  with open(os.path.join(__location__, 'p54-poker.txt')) as poker_hands:
+    data = poker_hands.read().splitlines()
 
-while line:
-  print(line)
-  hand = Hand(line)
-  if hand.did_player1_win():
-    p1_wins += 1
-    print('Player1 wins this round')
-  
-  #read next line
+  f = open(os.path.join(__location__, 'p54-poker.txt'))
+
   line = f.readline()
+  p1_wins = 0
 
-print('Player1 wins {} times!'.format(p1_wins))
+  while line:
+    print(line)
+    hand = Hand(line)
+    if hand.did_player1_win():
+      p1_wins += 1
+      print('Player1 wins this round')
+    line = f.readline()
+  
+  #prints: 376
+  print('Player1 wins {} times!'.format(p1_wins))
+  f.close()
 
-f.close()
+if __name__ == "__main__":
+    main()
