@@ -1,6 +1,7 @@
 # EulerProject  - problem 54
 
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/xmayeur/euler54/?ref=repository-badge)
+[![Build Status](https://dev.azure.com/xmayeur/Euler54/_apis/build/status/xmayeur.euler54?branchName=master)](https://dev.azure.com/xmayeur/Euler54/_build/latest?definitionId=15&branchName=master)
 
 * url: [problem 54](https://projecteuler.net/problem=54)
 
