@@ -28,5 +28,5 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest test.py
+    coverage run -m pytest test.py
   displayName: 'pytest'
