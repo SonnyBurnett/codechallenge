@@ -25,7 +25,7 @@ The main challenge was to evaluate a players hand a give it some value. Solution
 
 Represented as a dictionary in the PlayerHand class;
 
-```JSON with Comments
+```text
 {
   '0': 14,      # the highest value card J,Q,K,A = 11,12,13,14 with 14 the highest value card - Ace
   '1': [3],     # a pair of card with the value 3 OR
