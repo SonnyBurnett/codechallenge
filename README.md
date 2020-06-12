@@ -7,7 +7,7 @@
 
 ## Problem: how many hands does Player1 win? 
 
-* result = ...
+* result = 400
 
 ## Method used to solve the problem
 
