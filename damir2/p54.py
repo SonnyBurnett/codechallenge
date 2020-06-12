@@ -217,6 +217,7 @@ class Poker():
     method to find the solution for the eulers problem
     '''
     self._read_data_from_file('p54-poker.txt')
+    print('Solution for the Euler p54 problem:')
     #prints: 376
     print('Player1 wins {} times!'.format(self.player1_wins))
     return self.player1_wins
