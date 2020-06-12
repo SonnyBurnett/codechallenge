@@ -185,7 +185,7 @@ class Poker():
       self._read_data_from_poker_hands(poker_hands)
 
   def _read_data_from_poker_hands(self, poker_hands):
-    if not isinstance(poker_hands,(str, list)):
+    if not isinstance(poker_hands, (str, list)):
       raise TypeError("Wrong type for poker_hands. Expected str or list of str")
     if isinstance(poker_hands, list):
       for line in poker_hands:

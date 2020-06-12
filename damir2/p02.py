@@ -36,6 +36,7 @@ def sum_fibonacci_with_limit_and_mod_number(limit = 4000000, mod = 2):
 def main():
   limit = 4000000
   mod = 2
+  print('Solution for the Euler02 problem:')
   #prints: 4613732
   print(sum_fibonacci_with_limit_and_mod_number(limit, mod))
 
