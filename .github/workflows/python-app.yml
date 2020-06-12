@@ -34,3 +34,6 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Run p54.py
+      run: |
+        python damir2/p54.py
