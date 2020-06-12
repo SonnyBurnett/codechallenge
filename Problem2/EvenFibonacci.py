@@ -1,6 +1,4 @@
-def calculate_fibonacci(max):
-  if type(max) != int:
-    raise TypeError("max should be of type integer")
+def calculate_fibonacci(max: int):
   if max<=1:
     raise ValueError("max should be a positive integer larger than 1")
 
