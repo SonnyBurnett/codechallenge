@@ -44,16 +44,16 @@ def get_rank(hand):
     if c10 == 4:
         rank = Rank.FourOfAKind
     # check full house
-    elif c10 == 3 and c11 == 2:
+    if c10 == 3 and c11 == 2:
         rank = max(rank, Rank.FullHouse)
     # check three of a kind
-    elif c10 == 3:
+    if c10 == 3:
         rank = max(rank, Rank.ThreeOfAKind)
     # check two pairs
-    elif c10 == 2 and c11 == 2:
+    if c10 == 2 and c11 == 2:
         rank = max(rank, Rank.TwoPairs)
     # check one pair
-    elif c10 == 2:
+    if c10 == 2:
         rank = max(rank, Rank.OnePair)
 
     # get all values of hand
@@ -63,7 +63,7 @@ def get_rank(hand):
     if values == list(range(10, 15)):
         rank = max(rank, Rank.RoyalFlush)
     # (Straight) Flush
-    elif all(s == 'C' for _, s in hand) or \
+    if all(s == 'C' for _, s in hand) or \
             all(s == 'D' for _, s in hand) or \
             all(s == 'S' for _, s in hand) or \
             all(s == 'H' for _, s in hand):
@@ -72,7 +72,7 @@ def get_rank(hand):
         if values == list(range(min(values), max(values) + 1)):
             rank = max(rank, Rank.StraightFlush)
     # Straight
-    elif values == list(range(min(values), max(values) + 1)):
+    if values == list(range(min(values), max(values) + 1)):
         rank = max(rank, Rank.Straight)
 
     return rank, v10, v11
@@ -129,8 +129,14 @@ def get_score(hands):
                 values1.sort()
                 values2 = [v for v, _ in hand2]
                 values2.sort()
-                high1 = max(x for x in values1 if x not in values2)
-                high2 = max(x for x in values2 if x not in values1)
+                try:
+                    high1 = max(x for x in values1 if x not in values2)
+                except ValueError:
+                    high1 = 0
+                try:
+                    high2 = max(x for x in values2 if x not in values1)
+                except ValueError:
+                    high2 = 0
                 score1 = 1 if high1 > high2 else 0
                 score2 = 1 if high1 < high2 else 0
 

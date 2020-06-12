@@ -28,5 +28,5 @@ steps:
 
 - script: |
     pip install pytest pytest-cov pytest-azurepipelines
-    coverage run -m pytest test.py --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
+    coverage run -m pytest test2.py --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
   displayName: 'pytest'

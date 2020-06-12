@@ -92,5 +92,12 @@ def test_each_full_house():
     assert score == expected_result
 
 
+def test_3ace_Flush():
+    hands = ['5H', '4C', '6S', '7S', '3D', '6H', '6C', '6S', '5S', 'KD']
+    score = get_score(hands)
+    expected_result = [Rank.Straight, 1, Rank.ThreeOfAKind, 0, hands]
+    assert score == expected_result
+
+
 if __name__ == '__main__':
     unittest.main()
