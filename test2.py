@@ -1,5 +1,5 @@
 import unittest
-from euler54 import get_rank, get_score, Rank, convert_card_value
+from euler54 import get_score, Rank
 import itertools
 
 hands1 = [
