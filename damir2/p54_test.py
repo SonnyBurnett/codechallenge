@@ -1,7 +1,8 @@
 import unittest
 from p54 import Poker, Hand, PlayerHand
 
-class Test_p54(unittest.TestCase):
+
+class test_p54(unittest.TestCase):
   def test_Hand(self):
     _hand = Hand('5C QC QH AS TS 4S 6S 4C 5H JS')
     self.assertTrue(_hand.did_player1_win())
@@ -12,7 +13,7 @@ class Test_p54(unittest.TestCase):
       2D 9C AS AH AC 3D 6D 7D TD QD
       4D 6S 9H QH QC 3D 6D 7H QD QS
       2H 2D 4C 4D 4S 3C 3D 3S 9S 9D'''
-    poker = Poker(poker_hands = _hands)
+    poker = Poker(poker_hands=_hands)
     self.assertEqual(poker.player1_wins, 3)
 
   def test_card_value(self):
@@ -23,7 +24,7 @@ class Test_p54(unittest.TestCase):
     self.assertEqual(_player_hand._duplicates, [12])
 
   def test_card_wrong_value(self):
-    #test wrong input
+    # test wrong input
     self.assertRaises(ValueError, PlayerHand, '5C XC QH AS TS')
     self.assertRaises(ValueError, PlayerHand, '5C QC QH AS')
     self.assertRaises(ValueError, PlayerHand, '5CQCQHASTS')

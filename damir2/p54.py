@@ -1,7 +1,8 @@
 '''
 https://projecteuler.net/problem=54
 
-In the card game poker, a hand consists of five cards and are ranked, from lowest to highest, in the following way:
+In the card game poker, a hand consists of five cards and are ranked,
+from lowest to highest, in the following way:
 
 High Card: Highest value card.
 One Pair: Two cards of the same value.
@@ -16,10 +17,11 @@ Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
 The cards are valued in the order:
 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.
 
-If two players have the same ranked hands then the rank made up of the highest value wins;
-for example, a pair of eights beats a pair of fives (see example 1 below). 
-But if two ranks tie, for example, both players have a pair of queens, then highest cards 
-in each hand are compared (see example 4 below); if the highest cards tie 
+If two players have the same ranked hands then the rank made up of
+the highest value wins; for example, a pair of eights beats a pair
+of fives (see example 1 below). But if two ranks tie, for example,
+both players have a pair of queens, then highest cards in each hand
+are compared (see example 4 below); if the highest cards tie
 then the next highest cards are compared, and so on.
 
 Consider the following five hands dealt to two players:
@@ -37,7 +39,7 @@ Hand    Player 1      Player 2            Winner
 5   2H 2D 4C 4D 4S    3C 3D 3S 9S 9D
     Full House        Full House
     With Three Fours  with Three Threes   Player 1
- 	
+
 The file, poker.txt, contains one-thousand random hands dealt to two players.
 Each line of the file contains ten cards (separated by a single space):
 the first five are Player 1's cards and the last five are Player 2's cards.
@@ -49,7 +51,12 @@ How many hands does Player 1 win?
 '''
 import os
 
+
 class PlayerHand:
+  '''
+  Class containing a single players cards
+  parses the cards and determnies the values of the cards
+  '''
   def __init__(self, round_of_cards):
     self._seen = None
     self._duplicates = None
@@ -59,7 +66,8 @@ class PlayerHand:
     self.cards = self.__read_hand(round_of_cards)
     self.__evaluate_hand()
 
-  def __get_card_value(self, card):
+  @classmethod
+  def __get_card_value(cls, card):
     if card.capitalize() not in '123456789TJQKA':
       raise ValueError('Card not recognized! Allowed values: 1,...,9,T,J,Q,K,A')
 
@@ -150,10 +158,10 @@ class PlayerHand:
   def __gt__(self, other):
     if self.highest_value > other.highest_value:
       return True
-    elif self.highest_value == other.highest_value:
+    if self.highest_value == other.highest_value:
       if self.cards_values[self.highest_value] > other.cards_values[other.highest_value]:
         return True
-      elif (self.cards_values[self.highest_value] == other.cards_values[other.highest_value]
+      if (self.cards_values[self.highest_value] == other.cards_values[other.highest_value]
           and max([x for x in self._values if x not in self._duplicates]) >
               max([x for x in other._values if x not in other._duplicates])):
         return True
@@ -168,7 +176,7 @@ class Hand:
     return self.hand1 > self.hand2
 
 class Poker():
-  def __init__(self, filename = '', poker_hands = []):
+  def __init__(self, filename='', poker_hands=[]):
     self._location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
     self.player1_wins = 0
     if len(filename) > 0:
@@ -177,9 +185,9 @@ class Poker():
       self._read_data_from_poker_hands(poker_hands)
 
   def _read_data_from_poker_hands(self, poker_hands):
-    if (type(poker_hands) not in [str, list]):
+    if not isinstance(poker_hands,(str, list)):
       raise TypeError("Wrong type for poker_hands. Expected str or list of str")
-    if type(poker_hands) == list:
+    if isinstance(poker_hands, list):
       for line in poker_hands:
         self._evaluate_hand(line)
     else:
@@ -187,7 +195,7 @@ class Poker():
         self._evaluate_hand(line.strip())
 
   def _read_data_from_file(self, filename):
-    if os.path.exists(os.path.join(self._location, filename)) == False:
+    if not os.path.exists(os.path.join(self._location, filename)):
       raise FileNotFoundError("File specified does not exists.")
 
     with open(os.path.join(self._location, filename)) as poker_file:
@@ -197,17 +205,26 @@ class Poker():
         poker_hand = poker_file.readline()
 
   def _evaluate_hand(self, hand_data):
+    '''
+    Single hand evaluated
+    '''
     hand = Hand(hand_data)
     if hand.did_player1_win():
       self.player1_wins += 1
 
   def euler_solution(self):
+    '''
+    method to find the solution for the eulers problem
+    '''
     self._read_data_from_file('p54-poker.txt')
     #prints: 376
     print('Player1 wins {} times!'.format(self.player1_wins))
     return self.player1_wins
 
 def main():
+  '''
+  main function
+  '''
   _poker = Poker()
   _poker.euler_solution()
 
