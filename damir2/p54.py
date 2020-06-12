@@ -57,9 +57,12 @@ class PlayerHand:
     self._colors = []
     self.cards_values = {}
     self.cards = self.__read_hand(round_of_cards)
-    self.__calculate_highest_value()
+    self.__evaluate_hand()
 
   def __get_card_value(self, card):
+    if card.capitalize() not in '123456789TJQKA':
+      raise ValueError('Card not recognized! Allowed values: 1,...,9,T,J,Q,K,A')
+
     try:
       return int(card)
     except:
@@ -70,9 +73,11 @@ class PlayerHand:
         'K': 13,
         'A': 14
       }
-      return translation.get(card)
+      return translation.get(card.capitalize())
 
   def __read_hand(self, round_of_cards):
+    if len(round_of_cards.split()) != 5:
+      raise ValueError('Wrong input for the players hand. Expecting 5 cards!')
     cards = []
     seen = {}
     duplicates = []
@@ -92,14 +97,11 @@ class PlayerHand:
     self._duplicates = duplicates
     return cards
   
-  def get_highest_card(self):
-    return max(self._values)
-  
-  def __calculate_highest_value(self):
+  def __evaluate_hand(self):
     '''
     this should calculate the highest value of all cards with following value
     assignments. It is possible to have combinations of values.
-    Function returns dictionary
+    Function returns a dictionary with one or more keys
     0 - High Card: Highest value card.
     1 - One Pair: Two cards of the same value.
     2 - Two Pairs: Two different pairs.
@@ -111,7 +113,7 @@ class PlayerHand:
     8 - Straight Flush: All cards are consecutive values of same suit.
     9 - Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
     '''
-    self.cards_values[0] = self.get_highest_card()
+    self.cards_values[0] = max(self._values)
     #get pair, two pairs, three, four
     for duplicate in self._duplicates:
       if self._seen[duplicate] == 2:
@@ -153,8 +155,12 @@ class Hand:
   def did_player1_win(self):
     if self.hand1.highest_value > self.hand2.highest_value:
       return True
-    elif (self.hand1.highest_value == self.hand2.highest_value and 
-      self.hand1.cards_values[self.hand1.highest_value] > self.hand2.cards_values[self.hand2.highest_value]):
+    elif self.hand1.highest_value == self.hand2.highest_value:
+      if self.hand1.cards_values[self.hand1.highest_value] > self.hand2.cards_values[self.hand2.highest_value]:
+        return True
+      elif (self.hand1.cards_values[self.hand1.highest_value] == self.hand2.cards_values[self.hand2.highest_value]
+          and max([x for x in self.hand1._values if x not in self.hand1._duplicates]) >
+              max([x for x in self.hand2._values if x not in self.hand2._duplicates])):
         return True
     return False
 

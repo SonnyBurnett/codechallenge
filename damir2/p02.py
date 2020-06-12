@@ -12,7 +12,7 @@ By considering the terms in the Fibonacci sequence whose values
 do not exceed four million, find the sum of the even-valued terms.
 '''
 
-def __fibo_generator_up_to_a_limit(limit):
+def __fibonacci_generator_up_to_a_limit(limit):
   if type(limit) != int:
     raise TypeError("Only integer numbers allowed.")
   if limit < 1:
@@ -25,19 +25,19 @@ def __fibo_generator_up_to_a_limit(limit):
     yield a
     a, b = b, a + b
 
-def sum_fibo_with_limit_and_mod_number(limit = 4000000, mod = 2):
+def sum_fibonacci_with_limit_and_mod_number(limit = 4000000, mod = 2):
   if type(mod) != int:
     raise TypeError("mod should be a positive integer.")
   if mod < 1:
     raise ValueError("mod should be positive integer greater than zero.")
 
-  return sum([x for x in __fibo_generator_up_to_a_limit(limit) if x % mod == 0])
+  return sum([x for x in __fibonacci_generator_up_to_a_limit(limit) if x % mod == 0])
 
 def main():
   limit = 4000000
   mod = 2
   #prints: 4613732
-  print(sum_fibo_with_limit_and_mod_number(limit, mod))
+  print(sum_fibonacci_with_limit_and_mod_number(limit, mod))
 
 if __name__ == "__main__":
     main()
