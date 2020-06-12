@@ -84,7 +84,7 @@ class PlayerHand:
     for card in round_of_cards.split():
       card_value = self.__get_card_value(card[0])
       self._values.append(card_value)
-      self._colors.append(card[1])
+      self._colors.append(card[1].capitalize())
 
       if card_value not in seen:
           seen[card_value] = 1
@@ -147,22 +147,25 @@ class PlayerHand:
 
     self.highest_value = max(self.cards_values)
 
+  def __gt__(self, other):
+    if self.highest_value > other.highest_value:
+      return True
+    elif self.highest_value == other.highest_value:
+      if self.cards_values[self.highest_value] > other.cards_values[other.highest_value]:
+        return True
+      elif (self.cards_values[self.highest_value] == other.cards_values[other.highest_value]
+          and max([x for x in self._values if x not in self._duplicates]) >
+              max([x for x in other._values if x not in other._duplicates])):
+        return True
+    return False
+      
 class Hand:
   def __init__(self, round_of_cards):
     self.hand1 = PlayerHand(round_of_cards[:14])
     self.hand2 = PlayerHand(round_of_cards[15:])
 
   def did_player1_win(self):
-    if self.hand1.highest_value > self.hand2.highest_value:
-      return True
-    elif self.hand1.highest_value == self.hand2.highest_value:
-      if self.hand1.cards_values[self.hand1.highest_value] > self.hand2.cards_values[self.hand2.highest_value]:
-        return True
-      elif (self.hand1.cards_values[self.hand1.highest_value] == self.hand2.cards_values[self.hand2.highest_value]
-          and max([x for x in self.hand1._values if x not in self.hand1._duplicates]) >
-              max([x for x in self.hand2._values if x not in self.hand2._duplicates])):
-        return True
-    return False
+    return self.hand1 > self.hand2
 
 class Poker():
   def __init__(self, filename = '', poker_hands = []):
