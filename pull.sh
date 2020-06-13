@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
 function pull {
-    mkdir -p $1
-    cd $1
-    git pull
-    cd ..
+    git pull -s subtree $1 master
 }
 
 while read repo; do
-    clone $repo
+    pull $repo
 done <./repos
