@@ -129,12 +129,12 @@ def handLToDictC(hand):
         
 
    #Start from highest to lowest.
-        #10High Card: Highest value card.
-        #9One Pair: Two cards of the same value.
-        #8Two Pairs: Two different pairs.
-        #7Three of a Kind: Three cards of the same value.
         
-        #4Full House: Three of a kind and a pair.
+        
+        
+        
+        
+        
         
         
 
@@ -158,7 +158,22 @@ def royalFlush(hand):
                 score = [valueToNumeric(card[0]) for card in hand]
     result = [status,score]
     return result
-        
+
+#6Straight: All cards are consecutive values.
+def straight(hand):
+    handSorted = sortHand(hand)
+    status = False
+    score = 0
+    #print("Straight check: " + str(valueToNumeric(handSorted[0][0]) - valueToNumeric(handSorted[4][0])))
+    if  valueToNumeric(handSorted[4][0]) - valueToNumeric(handSorted[0][0]) == 4:
+        status = True
+        score = [valueToNumeric(card[0])+score for card in hand]
+    
+    result = [status,score]
+    return result 
+
+
+
 #2Straight Flush: All cards are consecutive values of same suit.
 def straightFlush(hand):
     
@@ -212,7 +227,7 @@ def fourOfaKind(hand):
     return result
 
 
-#3Four of a Kind: Four cards of the same value.
+#7Three of a Kind: Three cards of the same value.
 def threeOfaKind(hand):
     
     hDict = handLToDictC(hand)
@@ -232,10 +247,31 @@ def threeOfaKind(hand):
 
 
 
+#8Two Pairs: Two different pairs.
+#9One Pair: Two cards of the same value.
+def pair(hand):
+    
+    cardDict = handLToDictC(hand)
+    status = False
+    score = []
+    pairs = []
+    for cards in cardDict:
+       #print(cards)
+       if len(cardDict[cards]) == 2:
+           status = True
+           score.append(valueToNumeric(cards)*2)
+    result = [status,score]
+    return result
 
 
 
-
+#10High Card: Highest value card.
+def highCard(hand):
+    handSorted = sortHand(hand)
+    status = True
+    score = [valueToNumeric(handSorted[4][0])]
+    result = [status,score]
+    return result
 
 
 
@@ -254,30 +290,65 @@ def whathand(hlist):
 
     if royalFlush(hlist)[0]:
         res = []
-        res.append("Royal Flush")
+        res.append(10) #"Royal Flush"
         res.append(scoreCalc(royalFlush(hlist)[1]))
         handres.append(res)
     elif straightFlush(hlist)[0]:
         res = []
-        res.append("Straight Flush")
+        res.append(9) #"Straight Flush"
         res.append(scoreCalc(straightFlush(hlist)[1]))
         handres.append(res)
-        
-    elif flush(hlist)[0]:
-        res = []
-        res.append("Flush")
-        res.append(scoreCalc(flush(hlist)[1]))
-        handres.append(res)
-
     elif fourOfaKind(hlist)[0]:
         res = []
-        res.append("Four of a kind")
+        res.append(8) #"Four of a kind"
         res.append(scoreCalc(fourOfaKind(hlist)[1]))
+        handres.append(res)    
+    elif threeOfaKind(hlist)[0] and pair(hlist)[0]:
+        #4Full House: Three of a kind and a pair.
+        res = []
+        res.append(7) #"Full house"
+        res.append(scoreCalc(threeOfaKind(hlist)[1]))
+        res.append(scoreCalc(pair(hlist)[1]))
         handres.append(res)
+    
+    
+    elif flush(hlist)[0]:
+        res = [] 
+        res.append(6) #"Flush"
+        res.append(scoreCalc(flush(hlist)[1]))
+        handres.append(res)
+    elif straight(hlist)[0]:
+        res = []
+        res.append(5) #"Straight"
+        res.append(scoreCalc(straight(hlist)[1]))
+        handres.append(res)
+    
+    
+    elif threeOfaKind(hlist)[0]:
+        res = []
+        res.append(4) #"Three of a kind"
+        res.append(scoreCalc(threeOfaKind(hlist)[1]))
+        handres.append(res)
+    
+    
+    elif pair(hlist)[0]:
+        res = []
+        pairs = pair(hlist)[1]
+        
+        if len(pairs) == 2:
+            res.append(3) #"Two Pairs"
+            res.append(scoreCalc(pairs))
+        else:
+            res.append(2) #"Pair"
+            res.append(scoreCalc(pairs))
+
+        handres.append(res)
+    
+    
     else:
         res = []
-        res.append("No winning hand")
-        res.append(0)
+        res.append(1) #"High card"
+        res.append(scoreCalc(highCard(hlist)[1]))
         handres.append(res)
     return handres
      
@@ -286,21 +357,40 @@ def whathand(hlist):
 
 
 #Compare the hands of the player and decide on the winner
-def compareHands(scpl1, scpl2):
+def compareHands(hand1, hand2):
     
+    player1 = whathand(hand1)
+    player2 = whathand(hand2)
 
+    res = []
 
+    if player1[0][0] > player2[0][0]:
+        res.append(1) #"Player 1 won!"
+    elif player1[0][0] < player2[0][0]:
+        res.append(2)  #"Player 2 won!"
+    elif player1[0][0] == player2[0][0]:
+        if player1[0][1] > player2[0][1]:
+            res.append(1) #"Player 1 won!"
+        elif player1[0][1] < player2[0][1]:
+            res.append(2)  #"Player 2 won!"
+        else:
+            res.append(0) #"It is a draw"
     
-    if scpl1 > scpl2:
-        print("Player 1 won the game!")
-    if scpl1 == scpl2:
-        print("It is a draw")
     else:
-        print("Player 2 won")
-    return
+        res.append(-1) #Something is wrong
+
+    return res
 
 
-with open("euler54/p054_pokerShort.txt") as f:
+
+
+with open("euler54/p054_poker.txt") as f:
+
+
+    cntpl1 = 0
+    cntpl2 = 0
+    drw = 0
+    er = 0
 
     for line in f.readlines():
         game = line.split()
@@ -308,19 +398,28 @@ with open("euler54/p054_pokerShort.txt") as f:
         pl1 = game[0:5]
         pl2 = game[5:10]
 
-        print("Player 1: " + str(pl1))
-        print(whathand(pl1))
-        #rint(royalFlush(pl1))
-
-        print("Player 2: " + str(pl2))
-        print(whathand(pl2))
-
-        #print(handLToDictC(pl2))
-
-        print("-------------------------")
-
-
+        #print("Player 1: " + str(pl1))
+        #print(whathand(pl1))
+        #print(highCard(pl1))
         
+        #print("Player 2: " + str(pl2))
+        #print(whathand(pl2))
+
+        outcome = compareHands(pl1, pl2)
+        #print(outcome)
+
+        if outcome[0] == 1:
+            cntpl1 +=1
+        elif outcome[0] == 2:
+            cntpl2 +=1
+        elif outcome[0] == 0:
+            drw +=1
+        elif outcome[0] == -1:
+            er +=1
+        
+
+print("Player 1 won: {pl1}, Player 2 won: {pl2}, Draw matches: {draw}, Errors: {errors}".format(pl1 = cntpl1, pl2 = cntpl2, draw = drw, errors = er))
+
     
 
 
