@@ -17,7 +17,7 @@ class Player:
         self.hand = Hand(cards)
 
     def get_hand(self):
-        return self.hand.get_hand()
+        return self.hand
 
     def get_wins(self):
         return self.nr_wins
@@ -30,6 +30,3 @@ class Player:
 
     def add_losts(self):
         self.nr_losts += 1
-
-    def get_highest_card(self):
-        return self.hand.get_highest_card()
