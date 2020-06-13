@@ -391,8 +391,9 @@ with open("euler54/p054_poker.txt") as f:
     cntpl2 = 0
     drw = 0
     er = 0
-
+    cntln = 0
     for line in f.readlines():
+        cntln +=1
         game = line.split()
         
         pl1 = game[0:5]
@@ -409,10 +410,37 @@ with open("euler54/p054_poker.txt") as f:
         #print(outcome)
 
         if outcome[0] == 1:
+            if whathand(pl1)[0][0] == 7:
+                print(cntln)
+                print("Player 1: " + str(pl1))
+                print(print(whathand(pl1)))
+
+                print("Player 2: " + str(pl2))
+                print(print(whathand(pl2)))
+
+                print(outcome)
             cntpl1 +=1
         elif outcome[0] == 2:
+            if whathand(pl2)[0][0] == 7:
+                print(cntln)
+                print("Player 1: " + str(pl1))
+                print(print(whathand(pl1)))
+
+                print("Player 2: " + str(pl2))
+                print(print(whathand(pl2)))
+
+                print(outcome)
             cntpl2 +=1
         elif outcome[0] == 0:
+            if whathand(pl1)[0][0] == 7 or whathand(pl2)[0][0] == 7 :
+                print(cntln)
+                print("Player 1: " + str(pl1))
+                print(print(whathand(pl1)))
+
+                print("Player 2: " + str(pl2))
+                print(print(whathand(pl2)))
+
+                print(outcome)
             drw +=1
         elif outcome[0] == -1:
             er +=1
