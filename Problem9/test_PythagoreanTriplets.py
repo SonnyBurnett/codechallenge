@@ -1,5 +1,5 @@
 import unittest
-from PythogareanTriplets import SpecialTriplet
+from PythagoreanTriplets import SpecialTriplet
 
 class TestFunction(unittest.TestCase):
     def test_function(self):
