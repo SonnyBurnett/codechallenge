@@ -333,9 +333,6 @@ def whathand(hlist):
     
     return handres
      
-        
-    
-
 def compareHands(hand1, hand2):
     """Compare the hands of the players and decide on the winner"""
 
@@ -364,50 +361,30 @@ def compareHands(hand1, hand2):
 
 if __name__ == "__main__": 
 
-    with open("p054_pokerShort.txt") as f:
+    with open("p054_poker.txt") as f:
 
+        # [0] = Player 1, 
+        # [1] = Player 2, 
+        # [2] = Draws, 
+        # [3] = Errors. 
 
-        cntpl1 = 0
-        cntpl2 = 0
-        drw = 0
-        er = 0
-        cntln = 0
+        gameTotals = [0,0,0,0]
+        
         for line in f.readlines():
-            cntln +=1
+
             game = line.split()
-            
             pl1 = game[0:5]
             pl2 = game[5:10]
-
-            print("Player 1: " + str(pl1))
-            print(whathand(pl1))
-            print(isConsecutive(pl1))
-            
-            print("Player 2: " + str(pl2))
-            print(whathand(pl2))
-            print(isConsecutive(pl2))
-            print("-----------------------")
             outcome = compareHands(pl1, pl2)
-            print(outcome) 
 
-            """  if outcome[0] == 1:
-                
-                cntpl1 +=1
-            elif outcome[0] == 2:
-                
-                cntpl2 +=1
+            if outcome[0] == 1:
+                gameTotals[0] +=1
+            elif outcome[0] == 2:    
+                gameTotals[1] +=1
             elif outcome[0] == 0:
-                print(cntln)
-                print("Player 1: " + str(pl1))
-                print(print(whathand(pl1)))
-
-                print("Player 2: " + str(pl2))
-                print(print(whathand(pl2)))
-
-                print(outcome) 
-                drw +=1
+                gameTotals[2] +=1
             elif outcome[0] == -1:
-                er +=1
+                gameTotals[3] +=1
             
 
-    print("Player 1 won: {pl1}, Player 2 won: {pl2}, Draw matches: {draw}, Errors: {errors}".format(pl1 = cntpl1, pl2 = cntpl2, draw = drw, errors = er)) """
+    print("Player 1 won: {pl1}, Player 2 won: {pl2}, Draw matches: {draw}, Errors: {errors}".format(pl1 = gameTotals[0], pl2 = gameTotals[1], draw = gameTotals[2], errors = gameTotals[3]))
