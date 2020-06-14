@@ -1,9 +1,3 @@
-import os
-
-#entries = os.listdir(".")
-#print(entries)
-
-
 #Convert non numeric values to numeric
 def valueToNumeric(val):
     '''Converts the faces of cards to numeric values'''
@@ -25,13 +19,11 @@ def valueToNumeric(val):
     return int(val)
 
 def sortHand(hand):
-    '''Processes each card in hand and sorts it based on value of the card.'''
+    '''Processes each card in hand and sorts it based on value of the card. Adapted implementation of bubble sort algorithm'''
     
     n = len(hand)
     for i in range(n):
         already_sorted = True
-
-
         #print("i: " + str(i)) 
         for j in range(n - i - 1):
             #print("j: " + str(j))
