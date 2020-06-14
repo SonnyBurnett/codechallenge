@@ -1,7 +1,7 @@
 from typing import List
 
 def __next_prime(primes: List[int]):
-  i=max(primes)+2
+  i=primes[-1]+2
   while not all(i%j!=0 for j in primes):
     i+=2
   return i
