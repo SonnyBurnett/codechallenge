@@ -109,6 +109,8 @@ def handLToDictC(hand):
             vals["T"].append(hand[i][1])
         elif hand[i][0] == "J":
             vals["J"].append(hand[i][1])
+        elif hand[i][0] == "Q":
+            vals["Q"].append(hand[i][1])
         elif hand[i][0] == "K":
             vals["K"].append(hand[i][1])
         elif hand[i][0] == "A":
@@ -233,11 +235,13 @@ def pair(hand):
     """
     
     cardDict = handLToDictC(hand)
+    #print(cardDict)
     status = False
     score = []
     pairs = []
     for cards in cardDict:
        #print(cards)
+       #print(cardDict[cards])
        if len(cardDict[cards]) == 2:
            status = True
            score.append(valueToNumeric(cards)*2)
@@ -326,6 +330,7 @@ def whathand(hlist):
         res.append(1) #"High card"
         res.append(scoreCalc(highCard(hlist)[1]))
         handres.append(res)
+    
     return handres
      
         
@@ -357,51 +362,52 @@ def compareHands(hand1, hand2):
     return res
 
 
+if __name__ == "__main__": 
+
+    with open("p054_pokerShort.txt") as f:
 
 
-with open("euler54/p054_poker.txt") as f:
-
-
-    cntpl1 = 0
-    cntpl2 = 0
-    drw = 0
-    er = 0
-    cntln = 0
-    for line in f.readlines():
-        cntln +=1
-        game = line.split()
-        
-        pl1 = game[0:5]
-        pl2 = game[5:10]
-
-        """  print("Player 1: " + str(pl1))
-        print(whathand(pl1))
-        #print(isConsecutive(pl1))
-        
-        print("Player 2: " + str(pl2))
-        print(whathand(pl2))
-        """
-        outcome = compareHands(pl1, pl2)
-        #print(outcome) 
-
-        if outcome[0] == 1:
+        cntpl1 = 0
+        cntpl2 = 0
+        drw = 0
+        er = 0
+        cntln = 0
+        for line in f.readlines():
+            cntln +=1
+            game = line.split()
             
-            cntpl1 +=1
-        elif outcome[0] == 2:
-            
-            cntpl2 +=1
-        elif outcome[0] == 0:
-            """ print(cntln)
+            pl1 = game[0:5]
+            pl2 = game[5:10]
+
             print("Player 1: " + str(pl1))
-            print(print(whathand(pl1)))
-
+            print(whathand(pl1))
+            print(isConsecutive(pl1))
+            
             print("Player 2: " + str(pl2))
-            print(print(whathand(pl2)))
+            print(whathand(pl2))
+            print(isConsecutive(pl2))
+            print("-----------------------")
+            outcome = compareHands(pl1, pl2)
+            print(outcome) 
 
-            print(outcome) """
-            drw +=1
-        elif outcome[0] == -1:
-            er +=1
-        
+            """  if outcome[0] == 1:
+                
+                cntpl1 +=1
+            elif outcome[0] == 2:
+                
+                cntpl2 +=1
+            elif outcome[0] == 0:
+                print(cntln)
+                print("Player 1: " + str(pl1))
+                print(print(whathand(pl1)))
 
-print("Player 1 won: {pl1}, Player 2 won: {pl2}, Draw matches: {draw}, Errors: {errors}".format(pl1 = cntpl1, pl2 = cntpl2, draw = drw, errors = er))
+                print("Player 2: " + str(pl2))
+                print(print(whathand(pl2)))
+
+                print(outcome) 
+                drw +=1
+            elif outcome[0] == -1:
+                er +=1
+            
+
+    print("Player 1 won: {pl1}, Player 2 won: {pl2}, Draw matches: {draw}, Errors: {errors}".format(pl1 = cntpl1, pl2 = cntpl2, draw = drw, errors = er)) """
