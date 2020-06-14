@@ -1,7 +1,10 @@
 from util import list_factors
 
-# python generator, keep infinitly procuding new values on demand
+
 def triangle_gen():
+    """
+    triangle generator, keeps infinitly procuding new values on demand
+    """
     t, i = 0, 1
     while True:
         t += i

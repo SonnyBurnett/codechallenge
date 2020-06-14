@@ -1,9 +1,14 @@
 from util import fibonacci
 
-sum = 0
-gen = fibonacci()
-while (i := next(gen)) < 4000000:
-    if i % 2 == 0:
-        sum += i 
 
-print(sum)
+def main(limit):
+    sum = 0
+    gen = fibonacci()
+    while (i := next(gen)) < limit:
+        if i % 2 == 0:
+            sum += i
+    return sum
+
+
+if __name__ == '__main__':
+    print(main(4000000))
