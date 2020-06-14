@@ -9,7 +9,6 @@ class Poker_Competition:
         print("Added player", player.get_name())
 
     def deal_cards(self, all_cards):
-        print(all_cards)
         if len(all_cards) < len(self.player_list)*5:
             print("Error: Not enough cards for ", len(self.player_list), "players")
             exit(1)
@@ -20,8 +19,8 @@ class Poker_Competition:
     def determine_winner(self):
         winner = self.player_list[0]
         for i in range(1, len(self.player_list)):
-            first_player_hand = winner.get_hand().get_hand()
-            second_player_hand = self.player_list[i].get_hand().get_hand()
+            first_player_hand = winner.get_poker_hand().get_hand()
+            second_player_hand = self.player_list[i].get_poker_hand().get_hand()
 
             if first_player_hand < second_player_hand:
                 winner = self.player_list[i]
@@ -35,29 +34,46 @@ class Poker_Competition:
         if hand == 10:
             print("Error: Two players have a Royal flush, card deck incorrect")
             exit(1)
-        if hand == 9:
-            return self.determine_winner_via_highest_card(player_one, player_two, 1)
-        if hand == 2:
-            return self.determine_winner_via_highest_card(player_one, player_two, 1)
-        return player_two
 
-    def determine_winner_via_highest_card(self, player_one, player_two, attemps):
-        if player_one.get_hand().get_count_call_highest_card() == 5:
-            print("Both have all the same values in cards")
+        elif hand in [1, 5, 6, 9]:
+            winner = self.determine_winner_via_highest_card(player_one, player_two, 1)
+        elif hand in [2, 3, 4, 7, 8]:
+            winner = self.determine_winner_via_card_value(player_one, player_one, 0)
+        else:
+            print("Hand-type out of bounds")
             exit(1)
 
-        print(player_one.get_name(), " highest card ", player_one.get_hand().get_highest_card(attemps))
-        print(player_two.get_name(), " highest card ", player_two.get_hand().get_highest_card(attemps))
-        if player_one.get_hand().get_highest_card(attemps) < player_two.get_hand().get_highest_card(attemps):
+        winner.add_win()
+        return winner
+
+    def determine_winner_via_highest_card(self, player_one, player_two, attempts):
+        if attempts == 5:
+            print("Tied - Both have all the same values in cards")
+            exit(1)
+
+        highest_card_one = player_one.get_poker_hand().get_highest_card(attempts)
+        highest_card_two = player_two.get_poker_hand().get_highest_card(attempts)
+        if highest_card_one > highest_card_two:
             return player_one
-        elif player_one.get_hand().get_highest_card(attemps) > player_two.get_hand().get_highest_card(attemps):
+        elif highest_card_one < highest_card_two:
             return player_two
         else:
-            print("same card:", player_one.get_hand().get_highest_card(attemps))
-            attemps += 1
-            return self.determine_winner_via_highest_card(player_one, player_two, attemps)
+            attempts += 1
+            return self.determine_winner_via_highest_card(player_one, player_two, attempts)
 
+    def determine_winner_via_card_value(self, player_one, player_two, element_to_compare):
+        value_one = player_one.get_poker_hand().get_hand_value()
+        value_two = player_two.get_poker_hand().get_hand_value()
 
+        if len(value_one) > element_to_compare:
+            return self.determine_winner_via_highest_card(player_one, player_two, 1)
+
+        if value_one > value_two:
+            return player_one
+        elif value_one < value_two:
+            return player_two
+        else:
+            return self.determine_winner_via_card_value(player_one, player_two, element_to_compare+1)
 
 
 
