@@ -73,7 +73,7 @@ def handLToDictS(hand):
 
 
 def handLToDictC(hand):
-    '''Converts a poker hand {list} into a sorted dictionary based on suits as keys.'''
+    '''Converts a poker hand {list} into a sorted dictionary based on card values as keys.'''
 
     hand = sortHand(hand)
 
@@ -124,14 +124,10 @@ def handLToDictC(hand):
     
     return vals
 
-
-
-        
-
-   #Start from highest to lowest.
         
         
 def isConsecutive(hand):
+    """Validates the hand on the consecutiveness of the cards. Return True if cards are consecutive and if not return False."""
     consec = True
     for i in range(0,len(hand)):
         if i < len(hand)-1:
@@ -140,19 +136,13 @@ def isConsecutive(hand):
                 break
     return consec
         
-        
-        
-        
-        
-
-    
 
 #1Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
 def royalFlush(hand):
     '''
     This function accepts a list of a hand. 
     The list is converted to a dictionary with suits as keys.
-    Based on it it checks if the winning hand is a Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
+    Based on it, it checks if the winning hand is a Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
     '''
     
     hDict = handLToDictS(hand)
@@ -167,8 +157,9 @@ def royalFlush(hand):
     result = [status,score]
     return result
 
-#6Straight: All cards are consecutive values.
+
 def straight(hand):
+    """Straight: All cards are consecutive values."""
     handSorted = sortHand(hand)
     status = False
     score = 0
@@ -180,10 +171,8 @@ def straight(hand):
     return result 
 
 
-
-#2Straight Flush: All cards are consecutive values of same suit.
 def straightFlush(hand):
-    
+    """Straight Flush: All cards are consecutive values of same suit."""
     hDict = handLToDictS(hand)
     status = False
     score = 0
@@ -200,9 +189,9 @@ def straightFlush(hand):
     return result           
     
 
-#5Flush: All cards of the same suit.
 def flush(hand):
-    
+    """Flush: All cards of the same suit."""
+
     hDict = handLToDictS(hand)
     status = False
     score = 0
@@ -213,9 +202,10 @@ def flush(hand):
     result = [status,score]
     return result           
 
-#3Four of a Kind: Four cards of the same value.
+
 def fourOfaKind(hand):
-    
+    """Four of a Kind: Four cards of the same value."""
+
     hDict = handLToDictC(hand)
     status = False
     score = 0
@@ -228,9 +218,10 @@ def fourOfaKind(hand):
     return result
 
 
-#7Three of a Kind: Three cards of the same value.
+
 def threeOfaKind(hand):
-    
+    """Three of a Kind: Three cards of the same value."""
+
     hDict = handLToDictC(hand)
     status = False
     score = 0
@@ -242,15 +233,12 @@ def threeOfaKind(hand):
     return result
 
 
-#4Full House: Three of a kind and a pair.
-
-
-
-
-
-#8Two Pairs: Two different pairs.
-#9One Pair: Two cards of the same value.
 def pair(hand):
+    """ 
+    This functions selects all pairs in a hand.
+    One Pair: Two cards of the same value.
+    Two Pairs: Two different pairs.
+    """
     
     cardDict = handLToDictC(hand)
     status = False
@@ -266,8 +254,9 @@ def pair(hand):
 
 
 
-#10High Card: Highest value card.
+
 def highCard(hand):
+    """High Card: Highest value card."""
     handSorted = sortHand(hand)
     status = True
     score = [valueToNumeric(handSorted[4][0])]
@@ -277,15 +266,17 @@ def highCard(hand):
 
 
 def scoreCalc(scList):
+    """Calculates the score of a given hand."""
     score = 0
     for sc in scList:
         score += sc
     return score
 
 
-#Function to identify the hand of the player
+
 def whathand(hlist):
-    
+    """This is a main function that identifies the hand of the player"""
+
     score = 0
     handres = []
 
@@ -311,8 +302,6 @@ def whathand(hlist):
         res.append(scoreCalc(threeOfaKind(hlist)[1]))
         res.append(scoreCalc(pair(hlist)[1]))
         handres.append(res)
-    
-    
     elif flush(hlist)[0]:
         res = [] 
         res.append(6) #"Flush"
@@ -323,15 +312,11 @@ def whathand(hlist):
         res.append(5) #"Straight"
         res.append(scoreCalc(straight(hlist)[1]))
         handres.append(res)
-    
-    
     elif threeOfaKind(hlist)[0]:
         res = []
         res.append(4) #"Three of a kind"
         res.append(scoreCalc(threeOfaKind(hlist)[1]))
         handres.append(res)
-    
-    
     elif pair(hlist)[0]:
         res = []
         pairs = pair(hlist)[1]
@@ -344,8 +329,6 @@ def whathand(hlist):
             res.append(scoreCalc(pairs))
 
         handres.append(res)
-    
-    
     else:
         res = []
         res.append(1) #"High card"
@@ -356,10 +339,9 @@ def whathand(hlist):
         
     
 
-
-#Compare the hands of the player and decide on the winner
 def compareHands(hand1, hand2):
-    
+    """Compare the hands of the players and decide on the winner"""
+
     player1 = whathand(hand1)
     player2 = whathand(hand2)
 
@@ -431,10 +413,3 @@ with open("euler54/p054_poker.txt") as f:
         
 
 print("Player 1 won: {pl1}, Player 2 won: {pl2}, Draw matches: {draw}, Errors: {errors}".format(pl1 = cntpl1, pl2 = cntpl2, draw = drw, errors = er))
-
-    
-
-
-
-
-
