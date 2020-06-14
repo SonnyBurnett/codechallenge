@@ -131,7 +131,14 @@ def handLToDictC(hand):
    #Start from highest to lowest.
         
         
-        
+def isConsecutive(hand):
+    consec = True
+    for i in range(0,len(hand)):
+        if i < len(hand)-1:
+            if valueToNumeric(hand[i][0]) - valueToNumeric(hand[i+1][0]) != -1:
+                consec = False
+                break
+    return consec
         
         
         
@@ -153,9 +160,10 @@ def royalFlush(hand):
     score = 0
     for suit in hDict:
         if len(hDict[suit]) == 5:
-            if hDict[suit][0] == "T" and hDict[suit][4] == "A":
-                status = True
-                score = [valueToNumeric(card[0]) for card in hand]
+            if isConsecutive(sortHand(hand)): 
+                if hDict[suit][0] == "T" and hDict[suit][4] == "A":
+                    status = True
+                    score = [valueToNumeric(card[0]) for card in hand]
     result = [status,score]
     return result
 
@@ -164,8 +172,7 @@ def straight(hand):
     handSorted = sortHand(hand)
     status = False
     score = 0
-    #print("Straight check: " + str(valueToNumeric(handSorted[0][0]) - valueToNumeric(handSorted[4][0])))
-    if  valueToNumeric(handSorted[4][0]) - valueToNumeric(handSorted[0][0]) == 4:
+    if  isConsecutive(handSorted):
         status = True
         score = [valueToNumeric(card[0])+score for card in hand]
     
@@ -182,12 +189,11 @@ def straightFlush(hand):
     score = 0
     for suit in hDict:
         if len(hDict[suit]) == 5:
-            if hDict[suit][0] != "T":
-                if  valueToNumeric(hDict[suit][4]) - valueToNumeric(hDict[suit][0]) == 4:
-                   
-                    status = True
-                    score = [valueToNumeric(card[0])+score for card in hand]
-                    
+
+            if  isConsecutive(sortHand(hand)):
+                status = True
+                score = [valueToNumeric(card[0])+score for card in hand]
+                
                         
 
     result = [status,score]
@@ -202,13 +208,8 @@ def flush(hand):
     score = 0
     for suit in hDict:
         if len(hDict[suit]) == 5:
-            if hDict[suit][0] != "T":
-                #print(valueToNumeric(hDict[suit][4]) - valueToNumeric(hDict[suit][0]))
-                if  valueToNumeric(hDict[suit][4]) - valueToNumeric(hDict[suit][0]) != 4:
-                   
-                   status = True
-                   score = [valueToNumeric(card[0])+score for card in hand]
-               
+            status = True
+            score = [valueToNumeric(card[0])+score for card in hand]
     result = [status,score]
     return result           
 
@@ -399,48 +400,31 @@ with open("euler54/p054_poker.txt") as f:
         pl1 = game[0:5]
         pl2 = game[5:10]
 
-        #print("Player 1: " + str(pl1))
-        #print(whathand(pl1))
-        #print(highCard(pl1))
+        """  print("Player 1: " + str(pl1))
+        print(whathand(pl1))
+        #print(isConsecutive(pl1))
         
-        #print("Player 2: " + str(pl2))
-        #print(whathand(pl2))
-
+        print("Player 2: " + str(pl2))
+        print(whathand(pl2))
+        """
         outcome = compareHands(pl1, pl2)
-        #print(outcome)
+        #print(outcome) 
 
         if outcome[0] == 1:
-            if whathand(pl1)[0][0] == 7:
-                print(cntln)
-                print("Player 1: " + str(pl1))
-                print(print(whathand(pl1)))
-
-                print("Player 2: " + str(pl2))
-                print(print(whathand(pl2)))
-
-                print(outcome)
+            
             cntpl1 +=1
         elif outcome[0] == 2:
-            if whathand(pl2)[0][0] == 7:
-                print(cntln)
-                print("Player 1: " + str(pl1))
-                print(print(whathand(pl1)))
-
-                print("Player 2: " + str(pl2))
-                print(print(whathand(pl2)))
-
-                print(outcome)
+            
             cntpl2 +=1
         elif outcome[0] == 0:
-            if whathand(pl1)[0][0] == 7 or whathand(pl2)[0][0] == 7 :
-                print(cntln)
-                print("Player 1: " + str(pl1))
-                print(print(whathand(pl1)))
+            """ print(cntln)
+            print("Player 1: " + str(pl1))
+            print(print(whathand(pl1)))
 
-                print("Player 2: " + str(pl2))
-                print(print(whathand(pl2)))
+            print("Player 2: " + str(pl2))
+            print(print(whathand(pl2)))
 
-                print(outcome)
+            print(outcome) """
             drw +=1
         elif outcome[0] == -1:
             er +=1
