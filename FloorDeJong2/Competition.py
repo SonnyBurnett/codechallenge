@@ -38,16 +38,15 @@ class Poker_Competition:
         elif hand in [1, 5, 6, 9]:
             winner = self.determine_winner_via_highest_card(player_one, player_two, 1)
         elif hand in [2, 3, 4, 7, 8]:
-            winner = self.determine_winner_via_card_value(player_one, player_one, 0)
+            winner = self.determine_winner_via_card_value(player_one, player_two, 0)
         else:
             print("Hand-type out of bounds")
             exit(1)
 
-        winner.add_win()
         return winner
 
     def determine_winner_via_highest_card(self, player_one, player_two, attempts):
-        if attempts == 5:
+        if attempts > 5:
             print("Tied - Both have all the same values in cards")
             exit(1)
 
@@ -65,12 +64,12 @@ class Poker_Competition:
         value_one = player_one.get_poker_hand().get_hand_value()
         value_two = player_two.get_poker_hand().get_hand_value()
 
-        if len(value_one) > element_to_compare:
+        if len(value_one) <= element_to_compare:
             return self.determine_winner_via_highest_card(player_one, player_two, 1)
 
-        if value_one > value_two:
+        if value_one[element_to_compare] > value_two[element_to_compare]:
             return player_one
-        elif value_one < value_two:
+        elif value_one[element_to_compare] < value_two[element_to_compare]:
             return player_two
         else:
             return self.determine_winner_via_card_value(player_one, player_two, element_to_compare+1)

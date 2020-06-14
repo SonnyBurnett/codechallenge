@@ -22,7 +22,9 @@ class PokerHand:
         return [int(key) for (key, value) in key_dict.items() if value == number]
 
     def replace_letter_cards(self, card):
-        if card == "J":
+        if card == "T":
+            return 10
+        elif card == "J":
             return 11
         elif card == "Q":
             return 12
@@ -41,7 +43,7 @@ class PokerHand:
 
         cards_per_suits = defaultdict(list)
         for card in cards:
-            cards_per_suits[card[-1]].append(self.replace_letter_cards(card[:-1]))
+            cards_per_suits[card[1]].append(self.replace_letter_cards(card[0]))
         # print(cards_per_suits)
 
         max_suit = max(cards_per_suits, key=lambda x: len(set(cards_per_suits[x])))
@@ -71,7 +73,7 @@ class PokerHand:
         elif 3 in cards_per_value.values():
             self.hand_value.append(self.get_keys_by_value(cards_per_value, 3)[0])
             if 2 in cards_per_value.values():
-                self.hand_value.append(self.get_keys_by_value(cards_per_value, 2)[0])
+                # self.hand_value.append(self.get_keys_by_value(cards_per_value, 2)[0])
                 return 7
             else:
                 return 4
