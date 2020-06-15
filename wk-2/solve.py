@@ -12,35 +12,22 @@ def lineToHands(line):
 
 
 def handToCards(hand):
-    ranks = {
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        'T': 10,
-        'J': 11,
-        'Q': 12,
-        'K': 13,
-        'A': 14
-    }
-    return list(map(lambda x: (ranks[x[0]], x[1]), hand.split(' ')))
+    ranks = "23456789TJQKA"
+    return list(map(lambda x: (ranks.index(x[0]), x[1]), hand.split(' ')))
 
 
 def score(hand):
     cards = handToCards(hand)
+
     ranks = sorted([card[0] for card in cards])
     suits = [card[1] for card in cards]
 
-    rankOccurrence = [0 for i in range(14)]
+    rankOccurrence = [0 for i in range(13)]
     for rank in ranks:
-        rankOccurrence[rank - 1] += 1
+        rankOccurrence[rank] += 1
 
     singles, pairs, triples, quads = [
-        [i for i in range(14) if rankOccurrence[i] == j] for j in range(1, 5)]
+        [i for i in range(13) if rankOccurrence[i] == j] for j in range(1, 5)]
 
     flush = all(suit == suits[0] for suit in suits[1:])
     fourOfAKind = len(quads) == 1
@@ -52,7 +39,7 @@ def score(hand):
     straight = len(singles) == 5 and ranks[4] == ranks[0] + 4
 
     if flush and straight:
-        if singles[4] == 13:
+        if singles[4] == 12:
             return 10
         else:
             return 9
