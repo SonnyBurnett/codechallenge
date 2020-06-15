@@ -29,8 +29,19 @@ def parseLineToHands(line):
 
 
 def score(hand):
+    ranks = [card[0] for card in hand]
     suits = [card[1] for card in hand]
+
+    rankOccurrence = [0 for i in range(14)]
+    for rank in ranks:
+        rankOccurrence[rank] += 1
+
     flush = all(suit == suits[0] for suit in suits[1:])
+
+    fourOfAKind = len([i for i in range(14) if rankOccurrence[i] == 4]) > 0
+
+    if fourOfAKind:
+        return 8
     if flush:
         return 6
     return 1
