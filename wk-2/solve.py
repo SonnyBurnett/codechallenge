@@ -31,8 +31,9 @@ def handToCards(hand):
 
 
 def score(hand):
-    ranks = sorted([card[0] for card in hand])
-    suits = [card[1] for card in hand]
+    cards = handToCards(hand)
+    ranks = sorted([card[0] for card in cards])
+    suits = [card[1] for card in cards]
 
     rankOccurrence = [0 for i in range(14)]
     for rank in ranks:

@@ -24,34 +24,33 @@ def testLineToHands():
     assert solve.lineToHands(line) == ("2C 3C 4D 9D TD", "2H JH QS KS AS")
 
 
-
 def testScore():
-    royalFlush = [(10, 'C'), (11, 'C'), (12, 'C'), (13, 'C'), (14, 'C')]
+    royalFlush = "TC JC QC KC AC"
     assert solve.score(royalFlush) == 10
 
-    straightFlush = [(2, 'C'), (3, 'C'), (4, 'C'), (5, 'C'), (6, 'C')]
+    straightFlush = "2C 3C 4C 5C 6C"
     assert solve.score(straightFlush) == 9
 
-    fourOfAKind = [(2, 'C'), (2, 'H'), (2, 'S'), (2, 'D'), (10, 'C')]
+    fourOfAKind = "2C 2H 2S 2D TC"
     assert solve.score(fourOfAKind) == 8
 
-    fullHouse = [(2, 'C'), (2, 'D'), (2, 'S'), (9, 'C'), (9, 'D')]
+    fullHouse = "2C 2D 2S 9C 9D"
     assert solve.score(fullHouse) == 7
 
-    flush = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'C')]
+    flush = "2C 3C 4C 9C TC"
     assert solve.score(flush) == 6
 
-    straight = [(2, 'C'), (3, 'C'), (4, 'C'), (5, 'C'), (6, 'D')]
+    straight = "2C 3C 4C 5C 6D"
     assert solve.score(straight) == 5
 
-    threeOfAKind = [(2, 'C'), (2, 'D'), (2, 'S'), (9, 'C'), (10, 'D')]
+    threeOfAKind = "2C 2D 2S 9C TD"
     assert solve.score(threeOfAKind) == 4
 
-    twoPair = [(2, 'C'), (2, 'D'), (4, 'S'), (4, 'C'), (10, 'D')]
+    twoPair = "2C 2D 4S 4C TD"
     assert solve.score(twoPair) == 3
 
-    pair = [(2, 'C'), (2, 'D'), (4, 'S'), (9, 'C'), (10, 'D')]
+    pair = "2C 2D 4S 9C TD"
     assert solve.score(pair) == 2
 
-    highCard = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'D')]
+    highCard = "2C 3C 4C 9C TD"
     assert solve.score(highCard) == 1
