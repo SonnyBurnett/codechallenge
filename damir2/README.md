@@ -45,7 +45,3 @@ If there is no match for the value it is not going to be added to the dictionary
 Each players hand gets its own values dictionary which gets compared with
 the other one in the PlayerHand class by overriding and implementing
 the greater than operator.
-
-Note: this is not checking all tie possibilities if the highest card values
-are the same for both players. It is working as expected for the problem statement
-by Euler where there is a clear winner in all inputs.

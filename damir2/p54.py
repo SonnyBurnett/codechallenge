@@ -71,17 +71,16 @@ class PlayerHand:
     if card.capitalize() not in '123456789TJQKA':
       raise ValueError('Card not recognized! Allowed values: 1,...,9,T,J,Q,K,A')
 
-    try:
-      return int(card)
-    except:
-      translation = {
-        'T': 10,
-        'J': 11,
-        'Q': 12,
-        'K': 13,
-        'A': 14
-      }
-      return translation.get(card.capitalize())
+    translation = {
+      '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+      'T': 10,
+      'J': 11,
+      'Q': 12,
+      'K': 13,
+      'A': 14
+    }
+
+    return translation.get(card.capitalize())
 
   def __read_hand(self, round_of_cards):
     if len(round_of_cards.split()) != 5:
@@ -127,8 +126,10 @@ class PlayerHand:
       if self._seen[duplicate] == 2:
         if 1 not in self.cards_values:
           self.cards_values[1] = [duplicate] #One Pair
+          self.cards_values[0] = max([x for x in self._values if x != duplicate])
         else:
           self.cards_values[1].append(duplicate) #Two Pairs
+          self.cards_values[0] = max([x for x in self._values if x not in self._duplicates])
       elif self._seen[duplicate] == 3: #Three of a Kind
         self.cards_values[3] = duplicate
       elif self._seen[duplicate] == 4: #Four of a Kind
@@ -162,12 +163,13 @@ class PlayerHand:
       if self.cards_values[self.highest_value] > other.cards_values[other.highest_value]:
         return True
       if (self.cards_values[self.highest_value] == other.cards_values[other.highest_value]
-          and max([x for x in self._values if x not in self._duplicates]) >
-              max([x for x in other._values if x not in other._duplicates])):
+            and self.cards_values[0] > other.cards_values[0]):
+          # and max([x for x in self._values if x not in self._duplicates]) >
+          #     max([x for x in other._values if x not in other._duplicates])):
         return True
     return False
       
-class Hand:
+class OneRound:
   def __init__(self, round_of_cards):
     self.hand1 = PlayerHand(round_of_cards[:14])
     self.hand2 = PlayerHand(round_of_cards[15:])
@@ -180,35 +182,35 @@ class Poker():
     self._location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
     self.player1_wins = 0
     if len(filename) > 0:
-      self._read_data_from_file(filename)
+      self.process_data_from_file(filename)
     if len(poker_hands) > 0:
-      self._read_data_from_poker_hands(poker_hands)
+      self.process_data_from_poker_hands(poker_hands)
 
-  def _read_data_from_poker_hands(self, poker_hands):
+  def process_data_from_poker_hands(self, poker_hands):
     if not isinstance(poker_hands, (str, list)):
       raise TypeError("Wrong type for poker_hands. Expected str or list of str")
     if isinstance(poker_hands, list):
       for line in poker_hands:
-        self._evaluate_hand(line)
+        self.__evaluate_hand(line)
     else:
       for line in poker_hands.split('\n'):
-        self._evaluate_hand(line.strip())
+        self.__evaluate_hand(line.strip())
 
-  def _read_data_from_file(self, filename):
+  def process_data_from_file(self, filename):
     if not os.path.exists(os.path.join(self._location, filename)):
       raise FileNotFoundError("File specified does not exists.")
 
     with open(os.path.join(self._location, filename)) as poker_file:
       poker_hand = poker_file.readline()
       while poker_hand:
-        self._evaluate_hand(poker_hand)
+        self.__evaluate_hand(poker_hand)
         poker_hand = poker_file.readline()
 
-  def _evaluate_hand(self, hand_data):
+  def __evaluate_hand(self, hand_data):
     '''
     Single hand evaluated
     '''
-    hand = Hand(hand_data)
+    hand = OneRound(hand_data)
     if hand.did_player1_win():
       self.player1_wins += 1
 
@@ -216,10 +218,7 @@ class Poker():
     '''
     method to find the solution for the eulers problem
     '''
-    self._read_data_from_file('p54-poker.txt')
-    print('Solution for the Euler p54 problem:')
-    #prints: 376
-    print('Player1 wins {} times!'.format(self.player1_wins))
+    self.process_data_from_file('p54-poker.txt')
     return self.player1_wins
 
 def main():
@@ -227,7 +226,9 @@ def main():
   main function
   '''
   _poker = Poker()
-  _poker.euler_solution()
+  print('Solution for the Euler 054 problem:')
+  #prints: 376
+  print('Player1 wins {} times!'.format(_poker.euler_solution()))
 
 if __name__ == "__main__":
   main()
