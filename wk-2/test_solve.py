@@ -19,7 +19,7 @@ def testProcessFileLines():
 
 
 def testParseLineToHands():
-    line = "2C 3C 4D 9D 10D 2H JH QS KS AS"
+    line = "2C 3C 4D 9D TD 2H JH QS KS AS"
 
     assert solve.parseLineToHands(line) == ([(2, 'C'), (3, 'C'), (4, 'D'), (9, 'D'), (10, 'D')],
                                             [(2, 'H'), (11, 'H'), (12, 'S'), (13, 'S'), (14, 'S')])
