@@ -7,10 +7,6 @@ def processFileLines(func, file):
             func(line.rstrip())
 
 
-def parseLineToHands(line):
-    return tuple(map(lambda x: handToCards(x), lineToHands(line)))
-
-
 def lineToHands(line):
     return (line[:14], line[15:])
 
