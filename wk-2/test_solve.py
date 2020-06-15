@@ -35,6 +35,9 @@ def testScore():
     flush = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'C')]
     assert solve.score(flush) == 6
 
+    straight = [(2, 'C'), (3, 'C'), (4, 'C'), (5, 'C'), (6, 'D')]
+    assert solve.score(straight) == 5
+
     threeOfAKind = [(2, 'C'), (2, 'D'), (2, 'S'), (9, 'C'), (10, 'D')]
     assert solve.score(threeOfAKind) == 4
 

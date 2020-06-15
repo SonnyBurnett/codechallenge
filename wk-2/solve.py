@@ -29,10 +29,8 @@ def parseLineToHands(line):
 
 
 def score(hand):
-    ranks = [card[0] for card in hand]
+    ranks = sorted([card[0] for card in hand])
     suits = [card[1] for card in hand]
-
-    flush = all(suit == suits[0] for suit in suits[1:])
 
     rankOccurrence = [0 for i in range(14)]
     for rank in ranks:
@@ -41,12 +39,14 @@ def score(hand):
     singles, pairs, triples, quads = [
         [i for i in range(14) if rankOccurrence[i] == j] for j in range(1, 5)]
 
+    flush = all(suit == suits[0] for suit in suits[1:])
     fourOfAKind = len(quads) == 1
     threeOfAKind = len(triples) == 1
     twoPair = len(pairs) == 2
     pair = len(pairs) == 1
     fullHouse = pair and threeOfAKind
     highCard = len(singles) == 5
+    straight = len(singles) == 5 and ranks[4] == ranks[0] + 4
 
     if fourOfAKind:
         return 8
@@ -54,6 +54,8 @@ def score(hand):
         return 7
     if flush:
         return 6
+    if straight:
+        return 5
     if threeOfAKind:
         return 4
     if twoPair:
