@@ -1,4 +1,5 @@
 import unittest
+import pytest
 from euler54 import get_rank
 import itertools
 
@@ -28,16 +29,20 @@ hands2 = [
 ]
 
 win1 = [
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+    0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+    0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0
 ]
 
 
-def test_all_combinations():
-    hands = itertools.product(hands1, hands2)
-    i = 0
-    for h in hands:
-        assert (get_rank(h[0]) > get_rank(h[1])) == win1[i]
-        i += 1
+comb_hand = itertools.product(hands1, hands2)
+
+
+@pytest.mark.parametrize('hands', list(zip(comb_hand, win1)))
+def test_all_combinations(hands):
+    hand1, hand2 = hands[0]
+    win = hands[1]
+    assert (get_rank(hand1) > get_rank(hand2)) == win
 
 
 if __name__ == '__main__':

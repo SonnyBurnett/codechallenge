@@ -29,7 +29,8 @@ In the main module, finding the winner of a hand is as easy as comparing the sco
 
 ## Tests 
 
-* Unit tests are performed using pytest
-* test file is test.py assert results for a combination of each ranking type     
+* Unit tests are performed using pytest.
+* test file is test.py, asserting 100 combinations of each ranking type   
+* It uses the `@pytest.mark.parametrize` decorator in order to pass each hands combination as a parameter to the test routine  
 * pytest execution is automated in the [Azure DevOps](pipeline https://dev.azure.com/xmayeur/Euler54)
  
