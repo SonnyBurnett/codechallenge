@@ -21,7 +21,7 @@ def buildprimeslist(endrange, primesList):
                         #else:
                             #print("Not divisible by a prime. " + str(p))
 
-                if pr == True:
+                if pr is True:
                     #print("Add {prime} to primes".format(prime = n))
                     primes.append(n)
             #else:
