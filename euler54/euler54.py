@@ -13,8 +13,6 @@ def valueToNumeric(val):
         val = 13
     elif val =="A":    
         val = 14
-    else:
-        val
     
     return int(val)
 
@@ -238,7 +236,6 @@ def pair(hand):
     #print(cardDict)
     status = False
     score = []
-    pairs = []
     for cards in cardDict:
        #print(cards)
        #print(cardDict[cards])
@@ -273,7 +270,6 @@ def scoreCalc(scList):
 def whathand(hlist):
     """This is a main function that identifies the hand of the player"""
 
-    score = 0
     handres = []
 
     if royalFlush(hlist)[0]:
@@ -361,7 +357,7 @@ def compareHands(hand1, hand2):
 
 if __name__ == "__main__": 
 
-    with open("p054_poker.txt") as f:
+    with open("euler54/p054_poker.txt") as f:
 
         # [0] = Player 1, 
         # [1] = Player 2, 

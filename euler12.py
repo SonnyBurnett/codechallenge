@@ -1,13 +1,13 @@
 import math
 
 # count the divisors 
-def cntDiv(n) : 
+def cntDiv(numDiv) : 
     cnt = 0
-    for i in range(1, (int)(math.sqrt(n)) + 1) : 
-        if (n % i == 0) : 
+    for i in range(1, (int)(math.sqrt(numDiv)) + 1) : 
+        if (numDiv % i == 0) : 
             
 
-            if (n / i == i) : 
+            if (numDiv / i == i) : 
                 cnt = cnt + 1
             else : 
                 cnt = cnt + 2
