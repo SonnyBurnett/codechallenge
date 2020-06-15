@@ -183,7 +183,7 @@ class Poker():
     self.player1_wins = 0
     if len(filename) > 0:
       self.process_data_from_file(filename)
-    if len(poker_hands) > 0:
+    if poker_hands is not None and len(poker_hands) > 0:
       self.process_data_from_poker_hands(poker_hands)
 
   def process_data_from_poker_hands(self, poker_hands):
