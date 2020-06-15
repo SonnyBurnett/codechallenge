@@ -8,7 +8,7 @@ This one uses a Python generator to generate the numbers in sequence.
 ## Euler 54
 
 Evaluating a poker hands.
-The main challenge was to evaluate a players hand a give it some value. Solution was to give a hand a dictionary of values that represent all possible values in poker:
+The main challenge was to evaluate a players hand and give it some value. Solution was to give to the hand a dictionary of values that represent all possible values in poker:
 
 ```text
     0 - High Card: Highest value card.
@@ -42,6 +42,10 @@ Represented as a dictionary in the PlayerHand class;
 ```
 
 If there is no match for the value it is not going to be added to the dictionary.
-Each players hand gets its own values dictionary which gets compered with the other one in the Hand class and did_player_win method.
+Each players hand gets its own values dictionary which gets compared with
+the other one in the PlayerHand class by overriding and implementing
+the greater than operator.
 
-Note: this is not checking all tie possibilities if the highest cards are the same for both players
+Note: this is not checking all tie possibilities if the highest card values
+are the same for both players. It is working as expected for the problem statement
+by Euler where there is a clear winner in all inputs.
