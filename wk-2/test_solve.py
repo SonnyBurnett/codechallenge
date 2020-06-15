@@ -26,28 +26,35 @@ def testLineToHands():
 
 def testScore():
     royalFlush = "TC JC QC KC AC"
-    assert solve.score(royalFlush) == 10
+    assert solve.score(royalFlush) == (10, 0, 0)
 
     straightFlush = "2C 3C 4C 5C 6C"
-    assert solve.score(straightFlush) == 9
+    assert solve.score(straightFlush) == (9, 4, 0)
 
     fourOfAKind = "2C 2H 2S 2D TC"
-    assert solve.score(fourOfAKind) == 8
+    assert solve.score(fourOfAKind) == (8, 0, 8)
 
     fullHouse = "2C 2D 2S 9C 9D"
-    assert solve.score(fullHouse) == 7
+    assert solve.score(fullHouse) == (7, 0, 7)
 
     flush = "2C 3C 4C 9C TC"
-    assert solve.score(flush) == 6
+    assert solve.score(flush) == (6, 8, 7)
 
     straight = "2C 3C 4C 5C 6D"
-    assert solve.score(straight) == 5
+    assert solve.score(straight) == (5, 4, 0)
 
-    threeOfAKind = "2C 2D 2S 9C TD"
-    assert solve.score(threeOfAKind) == 4
+    threeOfAKind = "5C 5D 5S 9C TD"
+    assert solve.score(threeOfAKind) == (4, 3, 8)
 
-    twoPair = "2C 2D 4S 4C TD"
-    assert solve.score(twoPair) == 3
+    twoPair = "3C 3D 4S 4C TD"
+    assert solve.score(twoPair) == (3, 2, 1)
+
+    pair = "KC KD 4S 9C TD"
+    assert solve.score(pair) == (2, 11, 8)
+
+    highCard = "AC 3C 4C 9C TD"
+    assert solve.score(highCard) == (1, 12, 8)
+
 
     pair = "2C 2D 4S 9C TD"
     assert solve.score(pair) == 2

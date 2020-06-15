@@ -29,34 +29,34 @@ def score(hand):
     singles, pairs, triples, quads = [
         [i for i in range(13) if rankOccurrence[i] == j] for j in range(1, 5)]
 
-    flush = all(suit == suits[0] for suit in suits[1:])
-    fourOfAKind = len(quads) == 1
-    threeOfAKind = len(triples) == 1
-    twoPair = len(pairs) == 2
-    pair = len(pairs) == 1
-    fullHouse = pair and threeOfAKind
-    highCard = len(singles) == 5
-    straight = len(singles) == 5 and ranks[4] == ranks[0] + 4
+    isFlush = all(suit == suits[0] for suit in suits[1:])
+    isFourOfAKind = len(quads) == 1
+    isThreeOfAKind = len(triples) == 1
+    isTwoPair = len(pairs) == 2
+    isPair = len(pairs) == 1
+    isFullHouse = isPair and isThreeOfAKind
+    isHighCard = len(singles) == 5
+    isStraight = len(singles) == 5 and ranks[4] == ranks[0] + 4
 
-    if flush and straight:
+    if isFlush and isStraight:
         if singles[4] == 12:
-            return 10
+            return (10, 0, 0)
         else:
-            return 9
-    if fourOfAKind:
-        return 8
-    if fullHouse:
-        return 7
-    if flush:
-        return 6
-    if straight:
-        return 5
-    if threeOfAKind:
-        return 4
-    if twoPair:
-        return 3
-    if pair:
-        return 2
-    if highCard:
-        return 1
+            return (9, ranks[4], 0)
+    if isFourOfAKind:
+        return (8, quads[0], singles[0])
+    if isFullHouse:
+        return (7, triples[0], pairs[0])
+    if isFlush:
+        return (6, ranks[4], ranks[3])
+    if isStraight:
+        return (5, ranks[4], 0)
+    if isThreeOfAKind:
+        return (4, triples[0], max(singles))
+    if isTwoPair:
+        return (3, max(pairs), min(pairs))
+    if isPair:
+        return (2, pairs[0], max(singles))
+    if isHighCard:
+        return (1, ranks[4], ranks[3])
     raise Exception("could not score hand {}".format(hand))
