@@ -1,9 +1,8 @@
 version = 1
 
-test_patterns = [
-    "*/damir1/**",
-    "*/damir2/**"
-]
+test_patterns = ["damir2/*_test.py"]
+
+exclude_patterns = ["euler/**"]
 
 [[analyzers]]
 name = "python"
