@@ -55,7 +55,7 @@ import os
 class PlayerHand:
   '''
   Class containing a single players cards
-  parses the cards and determnies the values of the cards
+  parses the cards and determines the values of the cards
   '''
   def __init__(self, round_of_cards):
     self._seen = None
