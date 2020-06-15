@@ -4,11 +4,6 @@ def processFileLines(func, file):
             func(line.rstrip())
 
 
-def processLine(line):
-    hands = lineToHands(line)
-    return score(hands[0]) > score(hands[1])
-
-
 def lineToHands(line):
     return (line[:14], line[15:])
 
@@ -62,3 +57,21 @@ def score(hand):
     if isHighCard:
         return (1, ranks[4], ranks[3])
     raise Exception("could not score hand {}".format(hand))
+
+
+def main():
+    playerOneWins = 0
+
+    def countPlayerOneWins(line):
+        nonlocal playerOneWins
+        hands = lineToHands(line)
+        if score(hands[0]) > score(hands[1]):
+            playerOneWins += 1
+
+    processFileLines(countPlayerOneWins, 'p054_poker.txt')
+
+    print("Player 1 wins {} hands".format(playerOneWins))
+
+
+if __name__ == "__main__":
+    main()
