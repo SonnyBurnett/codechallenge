@@ -44,17 +44,21 @@ def score(hand):
     fourOfAKind = len(quads) == 1
     threeOfAKind = len(triples) == 1
     twoPair = len(pairs) == 2
+    pair = len(pairs) == 1
+    fullHouse = pair and threeOfAKind
     highCard = len(singles) == 5
 
     if fourOfAKind:
         return 8
+    if fullHouse:
+        return 7
     if flush:
         return 6
     if threeOfAKind:
         return 4
     if twoPair:
         return 3
-    if pairs:
+    if pair:
         return 2
     if highCard:
         return 1

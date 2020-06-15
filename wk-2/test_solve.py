@@ -29,6 +29,9 @@ def testScore():
     fourOfAKind = [(2, 'C'), (2, 'H'), (2, 'S'), (2, 'D'), (10, 'C')]
     assert solve.score(fourOfAKind) == 8
 
+    fullHouse = [(2, 'C'), (2, 'D'), (2, 'S'), (9, 'C'), (9, 'D')]
+    assert solve.score(fullHouse) == 7
+
     flush = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'C')]
     assert solve.score(flush) == 6
 
