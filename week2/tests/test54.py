@@ -64,8 +64,8 @@ assert hand1 > hand2, "hand1 should win"
 hand1 = testSubject.Hand(['AD', 'AC', 'KD', 'KC', '2H'])
 hand2 = testSubject.Hand(['QD', 'QC', 'JD', 'JC', '2H'])
 assert hand1 > hand2, "hand1 should win"
-hand1 = testSubject.Hand(['AD', 'AC', 'KD', 'KC', '2H'])
-hand2 = testSubject.Hand(['AH', 'AS', 'JD', 'JC', '2H'])
+hand1 = testSubject.Hand(['3D', '3C', 'AD', 'AC', '2H'])
+hand2 = testSubject.Hand(['4H', '4S', 'KD', 'KC', '2H'])
 assert hand1 > hand2, "hand1 should win"
 hand1 = testSubject.Hand(['AD', 'AC', 'KD', 'KC', '3H'])
 hand2 = testSubject.Hand(['AH', 'AS', 'KH', 'KS', '2H'])
@@ -81,14 +81,17 @@ assert hand1 > hand2, "hand1 should win"
 hand1 = testSubject.Hand(['AD', 'KC', 'QH', 'JC', '2D'])
 hand2 = testSubject.Hand(['3D', 'KC', 'QH', 'JC', '2D'])
 assert hand1 > hand2, "hand1 should win"
+hand1 = testSubject.Hand(['2D', 'JC', 'QH', 'KC', 'AD'])
+hand2 = testSubject.Hand(['3D', 'KC', 'QH', 'JC', '2D'])
+assert hand1 > hand2, "hand1 should win"
 
 print("TEST EULER EXAMPLE")
 with open('example54.txt') as f:
-    result = testSubject.main(f)
+    result = testSubject.compareHands(f)
     assert 3 == result, "got %s, expected 3" % result
 
 
 print("OFFICIAL EULER FILE")
 with open('poker.txt') as f:
-    result = testSubject.main(f)
+    result = testSubject.compareHands(f)
     assert 376 == result, "got %s, expected 376" % result

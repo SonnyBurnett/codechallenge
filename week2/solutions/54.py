@@ -16,57 +16,56 @@ class Hand:
             if suit != card[1]:
                 self.suited = False
         self.cards = Counter(sorted(reformat, reverse=True))
-        self.straight = self.isStraight()
-        self.rank = self.rank()
+        self.__determineStraight()
+        self.__determineRank()
 
-    def isStraight(self):
-        straight = True
+    def __determineStraight(self):
+        self.straight = True
         cards = [*self.cards]
         card = cards[0]
-        for next in cards[1:]:
-            if next != card - 1:
-                straight = False
-            card = next
-        return straight
+        for x in cards[1:]:
+            if x != card - 1:
+                self.straight = False
+            card = x
 
-    def rank(self):
+    def __determineRank(self):
         counts = self.cards.values()
         if 4 in counts:
-            return 8
+            self.rank = 8
         elif 3 in counts and 2 in counts:
-            return 7
+            self.rank = 7
         elif 3 in counts:
-            return 4
+            self.rank = 4
         elif 2 in Counter(counts).values():
-            return 3
+            self.rank = 3
         elif 2 in counts:
-            return 2
+            self.rank = 2
         elif self.straight & self.suited:
-            return 9
+            self.rank = 9
         elif self.suited:
-            return 6
+            self.rank = 6
         elif self.straight:
-            return 5
+            self.rank = 5
         else:
-            return 1
+            self.rank = 1
 
-    def compareEqualRank(self, hand2):
+    def __compareEqualRank(self, hand2):
         sorted1 = sorted(self.cards.items(), key=lambda x: x[1], reverse=True)
         sorted2 = sorted(hand2.cards.items(), key=lambda x: x[1], reverse=True)
-        for i in range(len(sorted1)):
-            if sorted1[i] != sorted2[i]:
-                return sorted1[i] > sorted2[i]
-        else:
-            return False
+        for i, card in enumerate(sorted1):
+            if card != sorted2[i]:
+                return card > sorted2[i]
+        return False
 
     def __gt__(self, hand2):
         if self.rank == hand2.rank:
-            return self.compareEqualRank(hand2)
+            result = self.__compareEqualRank(hand2)
         else:
-            return self.rank > hand2.rank
+            result = self.rank > hand2.rank
+        return result
 
 
-def main(file):
+def compareHands(file):
     result = 0
     for line in file:
         hand1 = Hand(line.split()[:5])
@@ -76,6 +75,10 @@ def main(file):
     return result
 
 
-if __name__ == '__main__':
+def main():
     with open('../tests/poker.txt') as file:
-        print(main(file))
+        print(compareHands(file))
+
+
+if __name__ == '__main__':
+    main()
