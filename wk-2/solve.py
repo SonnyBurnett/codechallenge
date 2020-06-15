@@ -38,10 +38,8 @@ def score(hand):
     for rank in ranks:
         rankOccurrence[rank] += 1
 
-    singles = [i for i in range(14) if rankOccurrence[i] == 1]
-    pairs = [i for i in range(14) if rankOccurrence[i] == 2]
-    triples = [i for i in range(14) if rankOccurrence[i] == 3]
-    quads = [i for i in range(14) if rankOccurrence[i] == 4]
+    singles, pairs, triples, quads = [
+        [i for i in range(14) if rankOccurrence[i] == j] for j in range(1, 5)]
 
     fourOfAKind = len(quads) == 1
     threeOfAKind = len(triples) == 1
