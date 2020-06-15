@@ -48,6 +48,8 @@ def score(hand):
     highCard = len(singles) == 5
     straight = len(singles) == 5 and ranks[4] == ranks[0] + 4
 
+    if flush and straight:
+        return 9
     if fourOfAKind:
         return 8
     if fullHouse:

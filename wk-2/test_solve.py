@@ -26,6 +26,9 @@ def testParseLineToHands():
 
 
 def testScore():
+    straightFlush = [(2, 'C'), (3, 'C'), (4, 'C'), (5, 'C'), (6, 'C')]
+    assert solve.score(straightFlush) == 9
+
     fourOfAKind = [(2, 'C'), (2, 'H'), (2, 'S'), (2, 'D'), (10, 'C')]
     assert solve.score(fourOfAKind) == 8
 
