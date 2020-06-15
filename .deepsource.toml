@@ -1,0 +1,15 @@
+version = 1
+
+test_patterns = ["Euler*"]
+
+exclude_patterns = [
+    ".idea",
+    "venv"
+]
+
+[[analyzers]]
+name = "python"
+enabled = true
+
+  [analyzers.meta]
+  runtime_version = "3.x.x"
