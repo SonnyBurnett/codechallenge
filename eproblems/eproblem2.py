@@ -8,13 +8,7 @@ def flip_mod3(n):
     :type n: int
     :return int: the flipped modulo 3 answer.
     """
-    n_flip = (n % 3)
-    if n_flip == 0:
-        n_flip = 2
-    elif n_flip == 2:
-        n_flip = 0
-
-    return n_flip
+    return [2, 1, 0].index(n)
 
 
 def sum_fibo_div3(n_max):
