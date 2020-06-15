@@ -8,8 +8,8 @@ Project Euler Problems in Jupyter Notebooks and using Python 3.8+
     * [Installing](#Installing)
 * [Running the notebooks](#Running-the-notebooks)
     * [Current problems notebooks](#Current-problems-notebooks)
-    * [Beginner problems](#Beginner-problems)
-    * [Expert problems](#Expert-problems)
+    * [Beginner problems](#Beginner-problems:)
+    * [Expert problems](#Expert-problems:)
 * [Deployment](#Deployment)
 * [Built With](#Built-With)
 * [Tests](#Tests)
@@ -50,14 +50,16 @@ The notebooks contain a directed step to step explaining the how the problem is 
 You can use the relative link to jump to the Jupyler Notebook preview, no local installation is needed on GitHub.
 
 #### Beginner problems:  
-1. [Project Euler Problem 1 notebook](notebooks/Project%20Euler%20Problem%201.ipynb): 'notebooks\Project Euler Problem 1.ipymb'
-    is for guiding you through the solution for the first project Euler assignment. 
-2. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%202.ipynb): 'notebooks\Project Euler Problem 2.ipymb'
+1\. [Project Euler Problem 1 notebook](notebooks/Project%20Euler%20Problem%201.ipynb): 'notebooks\Project Euler Problem 1.ipymb'
+    is for guiding you through the solution for the first project Euler assignment.  
+2\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%202.ipynb): 'notebooks\Project Euler Problem 2.ipymb'
     is for guiding you through the solution for the second project Euler assignment. 
 
 #### Expert problems:  
-12. [Project Euler Problem 12 notebook](notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
-    is for guiding you through the solution for the twelfth project Euler assignment.
+12\. [Project Euler Problem 12 notebook](notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
+    is for guiding you through the solution for the twelfth project Euler assignment.  
+54\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%2054.ipynb): 'notebooks\Project Euler Problem 54.ipymb'
+    is for guiding you through the solution for the fifty-fourth project Euler assignment. 
 
 ## Deployment
 
@@ -70,10 +72,11 @@ The project is structured as following if you want to run the cells in the noteb
 ├── README.md               This top-level README for developers using this project.
 |
 ├── data                    This is the data directory needed for the eproblems.
-│   └── none.txt                Contains the todo for reusable text in the future.
+│   └── #054_poker.txt          These are the data files for Eukel problem 54 prefix p is the real data and the others
+|                                 are test data (prefix c, e, t and z).
 |
 ├── docs                    A documentation directory for reusable documentation text in the future.
-│   └── none.txt                Contains the todo for reusable text in the future.
+│   └── none.txt                Contains the todo for reusable text and documentation in the future.
 |
 ├── eproblems               Sources for use in this project for the solutions, 
 |   |                         Naming convention is a tailing number behind "eproblem".
@@ -92,7 +95,7 @@ The project is structured as following if you want to run the cells in the noteb
 │   ├── __init__.py             Makes src a Python module.
 │   └── toggle_cell.py          Script to create exploratory and results oriented visualizations
 |
-├── tests                   A directory for reusable tests in the future.
+├── tests                   A directory for re-usable tests in the future.
 │   └── test_eproblem##.py      One or more numbered unittest python scripts for the specific project Euler problem.
 |
 └── requirements.txt        The requirements file for reproducing the environment, e.g.
@@ -109,8 +112,10 @@ Anything that was used to write, compile, execute and stored for this project:
 ## Tests
 
 The tests where executed with PyCharm:
-    * Configure the configuration by adding a Python Test > Unittests by target module name for the test_eproblem##.py
+  * Configure the configuration by adding a Python Test > Unittests by target module name for the test_eproblem##.py
      you want to test.
+  * Last test line of the test include the solution of the Euler problem assignment as method test_sol## where ## 
+    indicates the project Euler ID number, with the correct found answer.
 
 ## Contributing
 
@@ -144,3 +149,4 @@ Building this framework to demonstrate the solutions was a challenge on its own,
 * https://reproducible-science-curriculum.github.io/sharing-RR-Jupyter/01-sharing-github/
 * https://www.jetbrains.com/help/pycharm/testing-your-first-python-application.html
 * https://docs.python.org/3/library/unittest.html
+* https://docs.python.org/2/library/collections.html#counter-objects
