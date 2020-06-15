@@ -104,6 +104,50 @@ class PlayerHand:
     self._duplicates = duplicates
     return cards
 
+  def __check_for_duplicates(self):
+    # get pair, two pairs, three, four
+    for duplicate in self._duplicates:
+      if self._seen[duplicate] == 2:
+        if 1 not in self.cards_values:
+          self.cards_values[1] = [duplicate]  # One Pair
+          self.cards_values[0] = max([x for x in self._values if x != duplicate])
+        else:
+          self.cards_values[1].append(duplicate)  # Two Pairs
+          self.cards_values[0] = max([x for x in self._values if x not in self._duplicates])
+      elif self._seen[duplicate] == 3:  # Three of a Kind
+        self.cards_values[3] = duplicate
+      elif self._seen[duplicate] == 4:  # Four of a Kind
+        self.cards_values[7] == duplicate
+
+  def __check_for_two_pairs(self):
+    # two pairs?
+    if 1 in self.cards_values and len(self.cards_values[1]) == 2:
+      self.cards_values[2] = self.cards_values[1][0] if self.cards_values[1][0] > self.cards_values[1][1] else self.cards_values[1][1]
+
+  def __check_for_straight(self):
+    # straight
+    if len(self._values) == len(set(self._values)):
+      if sorted(self._values) == list(range(min(self._values), max(self._values) + 1)):
+        self.cards_values[4] = self.cards_values[0]
+
+  def __check_for_flush(self):
+    # flush
+    if len(set(self._colors)) == 1:
+      self.cards_values[5] = self.cards_values[0]  # Get a value of highest card
+
+  def __check_for_full_house(self):
+    # Full House
+    if 3 in self.cards_values and 1 in self.cards_values:
+      self.cards_values[6] = self.cards_values[3]  # Get the value of Three of a Kind
+
+  def __check_for_straight_flush(self):
+    # Straight Flush
+    if 4 in self.cards_values and 5 in self.cards_values:
+      self.cards_values[8] = self.cards_values[0]
+      # Royal FLush
+      if self.cards_values[0] == 14:
+        self.cards_values[9] = 14
+
   def __evaluate_hand(self):
     '''
     this should calculate the highest value of all cards with following value
@@ -121,39 +165,12 @@ class PlayerHand:
     9 - Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
     '''
     self.cards_values[0] = max(self._values)
-    # get pair, two pairs, three, four
-    for duplicate in self._duplicates:
-      if self._seen[duplicate] == 2:
-        if 1 not in self.cards_values:
-          self.cards_values[1] = [duplicate]  # One Pair
-          self.cards_values[0] = max([x for x in self._values if x != duplicate])
-        else:
-          self.cards_values[1].append(duplicate)  # Two Pairs
-          self.cards_values[0] = max([x for x in self._values if x not in self._duplicates])
-      elif self._seen[duplicate] == 3:  # Three of a Kind
-        self.cards_values[3] = duplicate
-      elif self._seen[duplicate] == 4:  # Four of a Kind
-        self.cards_values[7] == duplicate
-    # two pairs?
-    if 1 in self.cards_values and len(self.cards_values[1]) == 2:
-      self.cards_values[2] = self.cards_values[1][0] if self.cards_values[1][0] > self.cards_values[1][1] else self.cards_values[1][1]
-    # straight
-    if len(self._values) == len(set(self._values)):
-      if sorted(self._values) == list(range(min(self._values), max(self._values) + 1)):
-        self.cards_values[4] = self.cards_values[0]
-    # flush
-    if len(set(self._colors)) == 1:
-      self.cards_values[5] = self.cards_values[0]  # Get a value of highest card
-    # Full House
-    if 3 in self.cards_values and 1 in self.cards_values:
-      self.cards_values[6] = self.cards_values[3]  # Get the value of Three of a Kind
-    # Straight Flush
-    if 4 in self.cards_values and 5 in self.cards_values:
-      self.cards_values = self.cards_values[0]
-      # Royal FLush
-      if self.cards_values[0] == 14:
-        self.cards_values[9] = 14
-
+    self.__check_for_duplicates()
+    self.__check_for_two_pairs()
+    self.__check_for_straight()
+    self.__check_for_flush()
+    self.__check_for_full_house()
+    self.__check_for_straight_flush()
     self.highest_value = max(self.cards_values)
 
   def __gt__(self, other):
