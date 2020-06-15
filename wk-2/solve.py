@@ -34,7 +34,7 @@ def score(hand):
 
     rankOccurrence = [0 for i in range(14)]
     for rank in ranks:
-        rankOccurrence[rank] += 1
+        rankOccurrence[rank - 1] += 1
 
     singles, pairs, triples, quads = [
         [i for i in range(14) if rankOccurrence[i] == j] for j in range(1, 5)]
@@ -49,7 +49,10 @@ def score(hand):
     straight = len(singles) == 5 and ranks[4] == ranks[0] + 4
 
     if flush and straight:
-        return 9
+        if singles[4] == 13:
+            return 10
+        else:
+            return 9
     if fourOfAKind:
         return 8
     if fullHouse:

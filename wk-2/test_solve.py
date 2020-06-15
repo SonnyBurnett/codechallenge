@@ -26,6 +26,9 @@ def testParseLineToHands():
 
 
 def testScore():
+    royalFlush = [(10, 'C'), (11, 'C'), (12, 'C'), (13, 'C'), (14, 'C')]
+    assert solve.score(royalFlush) == 10
+
     straightFlush = [(2, 'C'), (3, 'C'), (4, 'C'), (5, 'C'), (6, 'C')]
     assert solve.score(straightFlush) == 9
 
