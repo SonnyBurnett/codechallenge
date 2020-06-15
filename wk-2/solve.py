@@ -7,6 +7,11 @@ def processFileLines(func, file):
             func(line.rstrip())
 
 
+def processLine(line):
+    hands = lineToHands(line)
+    return score(hands[0]) > score(hands[1])
+
+
 def lineToHands(line):
     return (line[:14], line[15:])
 

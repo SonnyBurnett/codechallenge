@@ -123,3 +123,8 @@ def testExerciseTestCases():
     assert solve.score("2D 9C AS AH AC") < solve.score("3D 6D 7D TD QD")
     assert solve.score("4D 6S 9H QH QC") > solve.score("3D 6D 7H QD QS")
     assert solve.score("2H 2D 4C 4D 4S") > solve.score("3C 3D 3S 9S 9D")
+
+
+def testLineProcessor():
+    assert solve.processLine("5H 5C 6S 7S KD 2C 3S 8S 8D TD") == False
+    assert solve.processLine("5D 8C 9S JS AC 2C 5C 7D 8S QH") == True
