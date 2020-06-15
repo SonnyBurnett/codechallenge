@@ -8,8 +8,8 @@ Project Euler Problems in Jupyter Notebooks and using Python 3.8+
     * [Installing](#Installing)
 * [Running the notebooks](#Running-the-notebooks)
     * [Current problems notebooks](#Current-problems-notebooks)
-    * [Beginner problems](#Beginner-problems:)
-    * [Expert problems](#Expert-problems:)
+    * [Beginner problems](#Beginner-problems)
+    * [Expert problems](#Expert-problems)
 * [Deployment](#Deployment)
 * [Built With](#Built-With)
 * [Tests](#Tests)
@@ -58,7 +58,7 @@ You can use the relative link to jump to the Jupyler Notebook preview, no local 
 #### Expert problems:  
 12\. [Project Euler Problem 12 notebook](notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
     is for guiding you through the solution for the twelfth project Euler assignment.  
-54\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%2054.ipynb): 'notebooks\Project Euler Problem 54.ipymb'
+54\. [Project Euler Problem 54 notebook](notebooks/Project%20Euler%20Problem%2054.ipynb): 'notebooks\Project Euler Problem 54.ipymb'
     is for guiding you through the solution for the fifty-fourth project Euler assignment. 
 
 ## Deployment
