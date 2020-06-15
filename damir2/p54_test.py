@@ -13,6 +13,7 @@ class test_p54(unittest.TestCase):
       2D 9C AS AH AC 3D 6D 7D TD QD
       4D 6S 9H QH QC 3D 6D 7H QD QS
       2H 2D 4C 4D 4S 3C 3D 3S 9S 9D
+      2H 2D 4C 4D 4S 3C 3D 3S 3H 9D
       2H 2D 4C 4D AH 2C 2S 4H 4S KD
       TH TD 4C 4D 3H TC TS 4H 4S 7D'''
     poker = Poker(poker_hands=_hands)

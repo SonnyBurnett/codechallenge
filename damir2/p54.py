@@ -117,7 +117,7 @@ class PlayerHand:
       elif self._seen[duplicate] == 3:  # Three of a Kind
         self.cards_values[3] = duplicate
       elif self._seen[duplicate] == 4:  # Four of a Kind
-        self.cards_values[7] == duplicate
+        self.cards_values[7] = duplicate
 
   def __check_for_two_pairs(self):
     # two pairs?
