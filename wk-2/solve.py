@@ -32,14 +32,21 @@ def score(hand):
     ranks = [card[0] for card in hand]
     suits = [card[1] for card in hand]
 
+    flush = all(suit == suits[0] for suit in suits[1:])
+
     rankOccurrence = [0 for i in range(14)]
     for rank in ranks:
         rankOccurrence[rank] += 1
 
-    flush = all(suit == suits[0] for suit in suits[1:])
+    singles = [i for i in range(14) if rankOccurrence[i] == 1]
+    pairs = [i for i in range(14) if rankOccurrence[i] == 2]
+    triples = [i for i in range(14) if rankOccurrence[i] == 3]
+    quads = [i for i in range(14) if rankOccurrence[i] == 4]
 
-    fourOfAKind = len([i for i in range(14) if rankOccurrence[i] == 4]) > 0
-    threeOfAKind = len([i for i in range(14) if rankOccurrence[i] == 3]) > 0
+    fourOfAKind = len(quads) == 1
+    threeOfAKind = len(triples) == 1
+    twoPair = len(pairs) == 2
+    highCard = len(singles) == 5
 
     if fourOfAKind:
         return 8
@@ -47,4 +54,10 @@ def score(hand):
         return 6
     if threeOfAKind:
         return 4
-    return 1
+    if twoPair:
+        return 3
+    if pairs:
+        return 2
+    if highCard:
+        return 1
+    raise Exception("could not score hand {}".format(hand))

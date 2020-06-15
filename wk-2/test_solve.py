@@ -35,5 +35,11 @@ def testScore():
     threeOfAKind = [(2, 'C'), (2, 'D'), (2, 'S'), (9, 'C'), (10, 'D')]
     assert solve.score(threeOfAKind) == 4
 
+    twoPair = [(2, 'C'), (2, 'D'), (4, 'S'), (4, 'C'), (10, 'D')]
+    assert solve.score(twoPair) == 3
+
+    pair = [(2, 'C'), (2, 'D'), (4, 'S'), (9, 'C'), (10, 'D')]
+    assert solve.score(pair) == 2
+
     highCard = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'D')]
     assert solve.score(highCard) == 1
