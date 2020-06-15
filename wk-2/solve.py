@@ -8,6 +8,14 @@ def processFileLines(func, file):
 
 
 def parseLineToHands(line):
+    return tuple(map(lambda x: handToCards(x), lineToHands(line)))
+
+
+def lineToHands(line):
+    return (line[:14], line[15:])
+
+
+def handToCards(hand):
     ranks = {
         '2': 2,
         '3': 3,
@@ -23,8 +31,7 @@ def parseLineToHands(line):
         'K': 13,
         'A': 14
     }
-    cards = list(map(lambda x: (ranks[x[0]], x[1]), line.split(' ')))
-    return (cards[:5], cards[5:])
+    return list(map(lambda x: (ranks[x[0]], x[1]), hand.split(' ')))
 
 
 def score(hand):

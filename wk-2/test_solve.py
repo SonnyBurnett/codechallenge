@@ -18,6 +18,12 @@ def testProcessFileLines():
     assert nrOfLineAssertionsMade == 2
 
 
+def testLineToHands():
+    line = "2C 3C 4D 9D TD 2H JH QS KS AS"
+
+    assert solve.lineToHands(line) == ("2C 3C 4D 9D TD", "2H JH QS KS AS")
+
+
 def testParseLineToHands():
     line = "2C 3C 4D 9D TD 2H JH QS KS AS"
 
