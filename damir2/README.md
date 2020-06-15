@@ -2,8 +2,14 @@
 
 ## Euler 02
 
-A version of Fibonacci sequence.
-This one uses a Python generator to generate the numbers in sequence.
+A version of Fibonacci sequence...
+*__fibonacci_generator_up_to_a_limit* method uses a Python generator
+to generate the numbers in a Fibonacci sequence up to a
+specified maximum number.
+
+*sum_fibonacci_with_limit_and_mod_number* method also takes a single
+modulo number as a parameter that is used as a filter on the sequence
+generated if a Fibonacci number is divisible by that modulo number.
 
 ## Euler 54
 

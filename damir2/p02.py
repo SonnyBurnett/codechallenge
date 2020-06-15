@@ -25,7 +25,7 @@ def __fibonacci_generator_up_to_a_limit(limit):
     yield a
     a, b = b, a + b
 
-def sum_fibonacci_with_limit_and_mod_number(limit = 4000000, mod = 2):
+def sum_fibonacci_with_limit_and_mod_number(limit = 4000000, mod = 1):
   if type(mod) != int:
     raise TypeError("mod should be a positive integer.")
   if mod < 1:
