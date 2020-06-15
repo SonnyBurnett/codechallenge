@@ -1,3 +1,6 @@
+from math import gcd
+from functools import reduce
+
 '''
 https://projecteuler.net/problem=5
 
@@ -11,13 +14,11 @@ by all of the numbers from 1 to 20?
 '''
 To solve this we need to multiply all the numbers from 1 till 20
 this gives - 2432902008176640000 - not so small number
-Better solution is to calculate a least common multiple of all the numbers that are in the 
-range from 1 till 20.
-Least common multiple (lcm) lambda function in combination with the reduce method 
+Better solution is to calculate a least common multiple of all the numbers
+that are in the range from 1 till 20.
+Least common multiple (lcm) lambda function in combination with the reduce method
 makes sure that we get lcm for all the numbers in the range
 '''
-from math import gcd
-from functools import reduce
 
 RANGE = 20
 TEST_RANGE = list(range(1, RANGE + 1))

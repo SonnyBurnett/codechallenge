@@ -55,12 +55,12 @@ numbers = '''
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 '''
 numbers = list(map(int, numbers.split()))
-numbers = [numbers[grid * x : grid * x + grid] for x in range(grid)]
+numbers = [numbers[grid * x: grid * x + grid] for x in range(grid)]
 
 max_prd = 0
 max_info = []
 
-#all directions
+# all directions
 for x in range(grid):
   for y in range(grid):
     ar_l_r = [1, []]
@@ -68,22 +68,22 @@ for x in range(grid):
     ar_diag_l_r = [1, []]
     ar_diag_r_l = [1, []]
     for ch in range(chunk):
-      #left right
+      # left right
       if x < (grid - chunk + 1):
         ar_l_r[1].append(numbers[y][x + ch])
         ar_l_r[0] *= ar_l_r[1][ch]
 
-      #top down
+      # top down
       if y < (grid - chunk + 1):
         ar_t_d[1].append(numbers[y + ch][x])
         ar_t_d[0] *= ar_t_d[1][ch]
 
-      #diag left right
+      # diag left right
       if x < (grid - chunk + 1) and y < (grid - chunk + 1):
         ar_diag_l_r[1].append(numbers[y + ch][x + ch])
         ar_diag_l_r[0] *= ar_diag_l_r[1][ch]
-    
-      #diag right left
+
+      # diag right left
       if x >= chunk and y < (grid - chunk + 1):
         ar_diag_r_l[1].append(numbers[y + ch][x - ch])
         ar_diag_r_l[0] *= ar_diag_r_l[1][ch]

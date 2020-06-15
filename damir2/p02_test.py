@@ -1,15 +1,16 @@
 import unittest
 from p02 import sum_fibonacci_with_limit_and_mod_number
 
+
 class Test_p02(unittest.TestCase):
   def test(self):
-    #Test sum of first 10 even fibonacci numbers
+    # Test sum of first 10 even fibonacci numbers
     self.assertEqual(sum_fibonacci_with_limit_and_mod_number(100, 2), 44)
-    #Test sum of all Fibonacci numbers less than 9
+    # Test sum of all Fibonacci numbers less than 9
     self.assertEqual(sum_fibonacci_with_limit_and_mod_number(9, 1), 20)
-  
+
   def test_euler(self):
-    #Test Euler problem
+    # Test Euler problem
     self.assertEqual(sum_fibonacci_with_limit_and_mod_number(4000000, 2), 4613732)
 
   def test_type_errors(self):

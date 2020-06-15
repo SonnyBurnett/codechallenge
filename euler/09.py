@@ -12,7 +12,7 @@ Find the product abc.
 n = 500
 
 # oneliner
-print([((x,y,z), x*y*z, x+y+z) for x in range(n + 1) for y in range(n + 1) for z in range(n + 1) if x<y and y<z and x**2 + y**2 == z**2 and x != 0 and y != 0 and z != 0 and x+y+z==1000])
+print([((x, y, z), x * y * z, x + y + z) for x in range(n + 1) for y in range(n + 1) for z in range(n + 1) if x < y and y < z and x**2 + y**2 == z**2 and x != 0 and y != 0 and z != 0 and x + y + z == 1000])
 
 # results in
 # [((200, 375, 425), 31875000, 1000)]

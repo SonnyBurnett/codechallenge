@@ -72,12 +72,12 @@ class PlayerHand:
       raise ValueError('Card not recognized! Allowed values: 1,...,9,T,J,Q,K,A')
 
     translation = {
-      '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
-      'T': 10,
-      'J': 11,
-      'Q': 12,
-      'K': 13,
-      'A': 14
+        '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+        'T': 10,
+        'J': 11,
+        'Q': 12,
+        'K': 13,
+        'A': 14
     }
 
     return translation.get(card.capitalize())
@@ -99,11 +99,11 @@ class PlayerHand:
         if seen[card_value] == 1:
           duplicates.append(card_value)
         seen[card_value] += 1
-    
+
     self._seen = seen
     self._duplicates = duplicates
     return cards
-  
+
   def __evaluate_hand(self):
     '''
     this should calculate the highest value of all cards with following value
@@ -121,36 +121,36 @@ class PlayerHand:
     9 - Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
     '''
     self.cards_values[0] = max(self._values)
-    #get pair, two pairs, three, four
+    # get pair, two pairs, three, four
     for duplicate in self._duplicates:
       if self._seen[duplicate] == 2:
         if 1 not in self.cards_values:
-          self.cards_values[1] = [duplicate] #One Pair
+          self.cards_values[1] = [duplicate]  # One Pair
           self.cards_values[0] = max([x for x in self._values if x != duplicate])
         else:
-          self.cards_values[1].append(duplicate) #Two Pairs
+          self.cards_values[1].append(duplicate)  # Two Pairs
           self.cards_values[0] = max([x for x in self._values if x not in self._duplicates])
-      elif self._seen[duplicate] == 3: #Three of a Kind
+      elif self._seen[duplicate] == 3:  # Three of a Kind
         self.cards_values[3] = duplicate
-      elif self._seen[duplicate] == 4: #Four of a Kind
+      elif self._seen[duplicate] == 4:  # Four of a Kind
         self.cards_values[7] == duplicate
-    #two pairs?
+    # two pairs?
     if 1 in self.cards_values and len(self.cards_values[1]) == 2:
       self.cards_values[2] = self.cards_values[1][0] if self.cards_values[1][0] > self.cards_values[1][1] else self.cards_values[1][1]
-    #straight
+    # straight
     if len(self._values) == len(set(self._values)):
       if sorted(self._values) == list(range(min(self._values), max(self._values) + 1)):
         self.cards_values[4] = self.cards_values[0]
-    #flush
+    # flush
     if len(set(self._colors)) == 1:
-      self.cards_values[5] = self.cards_values[0] #Get a value of highest card
-    #Full House
+      self.cards_values[5] = self.cards_values[0]  # Get a value of highest card
+    # Full House
     if 3 in self.cards_values and 1 in self.cards_values:
-      self.cards_values[6] = self.cards_values[3] #Get the value of Three of a Kind
-    #Straight Flush
+      self.cards_values[6] = self.cards_values[3]  # Get the value of Three of a Kind
+    # Straight Flush
     if 4 in self.cards_values and 5 in self.cards_values:
       self.cards_values = self.cards_values[0]
-      #Royal FLush
+      # Royal FLush
       if self.cards_values[0] == 14:
         self.cards_values[9] = 14
 
@@ -162,13 +162,12 @@ class PlayerHand:
     if self.highest_value == other.highest_value:
       if self.cards_values[self.highest_value] > other.cards_values[other.highest_value]:
         return True
-      if (self.cards_values[self.highest_value] == other.cards_values[other.highest_value]
-            and self.cards_values[0] > other.cards_values[0]):
-          # and max([x for x in self._values if x not in self._duplicates]) >
-          #     max([x for x in other._values if x not in other._duplicates])):
-        return True
+      if self.cards_values[self.highest_value] == other.cards_values[other.highest_value] \
+         and self.cards_values[0] > other.cards_values[0]:
+          return True
     return False
-      
+
+
 class OneRound:
   def __init__(self, round_of_cards):
     self.hand1 = PlayerHand(round_of_cards[:14])
@@ -177,8 +176,9 @@ class OneRound:
   def did_player1_win(self):
     return self.hand1 > self.hand2
 
+
 class Poker():
-  def __init__(self, filename='', poker_hands=[]):
+  def __init__(self, filename='', poker_hands=None):
     self._location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
     self.player1_wins = 0
     if len(filename) > 0:
@@ -221,14 +221,16 @@ class Poker():
     self.process_data_from_file('p54-poker.txt')
     return self.player1_wins
 
+
 def main():
   '''
   main function
   '''
   _poker = Poker()
   print('Solution for the Euler 054 problem:')
-  #prints: 376
+  # prints: 376
   print('Player1 wins {} times!'.format(_poker.euler_solution()))
+
 
 if __name__ == "__main__":
   main()

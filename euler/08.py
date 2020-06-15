@@ -25,11 +25,12 @@ greatest product are 9 × 9 × 8 × 9 = 5832.
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
 
-Find the thirteen adjacent digits in the 1000-digit number that 
+Find the thirteen adjacent digits in the 1000-digit number that
 have the greatest product. What is the value of this product?
 '''
 
-import re, math
+import re
+import math
 
 n = 13
 digit = '''
@@ -54,8 +55,8 @@ digit = '''
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
 '''
-digit = re.sub('[\W]', '', digit)
-digits = [digit[x : x + n] for x in range(len(digit) - n)]
+digit = re.sub('[\W]', '', digit)  # noqa: W605
+digits = [digit[x: x + n] for x in range(len(digit) - n)]
 max_prd = 0
 max_prd_position = 0
 max_digits = []
@@ -73,5 +74,5 @@ for i in range(len(digits)):
 print('Max product of 13 digits in a row: {}'.format(max_prd))
 print('digits {} found at position {}'.format(max_digits, max_prd_position))
 
-#And now for oneliner :)
-print('Oneliner answer: {}'.format(max([eval('*'.join([c for c in digit[x:13+x]])) for x in range(len(digit) - 13)])))
+# And now for oneliner :)
+print('Oneliner answer: {}'.format(max([eval('*'.join([c for c in digit[x:13 + x]])) for x in range(len(digit) - 13)])))
