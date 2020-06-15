@@ -6,10 +6,10 @@ testSubject = import_module('2')
 
 
 print("TEST EULER EXAMPLE")
-result = testSubject.main(100)
+result = testSubject.sumEvenFibonacci(100)
 assert 44 == result, "got %s, expected 44" % result
 
 
 print("OFFICIAL EULER LIMIT")
-result = testSubject.main(4000000)
+result = testSubject.sumEvenFibonacci(4000000)
 assert 4613732 == result, "got %s, expected 4613732" % result

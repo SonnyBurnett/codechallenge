@@ -12,7 +12,12 @@ def triangle_gen():
         yield t
 
 
-for t in triangle_gen():
-    if len(list_factors(t)) > 500:
-        print(t)
-        break
+def main():
+    for t in triangle_gen():
+        if len(list_factors(t)) > 500:
+            print(t)
+            break
+
+
+if __name__ == '__main__':
+    main()

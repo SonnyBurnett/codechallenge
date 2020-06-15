@@ -1,14 +1,18 @@
 from util import fibonacci
 
 
-def main(limit):
-    sum = 0
+def sumEvenFibonacci(limit):
+    total = 0
     gen = fibonacci()
     while (i := next(gen)) < limit:
         if i % 2 == 0:
-            sum += i
-    return sum
+            total += i
+    return total
+
+
+def main():
+    print(sumEvenFibonacci(4000000))
 
 
 if __name__ == '__main__':
-    print(main(4000000))
+    main()
