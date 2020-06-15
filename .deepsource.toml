@@ -1,0 +1,13 @@
+version = 1
+
+test_patterns = [
+    "*/damir1/**",
+    "*/damir2/**"
+]
+
+[[analyzers]]
+name = "python"
+enabled = true
+
+  [analyzers.meta]
+  runtime_version = "3.x.x"
