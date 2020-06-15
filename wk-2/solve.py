@@ -39,9 +39,12 @@ def score(hand):
     flush = all(suit == suits[0] for suit in suits[1:])
 
     fourOfAKind = len([i for i in range(14) if rankOccurrence[i] == 4]) > 0
+    threeOfAKind = len([i for i in range(14) if rankOccurrence[i] == 3]) > 0
 
     if fourOfAKind:
         return 8
     if flush:
         return 6
+    if threeOfAKind:
+        return 4
     return 1

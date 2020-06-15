@@ -26,11 +26,14 @@ def testParseLineToHands():
 
 
 def testScore():
-    fourOfAKind = [(2, 'C'), (2, 'C'), (2, 'C'), (2, 'C'), (10, 'C')]
+    fourOfAKind = [(2, 'C'), (2, 'H'), (2, 'S'), (2, 'D'), (10, 'C')]
     assert solve.score(fourOfAKind) == 8
 
     flush = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'C')]
     assert solve.score(flush) == 6
+
+    threeOfAKind = [(2, 'C'), (2, 'D'), (2, 'S'), (9, 'C'), (10, 'D')]
+    assert solve.score(threeOfAKind) == 4
 
     highCard = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'D')]
     assert solve.score(highCard) == 1
