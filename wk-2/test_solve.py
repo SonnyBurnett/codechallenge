@@ -25,3 +25,9 @@ def testParseLineToHands():
                                             [(2, 'H'), (11, 'H'), (12, 'S'), (13, 'S'), (14, 'S')])
 
 
+def testScore():
+    flush = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'C')]
+    assert solve.score(flush) == 6
+
+    highCard = [(2, 'C'), (3, 'C'), (4, 'C'), (9, 'C'), (10, 'D')]
+    assert solve.score(highCard) == 1

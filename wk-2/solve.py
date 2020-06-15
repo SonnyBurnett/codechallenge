@@ -1,3 +1,6 @@
+import functools
+
+
 def processFileLines(func, file):
     with open(file) as f:
         for line in f:
@@ -20,6 +23,14 @@ def parseLineToHands(line):
         'K': 13,
         'A': 14
     }
-    cards = list(map(lambda x: (ranks[x[:len(x)-1]], x[len(x)-1:]), line.split(' ')))
+    cards = list(
+        map(lambda x: (ranks[x[:len(x)-1]], x[len(x)-1:]), line.split(' ')))
     return (cards[:5], cards[5:])
 
+
+def score(hand):
+    suits = [card[1] for card in hand]
+    flush = all(suit == suits[0] for suit in suits[1:])
+    if flush:
+        return 6
+    return 1
