@@ -10,13 +10,13 @@ Clearly not for mine but Taco's sanity.
 
 376
 
-Duration: 0.026681 seconds.
+Duration: 0.015392 seconds.
 
 ### Answer Euler 2
 
 4613732
 
-Duration: 0.013061 seconds.
+Duration: 0.000033 seconds.
 
 ## Week1
 
@@ -24,10 +24,10 @@ Duration: 0.013061 seconds.
 
 76576500
 
-Duration: 5.886955 seconds.
+Duration: 5.814458 seconds.
 
 ### Answer Euler 1
 
 233168
 
-Duration: 0.001963 seconds.
+Duration: 0.000184 seconds.

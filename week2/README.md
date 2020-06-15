@@ -23,10 +23,10 @@ _Incase you did notice the requirements.txt: this is purely for installing pylam
 
 376
 
-Duration: 0.026681 seconds.
+Duration: 0.015392 seconds.
 
 ### Answer Euler 2
 
 4613732
 
-Duration: 0.013061 seconds.
+Duration: 0.000033 seconds.

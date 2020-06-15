@@ -14,10 +14,10 @@ Usage: ```./euler.py 1```
 
 76576500
 
-Duration: 5.886955 seconds.
+Duration: 5.814458 seconds.
 
 ### Answer Euler 1
 
 233168
 
-Duration: 0.001963 seconds.
+Duration: 0.000184 seconds.
