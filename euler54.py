@@ -14,7 +14,7 @@ def get_rank(hand):
     counter = Counter(x[0] for x in hand)
 
     # remap the tuples to have one item with the occurrences and one
-    # item with the values --> (1,2,1,1), (2, 9, 9, 13, 14)
+    # item with the values --> (1,2,1,1), (2, 9, 13, 14)
     hand_tuple = [(num, values[key]) for key, num in counter.items()]
 
     # sort and merge so we obtain a tuple with the rank and with the value
