@@ -18,7 +18,7 @@ def get_prime_factors(limit: int):
   p=1
 
   even=__isEven(limit)
-  while even==True:
+  while even:
     limit=int(limit/2)
     primes.append(2)
     even=__isEven(limit)
