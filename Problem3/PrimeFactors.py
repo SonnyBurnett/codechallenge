@@ -1,31 +1,31 @@
-def __isEven(max):
-  if max%2==0:
+def __isEven(limit):
+  if limit%2==0:
     return True
   else:
     return False
 
-def __next_prime(max):
-  for i in range(3,max,2):
-    if max%i==0:
+def __next_prime(limit):
+  for i in range(3,limit,2):
+    if limit%i==0:
       return i
-  return max
+  return limit
 
-def get_prime_factors(max: int):
-  if max<=0:
+def get_prime_factors(limit: int):
+  if limit<=0:
     raise ValueError("input should be a positive integer")
 
-  orig_max=max
+  orig_limit=limit
   primes=[]
   p=1
 
-  even=__isEven(max)
+  even=__isEven(limit)
   while even==True:
-    max=int(max/2)
+    limit=int(limit/2)
     primes.append(2)
-    even=__isEven(max)
-  while p<max:
-    p=__next_prime(max)
-    max=int(max/p)
+    even=__isEven(limit)
+  while p<limit:
+    p=__next_prime(limit)
+    limit=int(limit/p)
     primes.append(p)
 
   return primes
