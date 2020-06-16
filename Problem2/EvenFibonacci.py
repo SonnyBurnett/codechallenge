@@ -1,11 +1,11 @@
-def calculate_fibonacci(max: int):
-  if max<=1:
-    raise ValueError("max should be a positive integer larger than 1")
+def calculate_fibonacci(limit: int):
+  if limit<=1:
+    raise ValueError("limit should be a positive integer larger than 1")
 
   fib1=1
   fib2=2
   fibonacci=[fib1,fib2]
-  while fib1+fib2<max:
+  while fib1+fib2<limit:
     fib_new=fib1+fib2
     fib1=fib2
     fib2=fib_new
