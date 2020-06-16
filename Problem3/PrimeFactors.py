@@ -14,7 +14,6 @@ def get_prime_factors(limit: int):
   if limit<=0:
     raise ValueError("input should be a positive integer")
 
-  orig_limit=limit
   primes=[]
   p=1
 
