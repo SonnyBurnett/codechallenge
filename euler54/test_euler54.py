@@ -53,7 +53,7 @@ class TestEuler54(unittest.TestCase):
         twoPairs = False
         print(str(id(res[0])) + " " + str(res[0]))
         print(str(id(len(res[1]))) + " " + str(res[1]))
-        if res[0] == True and len(res[1]) == 2:
+        if res[0] and len(res[1]) == 2:
             twoPairs = True
         
         self.assertTrue(twoPairs,True)
