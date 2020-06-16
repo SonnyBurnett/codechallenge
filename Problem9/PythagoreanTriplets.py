@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt, hypot
 from typing import List
 
 def __calculate_product(triplet: List[int]):
@@ -13,8 +13,8 @@ def __calculate_product(triplet: List[int]):
 def SpecialTriplet(x: int):
   if not 0<x<10000:
     raise ValueError("input should be an integer between 1 and 10000")
-  return next(([int(a),int(b),int(sqrt(a**2+b**2))] for a in range(1,x+1) for b in range(1,x+1)
-    if a+b+sqrt(a**2+b**2)==x), [])
+  return next(([int(a),int(b),int(hypot(a,b))] for a in range(1,x+1) for b in range(1,x+1)
+    if a+b+hypot(a,b)==x), [])
 
 def main():
   spT=SpecialTriplet(1000)
