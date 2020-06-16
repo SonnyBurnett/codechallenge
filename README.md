@@ -20,6 +20,7 @@ e.g. if hand = ['KH', '4H', '6H', '7H', '3H'], the calculated score tuple is
 ((1,1,1,1,1), (13, 7, 6, 4, 3)). The first tuple is the frequency of each value in the hand, the second tuple is the cards values in descending order.
 
 
+
 Getting the score for straight & flush is a little bit more cumbersome. 
 
 In the main module, finding the winner of a hand is as easy as comparing the score tuple. When scores tie, the second item in the tuples is used in the comparison to find the winner.
