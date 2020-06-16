@@ -1,5 +1,4 @@
 import unittest
-import numpy as numpy
 from SumOfMultiples import multiples
 
 class TestFunction(unittest.TestCase):
