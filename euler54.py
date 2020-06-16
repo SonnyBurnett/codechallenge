@@ -13,13 +13,13 @@ def get_rank(hand):
     # e.g. [(1, 2), (2, 9),...] 1 time a "2" value, 2 times a "9" value
     counter = Counter(x[0] for x in hand)
 
-    # remap the tuples to have one item with the occurrence and one
-    # item with the values --> (1,2,1,1), (2, 9, 6, 13, 14)
+    # remap the tuples to have one item with the occurrences and one
+    # item with the values --> (1,2,1,1), (2, 9, 9, 13, 14)
     hand_tuple = [(num, values[key]) for key, num in counter.items()]
 
     # sort and merge so we obtain a tuple with the rank and with the value
     # by decreasing order, so we can manage rank tie
-    # --> (2, 1, 1, 1), (14, 13, 9, 6, 2)
+    # --> (2, 1, 1, 1), (14, 13, 9, 2)
     # and finally convert the ranks into score value
     score = list(zip(*sorted(hand_tuple, reverse=True)))
     score[0] = ranks.index(score[0])
