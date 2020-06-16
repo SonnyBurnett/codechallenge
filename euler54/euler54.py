@@ -122,23 +122,12 @@ def handLToDictC(hand):
 def isConsecutive(hand):
     """Validates the hand on the consecutiveness of the cards. Return True if cards are consecutive and if not return False."""
     consec = True
-    for index, val in enumerate(hand):
-        if index < len(hand)-1:
-            if valueToNumeric(hand[index][0]) - valueToNumeric(hand[index+1][0]) != -1:
+    for index in enumerate(hand):
+        if index[0] < len(hand)-1:
+            if valueToNumeric(hand[index[0]][0]) - valueToNumeric(hand[index[0]+1][0]) != -1:
                 consec = False
                 break
-    return consec        
-        
-def isConsecutive2(hand):
-    """Validates the hand on the consecutiveness of the cards. Return True if cards are consecutive and if not return False."""
-    consec = True
-    for i in range(0,len(hand)):
-        if i < len(hand)-1:
-            if valueToNumeric(hand[i][0]) - valueToNumeric(hand[i+1][0]) != -1:
-                consec = False
-                break
-    return consec
-        
+    return consec              
 
 #1Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
 def royalFlush(hand):
