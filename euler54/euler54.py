@@ -116,9 +116,20 @@ def handLToDictC(hand):
     
     return vals
 
-        
-        
+
+
+
 def isConsecutive(hand):
+    """Validates the hand on the consecutiveness of the cards. Return True if cards are consecutive and if not return False."""
+    consec = True
+    for index, val in enumerate(hand):
+        if index < len(hand)-1:
+            if valueToNumeric(hand[index][0]) - valueToNumeric(hand[index+1][0]) != -1:
+                consec = False
+                break
+    return consec        
+        
+def isConsecutive2(hand):
     """Validates the hand on the consecutiveness of the cards. Return True if cards are consecutive and if not return False."""
     consec = True
     for i in range(0,len(hand)):

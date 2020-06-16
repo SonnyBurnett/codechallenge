@@ -51,7 +51,9 @@ class TestEuler54(unittest.TestCase):
 
         res = e.pair(["TH", "TD", "QC", "QS", "AC"])
         twoPairs = False
-        if res[0] is True and len(res[1]) is 2:
+        print(str(id(res[0])) + " " + str(res[0]))
+        print(str(id(len(res[1]))) + " " + str(res[1]))
+        if res[0] == True and len(res[1]) == 2:
             twoPairs = True
         
         self.assertTrue(twoPairs,True)
