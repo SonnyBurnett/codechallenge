@@ -1,5 +1,5 @@
 import unittest
-from p54 import Poker, OneRound, PlayerHand
+from .p54 import Poker, OneRound, PlayerHand
 
 
 class test_p54(unittest.TestCase):

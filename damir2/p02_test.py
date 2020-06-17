@@ -1,5 +1,5 @@
 import unittest
-from p02 import sum_fibonacci_with_limit_and_mod_number
+from .p02 import sum_fibonacci_with_limit_and_mod_number
 
 
 class Test_p02(unittest.TestCase):
