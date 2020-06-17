@@ -38,8 +38,7 @@ def score(hand):
     if isFlush and isStraight:
         if singles[4] == 12:
             return (10, 0, 0)
-        else:
-            return (9, ranks[4], 0)
+        return (9, ranks[4], 0)
     if isFourOfAKind:
         return (8, quads[0], singles[0])
     if isFullHouse:
