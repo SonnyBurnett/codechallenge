@@ -1,6 +1,5 @@
 from unittest import TestCase
 
-from eproblems.eproblem2 import flip_mod3
 from eproblems.eproblem2 import sum_fibo_div3
 from eproblems.eproblem2 import eproblem2
 
