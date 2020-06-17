@@ -34,21 +34,24 @@ def buildprimeslist(endrange, primesList):
 
 
 def primeFactor(num,plist):
+    outn = 0
     for n in plist:
         if num != n:
             if num % n == 0:
                 print(f'{num} is devisable by {n} prime factor')
                 num /= n
+                outn = n
                 break
         else:
+            outn = n
             break
                 
-    if num - n != 0: 
+    if num - outn != 0: 
         primeFactor(num,plist)
     else: 
         print(f'Highest prime factor is {num}')
 
-num = 600851475143
-plist = buildprimeslist(10000,[2])
+numb = 600851475143
+primelist = buildprimeslist(10000,[2])
 
-primeFactor(num,plist)
+primeFactor(numb,primelist)
