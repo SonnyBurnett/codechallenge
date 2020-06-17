@@ -85,10 +85,8 @@ class problem54TestCase(unittest.TestCase):
 
     def test_EulerExample(self):
         with open('resources/example54.txt') as f:
-            result = testSubject.compareHands(f)
-            assert 3 == result, "got %s, expected 3" % result
+            self.assertEqual(3, testSubject.compareHands(f))
 
     def test_EulerOfficial(self):
         with open('resources/poker.txt') as f:
-            result = testSubject.compareHands(f)
-            assert 376 == result, "got %s, expected 376" % result
+            self.assertEqual(376, testSubject.compareHands(f))
