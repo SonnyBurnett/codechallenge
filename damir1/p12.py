@@ -7,7 +7,7 @@ from typing import List
 
 class PrimeCalc():
   @staticmethod
-  def calc_prime_factors(self, number: int) -> List[int]:
+  def calc_prime_factors(number: int) -> List[int]:
     '''
     function to get all prime factors of a number
 
@@ -35,7 +35,7 @@ class PrimeCalc():
     return ret
 
   @staticmethod
-  def combine_prime_factors(self, primes: List[int]) -> List[int]:
+  def combine_prime_factors(primes: List[int]) -> List[int]:
     '''
     combine and multiply all prime factors
     '''
