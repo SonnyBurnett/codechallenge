@@ -51,7 +51,7 @@ def primeFactor(num,plist):
     else: 
         print(f'Highest prime factor is {num}')
 
-num = 600851475143
-plist = buildprimeslist(10000,[2])
+numb = 600851475143
+primelist = buildprimeslist(10000,[2])
 
-primeFactor(num,plist)
+primeFactor(numb,primelist)
