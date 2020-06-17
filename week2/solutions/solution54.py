@@ -76,9 +76,5 @@ def compareHands(file):
 
 
 def main():
-    with open('../tests/poker.txt') as file:
+    with open('../resources/poker.txt') as file:
         print(compareHands(file))
-
-
-if __name__ == '__main__':
-    main()

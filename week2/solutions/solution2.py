@@ -1,9 +1,9 @@
-from util import fibonacci
+from solutions import util
 
 
 def sumEvenFibonacci(limit):
     total = 0
-    gen = fibonacci()
+    gen = util.fibonacci()
     while (i := next(gen)) < limit:
         if i % 2 == 0:
             total += i
@@ -12,7 +12,3 @@ def sumEvenFibonacci(limit):
 
 def main():
     print(sumEvenFibonacci(4000000))
-
-
-if __name__ == '__main__':
-    main()

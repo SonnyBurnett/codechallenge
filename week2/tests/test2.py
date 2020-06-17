@@ -1,15 +1,11 @@
-import sys
-from importlib import import_module
-
-sys.path.append("../solutions")
-testSubject = import_module('2')
+import unittest
+import solutions.solution2 as testSubject
 
 
-print("TEST EULER EXAMPLE")
-result = testSubject.sumEvenFibonacci(100)
-assert 44 == result, "got %s, expected 44" % result
+class problem2TestCase(unittest.TestCase):
 
+    def test_EulerExample(self):
+        self.assertEqual(44, testSubject.sumEvenFibonacci(100))
 
-print("OFFICIAL EULER LIMIT")
-result = testSubject.sumEvenFibonacci(4000000)
-assert 4613732 == result, "got %s, expected 4613732" % result
+    def test_EulerOfficial(self):
+        self.assertEqual(4613732, testSubject.sumEvenFibonacci(4000000))

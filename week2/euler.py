@@ -11,7 +11,7 @@ if len(sys.argv) != 2:
     print("Please provide a problem number as argument. Usage: ./euler.py 1")
     exit(-1)
 
-problem = import_module(sys.argv[1])
+problem = import_module("solution" + sys.argv[1])
 
 start_time = time.time()
 problem.main()
