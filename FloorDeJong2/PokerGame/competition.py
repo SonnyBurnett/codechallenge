@@ -1,31 +1,39 @@
-class Poker_Competition:
+class PokerCompetition:
 
-    def __init__(self):
-        self.player_list = []
-        self.nr_games_played = 0
+    def __init__(self, name):
+        self.__name = name
+        self.__player_list = []
+        self.__nr_games_played = 0
 
     def add_player(self, player):
-        self.player_list.append(player)
+        self.__player_list.append(player)
         print("Added player", player.get_name())
 
+    def return_player_list(self):
+        print(self.__player_list[0].get_name)
+        return self.__player_list
+
     def deal_cards(self, all_cards):
-        if len(all_cards) < len(self.player_list)*5:
-            print("Error: Not enough cards for ", len(self.player_list), "players")
+        if len(all_cards) < len(self.__player_list)*5:
+            print("Error: Not enough cards for ", len(self.__player_list), "players")
             exit(1)
 
-        for i in range(len(self.player_list)):
-            self.player_list[i].set_hand(all_cards[i*5: (i*5)+5])
+        for i in range(len(self.__player_list)):
+            self.__player_list[i].set_hand(all_cards[i * 5: (i * 5) + 5])
 
     def determine_winner(self):
-        winner = self.player_list[0]
-        for i in range(1, len(self.player_list)):
+
+        self.__nr_games_played += 1
+
+        winner = self.__player_list[0]
+        for i in range(1, len(self.__player_list)):
             first_player_hand = winner.get_poker_hand().get_hand()
-            second_player_hand = self.player_list[i].get_poker_hand().get_hand()
+            second_player_hand = self.__player_list[i].get_poker_hand().get_hand()
 
             if first_player_hand < second_player_hand:
-                winner = self.player_list[i]
+                winner = self.__player_list[i]
             if first_player_hand == second_player_hand:
-                winner = self.determine_winner_same_hand(winner, self.player_list[i], first_player_hand)
+                winner = self.determine_winner_same_hand(winner, self.__player_list[i], first_player_hand)
 
         winner.add_win()
         return winner

@@ -1,15 +1,14 @@
-from Competition import Poker_Competition
-from player import Player
-from pokerhand import PokerHand
+from PokerGame.competition import PokerCompetition
+from PokerGame.player import Player
 
 floor = Player("Floor")
 freek = Player("Freek")
 
-poker_competition = Poker_Competition()
+poker_competition = PokerCompetition()
 poker_competition.add_player(floor)
 poker_competition.add_player(freek)
 
-filename = "poker.txt"
+filename = "../resources/poker.txt"
 try:
     file = open(filename, "rt")
 except Exception:

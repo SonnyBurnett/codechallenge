@@ -1,10 +1,10 @@
-from Competition import Poker_Competition
-from player import Player
+from PokerGame.competition import PokerCompetition
+from PokerGame.player import Player
 
 floor = Player("Floor")
 freek = Player("Freek")
 
-poker_competition = Poker_Competition()
+poker_competition = PokerCompetition()
 poker_competition.add_player(floor)
 poker_competition.add_player(freek)
 
