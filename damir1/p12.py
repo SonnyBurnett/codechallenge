@@ -6,7 +6,8 @@ from typing import List
 
 
 class PrimeCalc():
-  def _calc_prime_factors(self, number: int) -> List[int]:
+  @staticmethod
+  def calc_prime_factors(self, number: int) -> List[int]:
     '''
     function to get all prime factors of a number
 
@@ -33,7 +34,8 @@ class PrimeCalc():
           return ret
     return ret
 
-  def _combine_prime_factors(self, primes: List[int]) -> List[int]:
+  @staticmethod
+  def combine_prime_factors(self, primes: List[int]) -> List[int]:
     '''
     combine and multiply all prime factors
     '''
@@ -62,24 +64,18 @@ class PrimeCalc():
     current_max = 0
 
     while True:
-      # start_time = time()
       triangle += i
-      factors = self._calc_prime_factors(triangle)
-      answers = self._combine_prime_factors(factors)
+      factors = self.calc_prime_factors(triangle)
+      answers = self.combine_prime_factors(factors)
 
-      # track max number of combined factors
       if (len(answers) > current_max):
         current_max = len(answers)
-        # print("Current status: ", i, triangle, current_max)
 
-      # got the number that has more than 500 factors
       if (len(answers) > 500):
-        # print("Current factors: ", answers)
         break
 
       i += 1
 
-    # print("Done in %s seconds!" % (time() - start_time))
     return triangle
 
 
