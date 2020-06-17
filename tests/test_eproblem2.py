@@ -6,11 +6,6 @@ from eproblems.eproblem2 import eproblem2
 
 
 class Tep2(TestCase):
-    def test_flip_mod3(self):
-        self.assertEqual(flip_mod3(0), 2)
-        self.assertEqual(flip_mod3(1), 1)
-        self.assertEqual(flip_mod3(2), 0)
-
     def test_sum_fibo_div3(self):
         self.assertEqual(sum_fibo_div3(143), 89)
         self.assertEqual(sum_fibo_div3(144), 377)
@@ -28,8 +23,17 @@ class Tep2(TestCase):
         self.assertEqual(eproblem2(8), 10)
         self.assertEqual(eproblem2(9), 10)
         self.assertEqual(eproblem2(35), 44)
+        self.assertEqual(eproblem2(143), 44)
+        self.assertEqual(eproblem2(144), 188)
+        self.assertEqual(eproblem2(145), 188)
         self.assertEqual(eproblem2(250), 188)
+        self.assertEqual(eproblem2(232), 188)
+        self.assertEqual(eproblem2(233), 188)
+        self.assertEqual(eproblem2(234), 188)
+        self.assertEqual(eproblem2(376), 188)
         self.assertEqual(eproblem2(377), 188)
+        self.assertEqual(eproblem2(378), 188)
+        self.assertEqual(eproblem2(609), 188)
         self.assertEqual(eproblem2(610), 798)
         self.assertEqual(eproblem2(1000), 798)
 

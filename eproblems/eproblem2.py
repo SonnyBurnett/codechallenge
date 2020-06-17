@@ -1,16 +1,6 @@
 import argparse
 
 
-def flip_mod3(n):
-    """Flip the modulo answer of modulo 3, e.a. 0 mod 3 = 2, 1 mod 3 = 1 and 2 mod 3 = 1
-
-    :param n: Given modulo 3 division.
-    :type n: int
-    :return int: the flipped modulo 3 answer.
-    """
-    return [2, 1, 0].index(n)
-
-
 def sum_fibo_div3(n_max):
     """Calculate the Fibonacci number given in parameter n_max and then adds additional steps to be in line with
         dividable by 3.
@@ -23,19 +13,15 @@ def sum_fibo_div3(n_max):
     count_n = 2
 
     while fn <= n_max:
-        fn = f2 + f1
-        f1, f2 = f2, fn
+        fn = f1 + f2
+        f2, f1 = f1, fn
         count_n += 1
 
-    if fn > n_max:  # sorry dirty to return to the previous calculation when overshooting the calculation for low n_max.
-        f2 = fn - f1
-        fn = f1
-        f1, f2 = f2, fn
-        count_n -= 1
-
-    for i in range(0, flip_mod3(count_n % 3)):
-        fn = f2 + f1
-        f1, f2 = f2, fn
+    helper = count_n % 3
+    if helper == 0:  # Overshot so use the previous fibo
+        return f2
+    elif helper == 1:  # Need to go to the next n
+        return f1 + f2
 
     return fn
 
