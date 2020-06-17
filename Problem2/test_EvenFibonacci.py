@@ -1,7 +1,16 @@
 import unittest
-from EvenFibonacci import calculate_fibonacci as cf
+from EvenFibonacci import calculate_fibonacci as cf, main as EF_main
+from io import StringIO
+import sys
 
 class TestFunction(unittest.TestCase):
+    def test_main(self):
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        EF_main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("4613732",capturedOutput.getvalue())
+
     def test_function(self):
         self.assertEqual(cf(10), [1, 2, 3, 5, 8])
 

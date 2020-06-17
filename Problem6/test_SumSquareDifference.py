@@ -1,7 +1,16 @@
 import unittest
-from SumSquareDifference import sum_square_difference
+from SumSquareDifference import sum_square_difference, main as SSD_main
+from io import StringIO
+import sys
 
 class TestFunction(unittest.TestCase):
+    def test_main(self):
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        SSD_main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("25164150",capturedOutput.getvalue())
+
     def test_function(self):
         self.assertEqual(sum_square_difference(10),2640)
 

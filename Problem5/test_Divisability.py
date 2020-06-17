@@ -1,7 +1,16 @@
 import unittest
-from Divisability import divisability
+from Divisability import divisability, main as Div_main
+from io import StringIO
+import sys
 
 class TestFunction(unittest.TestCase):
+    def test_main(self):
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        Div_main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("232792560",capturedOutput.getvalue())
+
     def test_function(self):
         self.assertEqual(divisability(5),60)
         self.assertEqual(divisability(10),2520)
