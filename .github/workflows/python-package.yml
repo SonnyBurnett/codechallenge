@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8]
+        exercise-folder: ['wk-2']
 
     steps:
     - uses: actions/checkout@v2
@@ -36,4 +37,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
+        cd ${{ matrix.exercise-folder }}
         pytest
