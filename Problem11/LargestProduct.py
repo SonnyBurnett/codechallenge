@@ -2,10 +2,10 @@ import numpy as np
 from typing import List
 
 def __calculate_product(clist: List[int]):
-  x=1
+  x=1.0
   for i in clist:
-         x *= i
-  return x
+    x *= i
+  return int(x)
 
 def __create_sieve(row: int, col: int, length: int, direction: str):
   sieve=np.zeros((20,20),dtype=bool)
@@ -20,7 +20,9 @@ def __create_sieve(row: int, col: int, length: int, direction: str):
       sieve[row+(length-1)-j][col+j]=1
   return sieve
 
-def main():
+def get_maximum_product(length: int):
+  if not 0<length<21:
+    raise ValueError("input must be an integer between 0 and 21")
   TheMatrix=np.array(
     [[8,2,22,97,38,15,0,40,0,75,4,5,7,78,52,12,50,77,91,8],
     [49,49,99,40,17,81,18,57,60,87,17,40,98,43,69,48,4,56,62,0],
@@ -43,16 +45,25 @@ def main():
     [20,73,35,29,78,31,90,1,74,31,49,71,48,86,81,16,23,57,5,54],
     [1,70,54,71,83,51,54,69,16,92,33,48,61,43,52,1,89,19,67,48]]
   )
-  length=4
   maximum=1
-  for row in range(20-length):
-    for col in range(20-length):
-      for direction in ["horizontal","vertical","forward","backward"]:
-        sieve=__create_sieve(row,col,length,direction)
-        result=__calculate_product(TheMatrix[np.where(sieve)])
-        if result>maximum:
-          maximum=result
-  print("The highest product of 4 adjacent numbers in TheMatrix is: " + str(maximum))
+  if length<20:
+    for row in range(20-length):
+      for col in range(20-length):
+        for direction in ["horizontal","vertical","forward","backward"]:
+          sieve=__create_sieve(row,col,length,direction)
+          result=__calculate_product(TheMatrix[np.where(sieve)])
+          if result>maximum:
+            maximum=result
+  else:
+    for direction in ["horizontal","vertical","forward","backward"]:
+      sieve=__create_sieve(0,0,length,direction)
+      result=__calculate_product(TheMatrix[np.where(sieve)])
+      if result>maximum:
+        maximum=result
+  return maximum
+
+def main():
+  print("The highest product of 4 adjacent numbers in TheMatrix is: " + str(get_maximum_product(4)))
 
 if __name__ == '__main__':
     main()
