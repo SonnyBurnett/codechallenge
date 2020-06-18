@@ -1,6 +1,7 @@
 import sys
 from collections import defaultdict
 
+
 def is_flush(cards):
     suit = cards[0][1]
     for card in cards:
@@ -56,6 +57,9 @@ class PokerHand:
 
     def get_hand_value(self):
         return self.__hand_value
+    
+    def get_cards(self):
+        return self.__cards
 
     def get_highest_card(self, attempt):
         if attempt > 5 or attempt < 1:
