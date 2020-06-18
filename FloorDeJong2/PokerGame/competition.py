@@ -1,3 +1,6 @@
+import sys
+
+
 class PokerCompetition:
 
     def __init__(self, name):
@@ -7,7 +10,7 @@ class PokerCompetition:
 
     def add_player(self, player):
         self.__player_list.append(player)
-        print("Added player", player.get_name())
+        # print("Added player", player.get_name())
 
     def return_player_list(self):
         print(self.__player_list[0].get_name)
@@ -55,8 +58,7 @@ class PokerCompetition:
 
     def determine_winner_via_highest_card(self, player_one, player_two, attempts):
         if attempts > 5:
-            print("Tied - Both have all the same values in cards")
-            exit(1)
+            sys.exit("Tied - Both have all the same values in cards")
 
         highest_card_one = player_one.get_poker_hand().get_highest_card(attempts)
         highest_card_two = player_two.get_poker_hand().get_highest_card(attempts)
