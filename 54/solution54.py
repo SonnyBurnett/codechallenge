@@ -1,5 +1,5 @@
 def find_highest_card(hand):
-    return [max([values.index(card[0]) for card in hand if values.index(card[0])]) + 2]
+    return max([values.index(card[0]) for card in hand]) + 2
 
 
 def find_value_occurrences(hand):
@@ -13,13 +13,13 @@ def find_suite_occurrences(hand):
 
 
 def is_all_consecutive(hand):
-    value_occurences_list = find_value_occurrences(hand)
-    if len(value_occurences_list) < 5:
+    value_occurrences_list = find_value_occurrences(hand)
+    if len(value_occurrences_list) < 5:
         return False
     else:
-        value_list = [element[0] for element in value_occurences_list]
-        diff_list = [abs(j-i) for i,j in zip(value_list, value_list[1:])]
-        return diff_list == [1,1,1,1]
+        value_list = [element[0] for element in value_occurrences_list]
+        diff_list = [abs(j - i) for i, j in zip(value_list, value_list[1:])]
+        return diff_list == [1, 1, 1, 1]
     return False
 
 
@@ -28,7 +28,7 @@ def is_all_same_suite(hand):
 
 
 def is_straight(hand):
-    return len(find_value_occurrences(hand)) == 5
+    return is_all_consecutive(hand)
 
 
 def is_flush(hand):
@@ -36,82 +36,71 @@ def is_flush(hand):
 
 
 def is_four_of_a_kind(hand):
-    return False
-
-
-def is_four_of_a_kind(hand):
-    return False
+    return [element[1] for element in find_value_occurrences(hand)].count(4) == 1
 
 
 def is_straight_flush(hand):
-    return is_all_consecutive(hand) and is_all_same_suite() and find_highest_card(hand) < 14
+    return is_all_consecutive(hand) and is_all_same_suite(hand) and find_highest_card(hand) < 14
 
 
 def is_royal_flush(hand):
-    return is_all_consecutive(hand) and is_all_same_suite() and find_highest_card(hand) == 14
+    return is_all_consecutive(hand) and is_all_same_suite(hand) and find_highest_card(hand) == 14
 
 
 def is_full_house(hand):
-    pass
+    return is_three_of_a_kind(hand) and is_one_pair(hand)
 
 
 def is_three_of_a_kind(hand):
-    pass
+    return 3 in [element[1] for element in find_value_occurrences(hand)]
 
 
 def is_two_pairs(hand):
-    pass
+    return [element[1] for element in find_value_occurrences(hand)].count(2) == 2
 
 
 def is_one_pair(hand):
-    pass
+    return [element[1] for element in find_value_occurrences(hand)].count(2) == 1
 
 
 def calculate_hand_score(hand):
     score = 0
     if is_royal_flush(hand):
-        print("Royal Flush {}".format(hand))
         return 200
     elif is_straight_flush(hand):
-        print("Straight Flush {}".format(hand))
-        return 150
+        return 180 + find_highest_card(hand)
     elif is_four_of_a_kind(hand):
-        print("Four of a kind {}".format(hand))
-        return 100
+        return 160 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 4])
     elif is_full_house(hand):
-        print("Full house {}".format(hand))
-        return 90
+        return 120 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 3])
     elif is_flush(hand):
-        print("Flush {}".format(hand))
-        return 80
+        return 100 + find_highest_card(hand)
     elif is_straight(hand):
-        print("Straight {}".format(hand))
-        return 70
+        return 80 + find_highest_card(hand)
     elif is_three_of_a_kind(hand):
-        print("Three of a kind {}".format(hand))
-        return 60
+        return 60 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 3])
     elif is_two_pairs(hand):
-        print("Two pairs {}".format(hand))
-        return 50
+        return 40 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 2])
     elif is_one_pair(hand):
-        print("One pair {}".format(hand))
-        return 50
+        return 20 + (max(element[0] for element in find_value_occurrences(hand) if element[1] == 2))
     else:
         return find_highest_card(hand)
     return score
 
 
 def determine_winner(game):
-    winning_hand = 1
     first_hand = game[0:14].split(" ")
     second_hand = game[15:29].split(" ")
-    calculate_hand_score(first_hand)
-    calculate_hand_score(second_hand)
-    return winning_hand
+    if calculate_hand_score(first_hand) > calculate_hand_score(second_hand):
+        return 1
+    else:
+        return 2
 
 
 suite = ['H', 'D', 'S', 'C']
 values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
-
 input_file = open("poker.txt", "r")
-[determine_winner(game) for game in input_file]
+
+game_winner_list = [determine_winner(game) for game in input_file]
+print("Player One won: {} ganes".format(game_winner_list.count(1)))
+print("Player Two won: {} ganes".format(game_winner_list.count(2)))
