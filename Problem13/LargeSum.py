@@ -1,10 +1,10 @@
 from typing import List
 
 def calculate_sum(numbers: List[int]):
-  sum=0
+  total=0
   for i in numbers:
-    sum+=i
-  return sum
+    total+=i
+  return total
 
 def __get_first_x_digits(x: int, c: int):
   return str(x)[0:c]
