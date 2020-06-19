@@ -1,5 +1,5 @@
 import unittest
-import PokerGame.pokerhand as pk
+import Game.PokerGame.pokerhand as pk
 
 
 class TestPokerHand(unittest.TestCase):
@@ -110,3 +110,57 @@ class TestPokerHand(unittest.TestCase):
         hand = pk.PokerHand(["4D", "AC", "7H", "9S", "KD"])
         self.assertEqual(hand.get_hand(), 1)
         self.assertFalse(hand.get_hand_value())
+
+    def test_largerThenHand_RoyalFlush_straightFlush(self):
+        hand1 = pk.PokerHand(["AD", "JD", "TD", "QD", "KD"])
+        hand2 = pk.PokerHand(["8D", "JD", "TD", "9D", "7D"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_straightFlush_FourOfAKind(self):
+        hand1 = pk.PokerHand(["8D", "JD", "TD", "9D", "7D"])
+        hand2 = pk.PokerHand(["4D", "4C", "4H", "4S", "KD"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_FullHouse_FourOfAKind(self):
+        hand1 = pk.PokerHand(["4D", "4C", "4H", "4S", "KD"])
+        hand2 = pk.PokerHand(["4D", "KC", "4H", "4S", "KD"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_FullHouse_flush(self):
+        hand1 = pk.PokerHand(["4D", "JD", "2D", "7D", "KD"])
+        hand2 = pk.PokerHand(["4D", "KC", "4H", "4S", "KD"])
+
+        self.assertTrue(hand2 > hand1)
+
+    def test_largerThenHand_flush_straight(self):
+        hand1 = pk.PokerHand(["4D", "JD", "2D", "7D", "KD"])
+        hand2 = pk.PokerHand(["8S", "JD", "TH", "9C", "7D"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_threeOfAKind_straight(self):
+        hand1 = pk.PokerHand(["4D", "8C", "4H", "4S", "KD"])
+        hand2 = pk.PokerHand(["8S", "JD", "TH", "9C", "7D"])
+
+        self.assertTrue(hand2 > hand1)
+
+    def test_largerThenHand_threeOfAKind_twoPair(self):
+        hand1 = pk.PokerHand(["4D", "8C", "4H", "4S", "KD"])
+        hand2 = pk.PokerHand(["9S", "JD", "7H", "9C", "7D"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_pair_twoPair(self):
+        hand1 = pk.PokerHand(["4D", "8C", "QH", "4S", "KD"])
+        hand2 = pk.PokerHand(["9S", "JD", "7H", "9C", "7D"])
+
+        self.assertTrue(hand2 > hand1)
+
+    def test_largerThenHand_pair_highCard(self):
+        hand1 = pk.PokerHand(["4D", "8C", "QH", "4S", "KD"])
+        hand2 = pk.PokerHand(["2S", "JD", "7H", "9C", "QD"])
+
+        self.assertTrue(hand1 > hand2)

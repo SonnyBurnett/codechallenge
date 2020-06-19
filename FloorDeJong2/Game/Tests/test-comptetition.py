@@ -1,10 +1,8 @@
 import unittest
 from unittest import mock
 
-from PokerGame.competition import PokerCompetition
-import PokerGame.player
-from PokerGame.player import Player
-import PokerGame.pokerhand as ph
+from Game.PokerGame.competition import PokerCompetition
+from Game.PokerGame.player import Player
 
 
 class TestCompetition(unittest.TestCase):

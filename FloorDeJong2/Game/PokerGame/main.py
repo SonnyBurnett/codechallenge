@@ -1,5 +1,5 @@
-from PokerGame.competition import PokerCompetition
-from PokerGame.player import Player
+from Game.PokerGame.competition import PokerCompetition
+from Game.PokerGame.player import Player
 
 floor = Player("Floor")
 freek = Player("Freek")

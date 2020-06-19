@@ -1,4 +1,4 @@
-from PokerGame.pokerhand import PokerHand
+from Game.PokerGame.pokerhand import PokerHand
 
 
 class Player:
