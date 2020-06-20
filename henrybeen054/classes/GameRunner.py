@@ -12,7 +12,7 @@ class GameRunner:
         self.file_name = file_name
 
     def run(self):
-        input_file = open('euler054.txt', 'r')
+        input_file = open(self.file_name, 'r')
         lines = input_file.readlines()
 
         games = map(Game, lines)
