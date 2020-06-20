@@ -1,12 +1,12 @@
 {
   "python.pythonPath": "venv\\Scripts\\python.exe",
-  "python.autoComplete.extraPaths": ["./damir1", "./damir2"],
+  "python.autoComplete.extraPaths": ["./damir1", "./damir2", "./euler"],
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": true,
   "python.testing.unittestArgs": [
     "-v",
     "-s",
-    "./damir1",
+    ".",
     "-p",
     "*_test.py"
   ],
