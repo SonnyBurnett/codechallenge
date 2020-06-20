@@ -41,4 +41,6 @@ all cards in a dictionary, first by the number of occurrences, then by their act
 To complete the solution, I factored the parsing and running of the game out in a seperate class, so that I could write
 a good test for the whole solution.
 
-Next, I wrote this file 
+Next, I wrote this file
+
+Finally, fixed a deepsource issue

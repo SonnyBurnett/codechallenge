@@ -12,13 +12,13 @@ class GameRunner:
         self.file_name = file_name
 
     def run(self):
-        input_file = open(self.file_name, 'r')
-        lines = input_file.readlines()
+        with open(self.file_name, 'r') as input_file:
+            lines = input_file.readlines()
 
-        games = map(Game, lines)
+            games = map(Game, lines)
 
-        winners = map(lambda g: g.get_winning_player_id(), games)
-        win_count = collections.Counter(winners)
+            winners = map(lambda g: g.get_winning_player_id(), games)
+            win_count = collections.Counter(winners)
 
-        return GameResult(win_count)
+            return GameResult(win_count)
 
