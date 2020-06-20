@@ -3,49 +3,135 @@ import unittest
 
 sys.path.append('../')
 
-from classes.Hand import Hand
-from classes.Hand import SCORE_SHIFTERS
+from classes.Game import Game
 
 
-class TestCard(unittest.TestCase):
-    def test_when_receiving_straight_from_seven_then_return_correct_score(self):
-        hand = Hand(0, ["3H", "7C", "4H", "6H", "5H"])
+class TestPreprovidedTestCases(unittest.TestCase):
+    def example1(self):
+        game = Game("5H 5C 6S 7S KD 2C 3S 8S 8D TD")
 
-        hand_scores = [3, 1, 3]
-        hand_score = sum(hand_scores)
+        actual_winner = game.get_winning_player_id()
 
-        expected_scores = [hand_score, 7, 6, 5, 4, 3]
-        expected_score = sum([a * b for a, b in zip(SCORE_SHIFTERS, expected_scores)])
+        self.assertEqual(1, actual_winner)
 
-        score = hand.get_score()
+    def example2(self):
+        game = Game("5D 8C 9S JS AC 2C 5C 7D 8S QH")
 
-        self.assertEqual(expected_score, score)
+        actual_winner = game.get_winning_player_id()
 
-    def test_when_receiving_eight_high(self):
-        hand = Hand(0, ["3H", "8C", "4H", "6H", "5H"])
+        self.assertEqual(0, actual_winner)
 
-        hand_scores = [2, 1, 1]
-        hand_score = sum(hand_scores)
+    def example3(self):
+        game = Game("2D 9C AS AH AC 3D 6D 7D TD QD")
 
-        expected_scores = [hand_score, 8, 6, 5, 4, 3]
-        expected_score = sum([a * b for a, b in zip(SCORE_SHIFTERS, expected_scores)])
+        actual_winner = game.get_winning_player_id()
 
-        score = hand.get_score()
+        self.assertEqual(1, actual_winner)
 
-        self.assertEqual(expected_score, score)
+    def example4(self):
+        game = Game("4D 6S 9H QH QC 3D 6D 7H QD QS")
 
-    def test_when_receiving_pair_of_fives(self):
-        hand = Hand(0, ["3H", "5C", "4H", "6H", "5H"])
+        actual_winner = game.get_winning_player_id()
 
-        hand_scores = [3, 1, 3]
-        hand_score = sum(hand_scores)
+        self.assertEqual(0, actual_winner)
 
-        expected_scores = [hand_score, 5, 6, 4, 3]
-        expected_score = sum([a * b for a, b in zip(SCORE_SHIFTERS, expected_scores)])
+    def example5(self):
+        game = Game("2H 2D 4C 4D 4S 3C 3D 3S 9S 9D")
 
-        score = hand.get_score()
+        actual_winner = game.get_winning_player_id()
 
-        self.assertEqual(expected_score, score)
+        self.assertEqual(0, actual_winner)
+
+
+class TestGameWithTwoPlayers(unittest.TestCase):
+    def test_pair_wins_over_high_card(self):
+        game = Game("3H 3C 4H 6H 5H 3D 7D 4D 6C TD")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(0, actual_winner)
+
+    def test_two_pair_wins_over_pair(self):
+        game = Game("3H 3C 4H 6H 5H TD 7D 7D 6C TD")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(1, actual_winner)
+
+    def test_three_of_a_kind_wins_over_pair(self):
+        game = Game("3H 3C 4H 6H 5H 7D 7D 7D 6C TD")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(1, actual_winner)
+
+    def test_straight_wins_over_three_of_a_kind(self):
+        game = Game("3H 7C 4H 6H 5H 7D 7D 7D 6C TD")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(0, actual_winner)
+
+    def test_flush_wins_over_straight(self):
+        game = Game("3H 7C 4H 6H 5H 7S 7S 7S 6S TS")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(1, actual_winner)
+
+    def test_full_house_wins_over_flush(self):
+        game = Game("3H 3C 3H 6H 6H 7S 7S 7S 6S TS")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(0, actual_winner)
+
+    def test_four_of_a_kind_wins_over_full_house(self):
+        game = Game("3H 3C 3H 3H 6H 7S 7S 7S 6S 6S")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(0, actual_winner)
+
+    def test_straight_flush_wins_over_four_of_a_kind(self):
+        game = Game("3H 3C 3H 3H 6H 7S 8S 9S TS JS")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(1, actual_winner)
+
+    def test_high_pair_wins(self):
+        game = Game("5H 5C 6H 8H TH 4S 4S 6C TS JS")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(0, actual_winner)
+
+    def test_high_card_wins_equal_pairs(self):
+        game = Game("5H 5C 6H 8H TH 5S 5S 6C TS JS")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(1, actual_winner)
+
+
+class TestGameWithThreePlayers(unittest.TestCase):
+    def test_pair_wins(self):
+        game = Game("3H 3C 4H 6H 5H 3D 7D 4D 6C TD 5S 8S TS AS 2C")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(0, actual_winner)
+
+
+class TestGameWithTenPlayers(unittest.TestCase):
+    def test_pair_wins(self):
+        game = Game("3H 3C 4H 6H 5H 3D 7D 4D 6C TD 5S 8S TS AS 2C 5S 8S TS AS 2C 5S 8S TS AS 2C 5S 8S TS AS 2C 5S 8S "
+                    "TS AS 2C 5S 8S TS AS 2C 5S 8S TS AS 2C 5S 8S TS AS 2C")
+
+        actual_winner = game.get_winning_player_id()
+
+        self.assertEqual(0, actual_winner)
 
 
 if __name__ == '__main__':
