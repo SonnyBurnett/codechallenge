@@ -64,7 +64,7 @@ class Hand:
 
         if is_flush and is_straight:
             scores = [4, 2]
-        elif self.__is_flush():
+        elif is_flush:
             scores = [3, 1, 4]
         elif is_straight:
             scores = [3, 1, 3]
