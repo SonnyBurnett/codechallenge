@@ -41,63 +41,115 @@ class TestHand(unittest.TestCase):
 
         self.assertEqual(se.exception.args[0], "Card %s does not exists" % card_value)
 
-
-    # def test_getHighestCar_validAttempt(self):
-    #     hand = ch.Hand(["4D", "AC", "7H", "9S", "KD"])
-    #     self.assertEqual(hand.get_highest_card(0), 14)
-    #     self.assertEqual(hand.get_highest_card(1), 13)
-    #     self.assertEqual(hand.get_highest_card(2), 9)
-    #     self.assertEqual(hand.get_highest_card(3), 7)
-    #     self.assertEqual(hand.get_highest_card(4), 4)
-    #
-    # def test_getHighestCar_invalidAttempt(self):
-    #     hand = ch.Hand(["4D", "AC", "7H", "9S", "KD"])
-    #     with self.assertRaises(SystemExit) as se:
-    #         hand.get_highest_card(6)
-    #
-    #     self.assertEqual(se.exception.args[0], "Invalid variable: 1 <= attempts <= 5")
-
     def test_determineHand_royalFlush(self):
-        hand = ch.Hand(["AD", "JD", "TD", "QD", "KD"])
+        hand = ch.PokerHand(["AD", "JD", "TD", "QD", "KD"])
         self.assertEqual(hand.get_hand(), 10)
 
     def test_determineHand_straightFlush(self):
-        hand = ch.Hand(["8D", "JD", "TD", "9D", "7D"])
+        hand = ch.PokerHand(["8D", "JD", "TD", "9D", "7D"])
         self.assertEqual(hand.get_hand(), 9)
 
     def test_determineHand_fourOfAKind(self):
-        hand = ch.Hand(["4D", "4C", "4H", "4S", "KD"])
+        hand = ch.PokerHand(["4D", "4C", "4H", "4S", "KD"])
         self.assertEqual(hand.get_hand(), 8)
 
     def test_determineHand_fullHouse(self):
-        hand = ch.Hand(["4D", "KC", "4H", "4S", "KD"])
+        hand = ch.PokerHand(["4D", "KC", "4H", "4S", "KD"])
         self.assertEqual(hand.get_hand(), 7)
 
     def test_determineHand_Flush(self):
-        hand = ch.Hand(["4D", "JD", "2D", "7D", "KD"])
+        hand = ch.PokerHand(["4D", "JD", "2D", "7D", "KD"])
         self.assertEqual(hand.get_hand(), 6)
 
     def test_determineHand_straight(self):
-        hand = ch.Hand(["8S", "JD", "TH", "9C", "7D"])
+        hand = ch.PokerHand(["8S", "JD", "TH", "9C", "7D"])
         self.assertEqual(hand.get_hand(), 5)
 
     def test_determineHand_threeOfAKind(self):
-        hand = ch.Hand(["4D", "8C", "4H", "4S", "KD"])
+        hand = ch.PokerHand(["4D", "8C", "4H", "4S", "KD"])
         self.assertEqual(hand.get_hand(), 4)
 
     def test_determineHand_twoPairs(self):
-        hand = ch.Hand(["4D", "KC", "4H", "9S", "KD"])
-        print(hand.get_hand_value())
-        print(hand.get_hand())
+        hand = ch.PokerHand(["4D", "KC", "4H", "9S", "KD"])
         self.assertEqual(hand.get_hand(), 3)
 
     def test_determineHand_pair(self):
-        hand = ch.Hand(["4D", "KC", "2H", "9S", "KD"])
-        print(hand.get_hand_value())
-        print(hand.get_hand())
+        hand = ch.PokerHand(["4D", "KC", "2H", "9S", "KD"])
         self.assertEqual(hand.get_hand(), 2)
 
-    # def test_determineHand_highCars(self):
-    #     hand = ch.Hand(["4D", "AC", "7H", "9S", "KD"])
-    #     self.assertEqual(hand.get_hand(), 1)
+    def test_determineHand_highCars(self):
+        hand = ch.PokerHand(["4D", "AC", "7H", "9S", "KD"])
+        self.assertEqual(hand.get_hand(), 1)
+
+    def test_largerThenHand_RoyalFlush_straightFlush(self):
+        hand1 = ch.PokerHand(["AD", "JD", "TD", "QD", "KD"])
+        hand2 = ch.PokerHand(["8D", "JD", "TD", "9D", "7D"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_straightFlush_FourOfAKind(self):
+        hand1 = ch.PokerHand(["8D", "JD", "TD", "9D", "7D"])
+        hand2 = ch.PokerHand(["4D", "4C", "4H", "4S", "KD"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_FullHouse_FourOfAKind(self):
+        hand1 = ch.PokerHand(["4D", "4C", "4H", "4S", "KD"])
+        hand2 = ch.PokerHand(["4D", "KC", "4H", "4S", "KD"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_FullHouse_flush(self):
+        hand1 = ch.PokerHand(["4D", "JD", "2D", "7D", "KD"])
+        hand2 = ch.PokerHand(["4D", "KC", "4H", "4S", "KD"])
+
+        self.assertTrue(hand2 > hand1)
+
+    def test_largerThenHand_flush_straight(self):
+        hand1 = ch.PokerHand(["4D", "JD", "2D", "7D", "KD"])
+        hand2 = ch.PokerHand(["8S", "JD", "TH", "9C", "7D"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_threeOfAKind_straight(self):
+        hand1 = ch.PokerHand(["4D", "8C", "4H", "4S", "KD"])
+        hand2 = ch.PokerHand(["8S", "JD", "TH", "9C", "7D"])
+
+        self.assertTrue(hand2 > hand1)
+
+    def test_largerThenHand_threeOfAKind_twoPair(self):
+        hand1 = ch.PokerHand(["4D", "8C", "4H", "4S", "KD"])
+        hand2 = ch.PokerHand(["9S", "JD", "7H", "9C", "7D"])
+
+        self.assertTrue(hand1 > hand2)
+
+    def test_largerThenHand_pair_twoPair(self):
+        hand1 = ch.PokerHand(["4D", "8C", "QH", "4S", "KD"])
+        hand2 = ch.PokerHand(["9S", "JD", "7H", "9C", "7D"])
+
+        self.assertTrue(hand2 > hand1)
+
+    def test_largerThenHand_pair_highCard(self):
+        hand1 = ch.PokerHand(["4D", "8C", "QH", "4S", "KD"])
+        hand2 = ch.PokerHand(["2S", "JD", "7H", "9C", "QD"])
+
+        self.assertTrue(hand2 < hand1)
+
+    def test_largerThenHand_same_hand(self):
+        hand1 = ch.PokerHand(["4D", "8C", "QH", "9S", "KD"])
+        hand2 = ch.PokerHand(["3D", "8C", "QH", "9S", "KD"])
+        self.assertTrue(hand1 > hand2)
+
+        hand1 = ch.PokerHand(["4D", "8C", "QH", "9S", "KD"])
+        hand2 = ch.PokerHand(["5D", "8C", "QH", "9S", "KD"])
+        self.assertFalse(hand1 > hand2)
+
+        hand1 = ch.PokerHand(["4D", "8C", "QH", "9S", "KD"])
+        hand2 = ch.PokerHand(["3D", "8C", "QH", "9S", "TD"])
+        self.assertTrue(hand1 > hand2)
+
+        hand1 = ch.PokerHand(["4D", "8C", "QH", "9S", "KD"])
+        hand2 = ch.PokerHand(["3D", "8C", "QH", "9S", "AD"])
+        self.assertFalse(hand1 > hand2)
+
 

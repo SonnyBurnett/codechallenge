@@ -33,27 +33,20 @@ def is_straight(cards_list):
     else:
         return False
 
-class Hand:
+class PokerHand:
     def __init__(self, cards):
         self.__cards = cards
         self.__card_values = Counter(sorted([replace_letter_cards(card[0]) for card in self.__cards], reverse=True))
         self.__hand = self.determine_hand()
 
-
     def get_hand(self):
         return self.__hand
 
-    def get_hand_value(self):
+    def get_card_values(self):
         return self.__card_values
 
     def get_cards(self):
         return self.__cards
-
-    def get_highest_card(self, attempt):
-        if attempt > 4 or attempt < 0:
-            sys.exit("Invalid variable: 1 <= attempts <= 5")
-
-        return self.__card_values[attempt]
 
     def determine_hand(self):
         if is_flush(self.__cards):
@@ -73,7 +66,7 @@ class Hand:
             return 5
         elif 3 in self.__card_values.values():
             return 4
-        elif 2 in Counter(self.__card_values.values()):
+        elif Counter(self.__card_values.values())[2] == 2:
             return 3
         elif 2 in self.__card_values.values():
             return 2
@@ -82,8 +75,13 @@ class Hand:
 
     def __gt__(self, other):
         if self.__hand == other.get_hand():
-            # winner =
-            return False
+            for i in range(len(self.__card_values)):
+                if self.__card_values.most_common()[i][0] > other.get_card_values().most_common()[i][0]:
+                    return True
+                elif self.__card_values.most_common()[i][0] < other.get_card_values().most_common()[i][0]:
+                    return False
+
+            sys.exit("The values of cards where same")
         
         else:
             return self.__hand > other.get_hand()
@@ -97,15 +95,12 @@ if __name__ == '__main__':
         import sys
         sys.exit("Opening %s failed" % filename)
 
-    wins1 = 0
-    count = 0
+    count_wins_player_one = 0
     for line in file:
-        hand1 = Hand(line.split()[0:5])
-        hand2 = Hand(line.split()[5:10])
+        hand1 = PokerHand(line.split()[0:5])
+        hand2 = PokerHand(line.split()[5:10])
 
-        print(hand1.get_cards(), hand2.get_cards())
+        if hand1 > hand2:
+            count_wins_player_one += 1
 
-
-        count += 1
-        if count == 1:
-            break
+    print(count_wins_player_one)
