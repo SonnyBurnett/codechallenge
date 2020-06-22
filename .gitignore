@@ -1,1 +1,5 @@
 .coverage
+coverage.xml
+htmlcov/
+junit/
+__pycache__
