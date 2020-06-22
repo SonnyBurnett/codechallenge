@@ -16,5 +16,6 @@
   "python.linting.flake8Enabled": true,
   "cSpell.words": [
     "itertools"
-  ]
+  ],
+  "mypy.executable": "C:\\dev\\py-challenge\\venv\\Scripts\\mypyls.exe"
 }

@@ -6,6 +6,7 @@ The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 Find the sum of all the primes below two million.
 '''
 from itertools import count
+from typing import Any, Dict
 
 n = 2000000
 
@@ -15,7 +16,7 @@ def postponed_sieve():                 # ideone.com/aVndFM
   yield 3
   yield 5
   yield 7                              # original code David Eppstein,
-  sieve = {}                           # Alex Martelli, ActiveState Recipe 2002
+  sieve: Dict[Any, Any] = {}                           # Alex Martelli, ActiveState Recipe 2002
   ps = postponed_sieve()               # a separate base Primes Supply:
   p = next(ps) and next(ps)            # (3) a Prime to add to dict
   q = p * p                            # (9) its sQuare

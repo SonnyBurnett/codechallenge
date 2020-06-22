@@ -2,10 +2,11 @@ import unittest
 from .p54 import Poker, OneRound, PlayerHand
 
 
-class test_p54(unittest.TestCase):
+class Test_p054(unittest.TestCase):
   def test_OneRound(self):
     _one_round = OneRound('5C QC QH AS TS 4S 6S 4C 5H JS')
     self.assertTrue(_one_round.did_player1_win())
+    self.assertRaises(ValueError, OneRound, '5C QC QH AS TS 4S 6S 4C 5C JS')
 
   def test_sum_of_winnings(self):
     _hands = '''5H 5C 6S 7S KD 2C 3S 8S 8D TD
@@ -21,7 +22,7 @@ class test_p54(unittest.TestCase):
 
   def test_card_value(self):
     _player_hand = PlayerHand('5C QC QH AS TS')
-    self.assertEqual(_player_hand._PlayerHand__get_card_value('Q'), 12)
+    self.assertEqual(PlayerHand.get_card_value('Q'), 12)
     self.assertEqual(_player_hand._values, [5, 12, 12, 14, 10])
     self.assertEqual(_player_hand._colors, ['C', 'C', 'H', 'S', 'S'])
     self.assertEqual(_player_hand._duplicates, [12])
@@ -31,6 +32,7 @@ class test_p54(unittest.TestCase):
     self.assertRaises(ValueError, PlayerHand, '5C XC QH AS TS')
     self.assertRaises(ValueError, PlayerHand, '5C QC QH AS')
     self.assertRaises(ValueError, PlayerHand, '5CQCQHASTS')
+    self.assertRaises(ValueError, PlayerHand, '5C QC QH AS 5C')
 
   def test_fail_to_load_file(self):
     file_name = 'not_existing_file.txt'

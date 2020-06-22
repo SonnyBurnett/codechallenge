@@ -8,6 +8,7 @@ we can see that the 6th prime is 13.
 
 What is the 10 001st prime number?
 '''
+from typing import Any, Dict
 
 
 def postponed_sieve():                 # postponed sieve, by Will Ness
@@ -15,7 +16,7 @@ def postponed_sieve():                 # postponed sieve, by Will Ness
   yield 3
   yield 5
   yield 7                              # original code David Eppstein,
-  sieve = {}                           # Alex Martelli, ActiveState Recipe 2002
+  sieve: Dict[Any, Any] = {}           # Alex Martelli, ActiveState Recipe 2002
   ps = postponed_sieve()               # a separate base Primes Supply:
   p = next(ps) and next(ps)            # (3) a Prime to add to dict
   q = p * p                            # (9) its sQuare

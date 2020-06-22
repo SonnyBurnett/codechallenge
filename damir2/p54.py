@@ -50,6 +50,7 @@ there is a clear winner.
 How many hands does Player 1 win?
 '''
 import os
+from typing import Dict, List
 
 
 class PlayerHand:
@@ -58,16 +59,16 @@ class PlayerHand:
   parses the cards and determines the values of the cards
   '''
   def __init__(self, round_of_cards):
-    self._seen = None
-    self._duplicates = None
-    self._values = []
-    self._colors = []
+    self._seen: Dict[int, int] = {}
+    self._duplicates: List[int] = []
+    self._values: List[int] = []
+    self._colors: List[str] = []
     self.cards_values = {}
     self.cards = self.__read_hand(round_of_cards)
     self.__evaluate_hand()
 
   @classmethod
-  def __get_card_value(cls, card):
+  def get_card_value(cls, card):
     if card.capitalize() not in '123456789TJQKA':
       raise ValueError('Card not recognized! Allowed values: 1,...,9,T,J,Q,K,A')
 
@@ -85,11 +86,14 @@ class PlayerHand:
   def __read_hand(self, round_of_cards):
     if len(round_of_cards.split()) != 5:
       raise ValueError('Wrong input for the players hand. Expecting 5 cards!')
-    cards = []
+    cards: List[str] = []
     seen = {}
     duplicates = []
     for card in round_of_cards.split():
-      card_value = self.__get_card_value(card[0])
+      if card in cards:
+        raise ValueError('Duplicate cards not allowed')
+      cards.append(card)
+      card_value = self.get_card_value(card[0])
       self._values.append(card_value)
       self._colors.append(card[1].capitalize())
 
@@ -189,6 +193,8 @@ class OneRound:
   def __init__(self, round_of_cards):
     self.hand1 = PlayerHand(round_of_cards[:14])
     self.hand2 = PlayerHand(round_of_cards[15:])
+    if len(set(self.hand1.cards + self.hand2.cards)) != 10:
+      raise ValueError('Expected 10 unique cards.')
 
   def did_player1_win(self):
     return self.hand1 > self.hand2
