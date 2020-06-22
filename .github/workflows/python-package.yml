@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
-        exercise-folder: ['wk-2']
+        exercise-folder: ['wk-1', 'wk-2']
 
     steps:
     - uses: actions/checkout@v2
