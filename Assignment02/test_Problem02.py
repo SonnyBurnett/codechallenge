@@ -9,6 +9,7 @@ class TestSumRangeEvenFibNumbers(unittest.TestCase):
         self.assertEqual(sumevenfibonaccinumbers(0, 2), 2, 'the result of the function does not match the expected result.')
         self.assertEqual(sumevenfibonaccinumbers(1, 9), 10, 'the result of the function does not match the expected result.')
         self.assertEqual(sumevenfibonaccinumbers(2, 9.5), 10, 'the result of the function does not match the expected result.')
+        self.assertEqual(sumevenfibonaccinumbers(4.4, 19.1), 8, 'the result of the function does not match the expected result.')
         self.assertEqual(sumevenfibonaccinumbers(8, 8), 8, 'the result of the function does not match the expected result.')
         self.assertEqual(sumevenfibonaccinumbers(4, 12), 8, 'the result of the function does not match the expected result.')
         self.assertEqual(sumevenfibonaccinumbers(19, 60), 34, 'the result of the function does not match the expected result.')
@@ -16,7 +17,6 @@ class TestSumRangeEvenFibNumbers(unittest.TestCase):
 
     def test_input_type(self):
         with self.assertRaises(TypeError):
-            sumevenfibonaccinumbers(1.5, 5)
             sumevenfibonaccinumbers(5j, 5)
             sumevenfibonaccinumbers(1, 2j)
             sumevenfibonaccinumbers("yes", 5)
