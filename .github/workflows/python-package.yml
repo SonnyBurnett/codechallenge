@@ -46,3 +46,8 @@ jobs:
         path: ${{ matrix.exercise-folder }}/junit/test-results-${{ matrix.python-version }}.xml
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v1
+      with:
+        name: coverage-report-${{ matrix.python-version }}-${{ matrix.exercise-folder }}
+        path: ${{ matrix.exercise-folder }}/htmlcov
