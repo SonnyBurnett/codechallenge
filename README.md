@@ -1,7 +1,8 @@
 # GautamShah
 GEP Python Challenge - 
 **************************Problem 1 starts*********************************************************
-Problem 1 - 
+
+GEP Problem 1 - 
 """
 @_author - Gautam Shah 
 @_sourceURL - https://code.sololearn.com/czc6Q6wrTfw7/#py
@@ -22,8 +23,9 @@ return {sum} - returning sum of multiples of firstNumber and secondNumber of giv
 """
 
 **************************Problem 1 ends*********************************************************
-Problem 2 -
+
 **************************Problem 2 starts*********************************************************
+GEP Problem 2
 """
 @_author - Gautam Shah 
 @_sourceURL - https://code.sololearn.com/cG6yvIFLE3ra/#py
