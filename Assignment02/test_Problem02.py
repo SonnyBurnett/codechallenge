@@ -27,6 +27,7 @@ class TestSumRangeEvenFibNumbers(unittest.TestCase):
             sumevenfibonaccinumbers(-1, 2)
             sumevenfibonaccinumbers(1, 0)
             sumevenfibonaccinumbers(8, 2)
+            sumevenfibonaccinumbers(2.6, -4.5)
 
 if __name__ == '__main__':
     unittest.main()
