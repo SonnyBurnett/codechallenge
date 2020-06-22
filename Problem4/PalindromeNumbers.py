@@ -1,8 +1,7 @@
 def __isPalindrome(num):
   if str(num)==str(num)[::-1]:
     return True
-  else:
-    return False
+  return False
 
 def highest_palindrome(c: int):
   if not 1<c<6:

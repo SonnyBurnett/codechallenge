@@ -1,8 +1,7 @@
 def __isEven(limit):
   if limit%2==0:
     return True
-  else:
-    return False
+  return False
 
 def __next_prime(limit):
   for i in range(3,limit,2):
