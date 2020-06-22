@@ -271,47 +271,56 @@ def whathand(hlist):
     """This is a main function that identifies the hand of the player"""
 
     handres = []
+    rflush = royalFlush(hlist)
+    stflush = straightFlush(hlist)
+    fourk = fourOfaKind(hlist)
+    threek = threeOfaKind(hlist)
+    pairz = pair(hlist)
+    flushz = flush(hlist)
+    straightz = straight(hlist)
+    highc = highCard(hlist)
 
-    if royalFlush(hlist)[0]:
+
+    if rflush[0]:
         res = []
         res.append(10) #"Royal Flush"
-        res.append(scoreCalc(royalFlush(hlist)[1]))
+        res.append(scoreCalc(rflush[1]))
         handres.append(res)
-    elif straightFlush(hlist)[0]:
+    elif stflush[0]:
         res = []
         res.append(9) #"Straight Flush"
-        res.append(scoreCalc(straightFlush(hlist)[1]))
+        res.append(scoreCalc(stflush[1]))
         handres.append(res)
-    elif fourOfaKind(hlist)[0]:
+    elif fourk[0]:
         res = []
         res.append(8) #"Four of a kind"
-        res.append(scoreCalc(fourOfaKind(hlist)[1]))
+        res.append(scoreCalc(fourk[1]))
         handres.append(res)    
-    elif threeOfaKind(hlist)[0] and pair(hlist)[0]:
+    elif threek[0] and pairz[0]:
         #4Full House: Three of a kind and a pair.
         res = []
         res.append(7) #"Full house"
-        res.append(scoreCalc(threeOfaKind(hlist)[1]))
-        res.append(scoreCalc(pair(hlist)[1]))
+        res.append(scoreCalc(threek[1]))
+        res.append(scoreCalc(pairz[1]))
         handres.append(res)
-    elif flush(hlist)[0]:
+    elif flushz[0]:
         res = [] 
         res.append(6) #"Flush"
-        res.append(scoreCalc(flush(hlist)[1]))
+        res.append(scoreCalc(flushz[1]))
         handres.append(res)
-    elif straight(hlist)[0]:
+    elif straightz[0]:
         res = []
         res.append(5) #"Straight"
-        res.append(scoreCalc(straight(hlist)[1]))
+        res.append(scoreCalc(straightz[1]))
         handres.append(res)
-    elif threeOfaKind(hlist)[0]:
+    elif threek[0]:
         res = []
         res.append(4) #"Three of a kind"
-        res.append(scoreCalc(threeOfaKind(hlist)[1]))
+        res.append(scoreCalc(threek[1]))
         handres.append(res)
-    elif pair(hlist)[0]:
+    elif pairz[0]:
         res = []
-        pairs = pair(hlist)[1]
+        pairs = pairz[1]
         
         if len(pairs) == 2:
             res.append(3) #"Two Pairs"
@@ -324,7 +333,7 @@ def whathand(hlist):
     else:
         res = []
         res.append(1) #"High card"
-        res.append(scoreCalc(highCard(hlist)[1]))
+        res.append(scoreCalc(highc[1]))
         handres.append(res)
     
     return handres
