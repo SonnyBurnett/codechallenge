@@ -1,15 +1,16 @@
-def sumevenfibonaccinumbers(firstnumber, maxvalue, expectedresult):
+def sumevenfibonaccinumbers(firstnumber, maxvalue):
 
-    if firstnumber < 0:
-        raise ValueError("The first parameter should be a non-negative number.")
     if type(firstnumber) != int:
         raise TypeError("The first parameter should be an integer.")
+    if firstnumber < 0:
+        raise ValueError("The first parameter should be a non-negative number.")
     if type(maxvalue) not in [int, float]:
         raise TypeError("The second parameter should be an integer or a float.")
     if maxvalue < firstnumber:
         raise ValueError("The second parameter should be higher than the first parameter.")
 
     fibsequence = fibonaccisequence(firstnumber)
+
     if firstnumber not in fibsequence:
         raise ValueError("the first parameter is not a valid Fibonacci number.")
 
@@ -18,7 +19,7 @@ def sumevenfibonaccinumbers(firstnumber, maxvalue, expectedresult):
 
     sumevenfibnrsinrange = 0
     for number in allfibnrsinrange:
-        if number % 2 == 0:
+        if number % 2 == 0 and number <= maxvalue:
             sumevenfibnrsinrange += number
 
     i = sum(allfibnrsinrange[-2:])
@@ -30,13 +31,8 @@ def sumevenfibonaccinumbers(firstnumber, maxvalue, expectedresult):
         allfibnrsinrange.extend([i])
         i = sum(allfibnrsinrange[-2:])
 
-    if sumevenfibnrsinrange != expectedresult:
-        raise ValueError("The sum returned by this function ("
-                         + str(sumevenfibnrsinrange) + ") does not match the expected result ("
-                         + str(expectedresult) + "). Check your code and your input.")
-
-    else:
-        print(sumevenfibnrsinrange)
+    print(sumevenfibnrsinrange)
+    return sumevenfibnrsinrange
 
 
 def fibonaccisequence(maxnumber):
@@ -50,5 +46,3 @@ def fibonaccisequence(maxnumber):
     fibsequence.extend([i])
     return fibsequence
 
-
-sumevenfibonaccinumbers(1, 4000000, 4613732)
