@@ -1,6 +1,7 @@
 import unittest
 from solution import *
 
+
 class HighestHandTestCases(unittest.TestCase):
     def test_highest_hand_one_highest(self):
         hand_player1 = ['2H', '2C', '4S', '4S', '6S']
