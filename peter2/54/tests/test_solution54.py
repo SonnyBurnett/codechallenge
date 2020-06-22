@@ -1,6 +1,5 @@
 import unittest
-from solution54 import *
-
+from solution import *
 
 class HighestHandTestCases(unittest.TestCase):
     def test_highest_hand_one_highest(self):
@@ -44,7 +43,7 @@ class ThreeOfAKindTestCases(unittest.TestCase):
         self.assertEqual(is_three_of_a_kind(hand_player1), False)
 
 
-class determine_winner(unittest.TestCase):
+class DetermineWinnerFunctionTestCases(unittest.TestCase):
     def both_same_value_pair_hand2_wins(self):
         game = "3D 6D 7H QD QS 4D 6S 9H QH QC"
         self.assertEqual(determine_winner(game), 2)

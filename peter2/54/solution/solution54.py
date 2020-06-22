@@ -97,10 +97,15 @@ def determine_winner(game):
         return 2
 
 
+def start():
+    if __name__ == '__main__':
+        input_file = open("poker.txt", "r")
+
+        game_winner_list = [determine_winner(game) for game in input_file]
+        print("Player One won: {} games".format(game_winner_list.count(1)))
+        print("Player Two won: {} games".format(game_winner_list.count(2)))
+
+
 suite = ['H', 'D', 'S', 'C']
 values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
-input_file = open("poker.txt", "r")
-
-game_winner_list = [determine_winner(game) for game in input_file]
-print("Player One won: {} ganes".format(game_winner_list.count(1)))
-print("Player Two won: {} ganes".format(game_winner_list.count(2)))
+start()
