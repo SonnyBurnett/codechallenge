@@ -48,26 +48,29 @@ def check_for_sets(hand):
 
 def calculate_hand_score(hand):
     hand_as_numbers = [convert_cards_to_numbers(card) for card in hand]
-    hand_no_colors = [int(card) for card in hand_as_numbers]
-    hand_is_flush = check_for_flush(hand_as_numbers)
-    hand_sorted = sorted(sorted(hand_no_colors, reverse=True), key=hand_no_colors.count, reverse=True)
-    sets_in_hand = check_for_sets(hand_sorted)
-    sets_scoring_dictionary = {"[False, False, False, False]": 1, "[True, False, False, False]": 2,
-                               "[True, True, False, False]": 4, "[True, True, True, False]": 8,
-                               "[True, False, True, False]": 3, "[True, True, False, True]": 7}
-    hand_score = sets_scoring_dictionary[str(sets_in_hand)]
-    if hand_score == 1:
-        hand_is_straight = check_for_straight(hand_sorted)
-        if hand_is_straight:
-            if hand_is_flush:
-                hand_score = 9
-            else:
-                hand_score = 5
-    if hand_score < 5 and hand_is_flush:
-        hand_score = 6
-    for i in range(5):
-        hand_score += (hand_sorted[i] / (100 ** (i + 1)))
-    hand_score = round(hand_score, 10)
+    if 0.0 in hand_as_numbers:
+        hand_score = 0
+    else:
+        hand_no_colors = [int(card) for card in hand_as_numbers]
+        hand_is_flush = check_for_flush(hand_as_numbers)
+        hand_sorted = sorted(sorted(hand_no_colors, reverse=True), key=hand_no_colors.count, reverse=True)
+        sets_in_hand = check_for_sets(hand_sorted)
+        sets_scoring_dictionary = {"[False, False, False, False]": 1, "[True, False, False, False]": 2,
+                                   "[True, True, False, False]": 4, "[True, True, True, False]": 8,
+                                   "[True, False, True, False]": 3, "[True, True, False, True]": 7}
+        hand_score = sets_scoring_dictionary[str(sets_in_hand)]
+        if hand_score == 1:
+            hand_is_straight = check_for_straight(hand_sorted)
+            if hand_is_straight:
+                if hand_is_flush:
+                    hand_score = 9
+                else:
+                    hand_score = 5
+        if hand_score < 5 and hand_is_flush:
+            hand_score = 6
+        for i in range(5):
+            hand_score += (hand_sorted[i] / (100 ** (i + 1)))
+        hand_score = round(hand_score, 10)
     return hand_score
 
 
