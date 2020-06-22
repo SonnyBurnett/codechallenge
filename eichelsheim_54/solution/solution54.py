@@ -23,6 +23,10 @@ def is_all_consecutive(hand):
     return False
 
 
+def find_highest_card_with_x_occurrences(hand, x):
+    return max([element[0] for element in find_value_occurrences(hand) if element[1] == x])
+
+
 def is_all_same_suite(hand):
     return len(find_suite_occurrences(hand)) == 1
 
@@ -70,19 +74,19 @@ def calculate_hand_score(hand):
     elif is_straight_flush(hand):
         return 180 + find_highest_card(hand)
     elif is_four_of_a_kind(hand):
-        return 160 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 4])
+        return 160 + find_highest_card_with_x_occurrences(hand, 4)
     elif is_full_house(hand):
-        return 120 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 3])
+        return 120 + find_highest_card_with_x_occurrences(hand, 3)
     elif is_flush(hand):
         return 100 + find_highest_card(hand)
     elif is_straight(hand):
         return 80 + find_highest_card(hand)
     elif is_three_of_a_kind(hand):
-        return 60 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 3])
+        return 60 + find_highest_card_with_x_occurrences(hand, 3)
     elif is_two_pairs(hand):
-        return 40 + max([element[0] for element in find_value_occurrences(hand) if element[1] == 2])
+        return 40 + find_highest_card_with_x_occurrences(hand, 2)
     elif is_one_pair(hand):
-        return 20 + (max(element[0] for element in find_value_occurrences(hand) if element[1] == 2))
+        return 20 + find_highest_card_with_x_occurrences(hand, 2)
     else:
         return find_highest_card(hand)
     return score
