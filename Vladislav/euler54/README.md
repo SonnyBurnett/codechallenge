@@ -1,12 +1,15 @@
 This script consists out of a number of parts:
 
 Helper functions:
+
 * valueToNumeric(val):
     '''Converts the faces of cards to numeric values'''
 * sortHand(hand):
     '''Processes each card in hand and sorts it based on value of the card. Adapted implementation of bubble sort algorithm'''
 * isConsecutive(hand):
     """Validates the hand on the consecutiveness of the cards. Return True if cards are consecutive and if not return False."""
+* scoreCalc(scList):
+    """Calculates the score of a given hand."""
  
 
 
@@ -56,9 +59,7 @@ Player hands
 * highCard(hand):
     """High Card: Highest value card."""
 
-* scoreCalc(scList):
-    """Calculates the score of a given hand."""
- 
+
 
 Main functions:
 
