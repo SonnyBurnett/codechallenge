@@ -11,9 +11,6 @@ def sumevenfibonaccinumbers(firstnumber, maxvalue):
 
     fibsequence = fibonaccisequence(firstnumber)
 
-    if firstnumber not in fibsequence:
-        raise ValueError("the first parameter is not a valid Fibonacci number.")
-
     allfibnrsinrange = []
     allfibnrsinrange.extend(fibsequence[-2:])
 
@@ -39,10 +36,13 @@ def fibonaccisequence(maxnumber):
     fibsequence = [0, 1]
     i = sum(fibsequence[-2:])
 
-    while i <= maxnumber:
+    while i < maxnumber:
         fibsequence.extend([i])
         i = sum(fibsequence[-2:])
 
     fibsequence.extend([i])
+    i = sum(fibsequence[-2:])
+    fibsequence.extend([i])
+
     return fibsequence
 
