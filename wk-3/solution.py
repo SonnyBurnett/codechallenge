@@ -1,0 +1,2 @@
+def freq(chars):
+    return {}
