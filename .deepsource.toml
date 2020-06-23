@@ -6,3 +6,7 @@ dependency_file_paths = [
   "requirements.txt",
   "Pipfile"
 ]
+test_patterns = [
+  "tests/**",
+  "test_*.py"
+]
