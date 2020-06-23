@@ -11,8 +11,12 @@ def test_freq_analysis():
     assert solution.freq([0, 7, 7, 3, 3, 3, 0, 3, 7, 0]) == {0: 3, 3: 4, 7: 3}
 
 
-def test_split_on_n_cycle():
+def test_cyclic_split():
     keyLength = 3
     chars = [1, 2, 3, 4, 5, 6]
 
     assert solution.cyclic_split(chars, keyLength) == [[1, 4], [2, 5], [3, 6]]
+
+
+def test_read_csv_cipher():
+    assert solution.read_csv_cipher('test_input.txt') == [36, 22, 80, 0, 0, 4]
