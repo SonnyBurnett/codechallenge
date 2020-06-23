@@ -1,4 +1,4 @@
-import math, unittest
+import math
 
 def isPrime(number):
     for i in range(3,int(math.sqrt(number))+1,2):
