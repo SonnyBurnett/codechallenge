@@ -53,7 +53,7 @@ You can use the relative link to jump to the Jupyler Notebook preview, no local 
 1\. [Project Euler Problem 1 notebook](notebooks/Project%20Euler%20Problem%201.ipynb): 'notebooks\Project Euler Problem 1.ipymb'
     is for guiding you through the solution for the first project Euler assignment.  
 2\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%202.ipynb): 'notebooks\Project Euler Problem 2.ipymb'
-    is for guiding you through the solution for the second project Euler assignment. 
+    is for guiding you through the solution for the second project Euler assignment.  
 41\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%2041.ipynb): 'notebooks\Project Euler Problem 41.ipymb'
     is for guiding you through the solution for the third project Euler assignment. 
 
