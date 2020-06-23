@@ -1,0 +1,29 @@
+This is the README file for 'Euler Problem 41.py'
+
+Problem definition (https://projecteuler.net/problem=41)
+  We shall say that an n-digit number is pandigital if it makes use of all the digits 1 to n exactly once. 
+  For example, 2143 is a 4-digit pandigital and is also prime.
+  What is the largest n-digit pandigital prime that exists?
+
+For n = 5,6,8 or 9, the sum of the digits is 15, 21, 36, or 45 respectively. These numbers are therefore by definition not prime.
+They all can be divided by 3.
+
+We therefore only need to check 7-digit and 4 digit pandigital numbers.
+
+Approach to this is to start with the largest possible 7-digit pandigital number (maximum - 7654321) and work our way down to the 
+lowest possible 7-digit number (minimum - 1234567) by generating new pandigital numbers if the number is not prime. 
+We can skip even numbers because they are by definition not prime.
+If a solution is not found, repeat the approach for 4-digit numbers (maximum - 4321 to minimum - 1234)
+
+Check if a number is pandigital is executed in function checkDigital. It counts the number of occurrences of the strings "1" to 
+"length" in the to be checked number (converted to string), where length is either 7 or 4. 
+It then uses the all function on the resulting list, which asserts for truthiness. Any 0 will result in a fail. 
+If all counts are non-zero, the values must automatically be 1, and the number must be pandigital.
+
+The number generator function 'generatePandigital' uses the yield functionality, 
+so we can loop through the pandigital numbers without calculating them all beforehand.
+This greatly enhances performance.
+
+Output, programme runs in 0.003 seconds
+7652413
+0.003333565
