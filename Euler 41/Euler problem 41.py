@@ -3,8 +3,8 @@ import math,time
 start_time = time.process_time()
 
 def isPrime(number):
-    for i in range(3,int(math.sqrt(number))+1,2):
-        if number%i == 0:
+    for j in range(3,int(math.sqrt(number))+1,2):
+        if number%j == 0:
             return False
     return True
 
