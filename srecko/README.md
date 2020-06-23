@@ -53,7 +53,9 @@ You can use the relative link to jump to the Jupyler Notebook preview, no local 
 1\. [Project Euler Problem 1 notebook](notebooks/Project%20Euler%20Problem%201.ipynb): 'notebooks\Project Euler Problem 1.ipymb'
     is for guiding you through the solution for the first project Euler assignment.  
 2\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%202.ipynb): 'notebooks\Project Euler Problem 2.ipymb'
-    is for guiding you through the solution for the second project Euler assignment. 
+    is for guiding you through the solution for the second project Euler assignment.  
+41\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%2041.ipynb): 'notebooks\Project Euler Problem 41.ipymb'
+    is for guiding you through the solution for the third project Euler assignment. 
 
 #### Expert problems:  
 12\. [Project Euler Problem 12 notebook](notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
@@ -149,4 +151,6 @@ Building this framework to demonstrate the solutions was a challenge on its own,
 * https://reproducible-science-curriculum.github.io/sharing-RR-Jupyter/01-sharing-github/
 * https://www.jetbrains.com/help/pycharm/testing-your-first-python-application.html
 * https://docs.python.org/3/library/unittest.html
-* https://docs.python.org/2/library/collections.html#counter-objects
+* https://docs.python.org/3/library/collections.html#collections.Counter
+* https://en.wikipedia.org/wiki/Divisibility_rule
+* https://docs.python.org/3/library/itertools.html#itertools.permutations
