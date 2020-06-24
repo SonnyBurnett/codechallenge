@@ -1,5 +1,5 @@
 import argparse
-from collections import *
+from collections import defaultdict, Counter
 
 # Global variables: Have the poker rules in both human readable text and in comparable "magic".
 str_order = '0123456789TJQKA'
