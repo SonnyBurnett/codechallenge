@@ -1,3 +1,5 @@
+from functools import reduce
+
 thousand_digits = '''
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -28,8 +30,7 @@ product = 1
 for start in range(0,len(digit_list)-12):
     list = [x for x in digit_list[start:start+13]]
     if not 0 in list:
-        print(x for x in list)
-        print("{}, {}".format(list, product))
+        product = reduce((lambda x, y: x * y), list)
         if product > largest_number:
             largest_number = product
 
