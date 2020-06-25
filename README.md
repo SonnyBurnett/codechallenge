@@ -54,14 +54,16 @@ You can use the relative link to jump to the Jupyler Notebook preview, no local 
     is for guiding you through the solution for the first project Euler assignment.  
 2\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%202.ipynb): 'notebooks\Project Euler Problem 2.ipymb'
     is for guiding you through the solution for the second project Euler assignment.  
-41\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%2041.ipynb): 'notebooks\Project Euler Problem 41.ipymb'
+41\. [Project Euler Problem 41 notebook](notebooks/Project%20Euler%20Problem%2041.ipynb): 'notebooks\Project Euler Problem 41.ipymb'
     is for guiding you through the solution for the third project Euler assignment. 
 
 #### Expert problems:  
 12\. [Project Euler Problem 12 notebook](notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
     is for guiding you through the solution for the twelfth project Euler assignment.  
 54\. [Project Euler Problem 54 notebook](notebooks/Project%20Euler%20Problem%2054.ipynb): 'notebooks\Project Euler Problem 54.ipymb'
-    is for guiding you through the solution for the fifty-fourth project Euler assignment. 
+    is for guiding you through the solution for the fifty-fourth project Euler assignment.  
+59\. [Project Euler Problem 59 notebook](notebooks/Project%20Euler%20Problem%2059.ipynb): 'notebooks\Project Euler Problem 59.ipymb'
+    is for guiding you through the solution for the fifty-fourth project Euler assignment.
 
 ## Deployment
 
