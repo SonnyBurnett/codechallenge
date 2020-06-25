@@ -11,7 +11,7 @@ Project Euler Problems in Jupyter Notebooks and using Python 3.8+
     * [Beginner problems](#Beginner-problems)
     * [Expert problems](#Expert-problems)
 * [Deployment](#Deployment)
-* [Built With](#Built-With)
+* [Build With](#Build-With)
 * [Tests](#Tests)
 * [Contributing](#Contributing)
 * [Versioning](#Versioning)
@@ -105,13 +105,14 @@ The project is structured as following if you want to run the cells in the noteb
 └── requirements.txt        The requirements file for reproducing the environment, e.g.
                               generated with `conda list` and appended with PyCharm feedback.
 ```
-## Built With
+## Build With
 
 Anything that was used to write, compile, execute and stored for this project:
 * [Anaconda individual edition](https://www.anaconda.com/products/individual) - Python distribution platform.
 * [Jupyter Notebook](https://jupyter.org/) - The Jupyter Notebook.
 * [JetBrains PyCharm](https://www.jetbrains.com/pycharm/) - PC PyCharm - The Python IDE for Professional Developers.
 * [GitHub](https://github.com/) - A Git repository hosting service.
+* [deepsource](https://deepsource.io/) - Find and fix issues during code reviews.
 
 ## Tests
 
@@ -155,4 +156,5 @@ Building this framework to demonstrate the solutions was a challenge on its own,
 * https://docs.python.org/3/library/unittest.html
 * https://docs.python.org/3/library/collections.html#collections.Counter
 * https://en.wikipedia.org/wiki/Divisibility_rule
-* https://docs.python.org/3/library/itertools.html#itertools.permutations
+* https://docs.python.org/3/library/itertools.html#itertools.permutation
+* https://deepsource.io/docs/
