@@ -22,7 +22,7 @@ def cipher(a, b):
 
 def expand_cipher(tuple_in, size):
     helper = []
-    for i in range(0, size - 1):
+    for i in range(0, size - 1):  # TODO: how to fix this DeepSource false positive?
         helper.append(chr_tuple2int_tuple(tuple_in))
     return helper
 
@@ -71,7 +71,6 @@ def eproblem59(file_in, decrypt):
 
     f.close()
     return result
-
 
 
 def main():
