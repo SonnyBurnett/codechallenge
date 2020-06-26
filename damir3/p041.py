@@ -20,7 +20,7 @@ class Pandigit():
       raise ValueError('Integer larger than 2 expected')
 
     longest_pandigitals = Pandigit.get_longest_pandigital_prime_permutations(n_digit)
-    if len(longest_pandigitals):
+    if len(longest_pandigitals) > 0:
       return max(longest_pandigitals)
     return None
 
@@ -45,16 +45,16 @@ class Pandigit():
     for i in range(n_digit, 2, -1):
       pandigit_i_long = int(''.join([str(x) for x in range(i + 1)]))
       pandigits += Pandigit.get_pandigital_prime_permutations(pandigit_i_long)
-      if len(pandigits):
+      if len(pandigits) > 0:
         break
     return pandigits
 
   @staticmethod
   def is_prime(n: int) -> bool:
     if not isinstance(n, int):
-      raise TypeError('Integer larger than 2 expected')
+      raise TypeError('Integer expected')
 
-    if n == 2 or n == 3:
+    if n in (2, 3):
       return True
     if n < 2 or n % 2 == 0:
       return False
