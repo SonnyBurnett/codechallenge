@@ -14,14 +14,14 @@ def all_combos(length):
     return permutations(lower_case_letters, length)
 
 
-def concatenate(tuple_in):
+def concatenate(object_in):
     """Make a string of the characters in a tuple.
 
-    :param tuple_in:
-    :type tuple_in: tuple of characters.
+    :param object_in: the object that needs to br reformatted into a string.
+    :type object_in: tuple or list of characters.
     :return str: string of the characters of the given tuple.
     """
-    return ''.join(tuple_in)
+    return ''.join(object_in)
 
 
 def chr_tuple2int_tuple(tuple_in):
@@ -50,12 +50,13 @@ def expand_cipher(tuple_in, size):
     """In order to decrypt the file the size of the cypher needs to match the characters in the given file.
 
     :param tuple_in: the cipher, as tuple of in that need to match the file length in.
-    :type tuple_in: tuple of int
-    :param size:
-    :return list:
+    :type tuple_in: tuple of chr
+    :param size: the duplication size for replicating the tuple_in.
+    :type size: int
+    :return list: the list of tuples in ascii int values matching the length of size.
     """
     helper = []
-    for i in range(0, size - 1):  # TODO: How to fix this DeepSource false positive?
+    for _ in range(0, size - 1):
         helper.append(chr_tuple2int_tuple(tuple_in))
     return helper
 
@@ -70,7 +71,7 @@ def read_by_chars(line_in, size):
     :return list: the list of tuples in size of the decrypt cypher.
     """
     by_tuples_of_size = []
-    for letter in range(0, len(line_in) - 1, size):
+    for letter in range(0, len(line_in), size):
         helper = []
         for char in range(0, size):
             helper.append(int(line_in[letter + char]))
@@ -119,10 +120,10 @@ def eproblem59(file_in, decrypt_str, length):
                     decrypted_text += chr(helper)
 
             if decrypted_text.count('the') > best_match:
-                print(str(list(cur_combo)), " : the count = ", decrypted_text.count('the'), " :", total_sum)
+                print(concatenate(list(cur_combo)), " : the count = ", decrypted_text.count('the'), " :", total_sum)
                 best_match = decrypted_text.count('the')
                 best_sum = total_sum
-                result = str(list(cur_combo))
+                result = concatenate(list(cur_combo))
 
     f.close()
     return result + ": " + str(best_sum)
