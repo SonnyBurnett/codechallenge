@@ -47,4 +47,6 @@ jobs:
     - name: Run Challenge 3
       run: |
         echo '+++++++++++++++++++++'
+        python damir3/p041.py
+        echo '+++++++++++++++++++++'
         python damir3/p059.py

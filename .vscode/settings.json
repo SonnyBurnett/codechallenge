@@ -17,5 +17,10 @@
   "cSpell.words": [
     "itertools"
   ],
-  "mypy.executable": "C:\\dev\\py-challenge\\venv\\Scripts\\mypyls.exe"
+  "mypy.executable": "C:\\dev\\py-challenge\\venv\\Scripts\\mypyls.exe",
+  "githubPullRequests.remotes": [
+    "origin",
+    "upstream",
+    "main"
+  ]
 }
