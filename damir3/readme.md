@@ -4,8 +4,10 @@
 
 ### Euler 041 - Pandigital prime
 
-Prime number that we are looking for is 9 digits long since a single
-digit should be used only once.
+Using a loop variable starting with 9 and ending with 3, prime numbers
+are looked for with the length of the loop variable.
+Max number is returned out of any loop variable long pandigital prime
+numbers that are found.
 
 ## Experts challenge
 
