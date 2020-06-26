@@ -21,10 +21,12 @@ XOR operations on the input string.
 Once the decode operations is done, regular expression extracts the
 words longer than 2 characters, without digits, that are surrounded
 by space, these words are potential words that we are going to compare
-with the english dictionary. All words are also extracted with just a
-word boundaries. Percentage of potential words get against the number
-of all words found gets compared against the confidential factor.
-If at the end number of potential words is larger than 4, then all
+with the english dictionary. All words are also extracted using regular
+expression with just a word boundaries. Percentage of potential words
+against the number of all words found gets compared against the confidence
+factor.
+
+At the end, if number of potential words is larger than 4, then all
 words get compared with the english words from the dictionary file.
 If number of matched words is above 95%, method returns the sum of
 the ascii codes of the decoded text.
