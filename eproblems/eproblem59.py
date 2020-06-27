@@ -156,8 +156,11 @@ def eproblem59(file_in, decrypt_str, length):
                     best_match = count_the
                     best_sum = total_sum
                     result = concatenate(list(cur_combo))
+
+                    # Anti-pattern to knock-out the brute force if the word "the" seems to be average in the text.
                     if count_the > the_guess:
-                        break  # Anti-pattern to knock-out the brute  if the word "the" seems to be average in the text.
+                        f.close()
+                        return result + ": " + str(best_sum)
 
     f.close()
     return result + ": " + str(best_sum)
