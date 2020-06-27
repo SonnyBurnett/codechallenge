@@ -23,6 +23,13 @@ def determine_sum_even_valued_fib_num():
     return sum_even_fib_num
 
 
+def fib():
+    a, b = 1, 2
+    while 1:
+        yield a
+        a, b = b, a+b
+
+
 if __name__ == "__main__":
     sum = determine_sum_even_valued_fib_num()
     print(sum)
