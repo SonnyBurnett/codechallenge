@@ -2,6 +2,10 @@ import argparse
 from itertools import permutations
 
 lower_case_letters = "abcdefghijklmnopqrstuvwyxz"
+the_word = 'the'
+average_the_occurrence = 1
+average_words_lng = 5
+average_sentence_lng = 17
 
 
 def all_combos(length):
@@ -79,6 +83,38 @@ def read_by_chars(line_in, size):
     return by_tuples_of_size
 
 
+def decrypt_text(length, tuples_by_two):
+    """This methods decrypts the paired tuples with the given length.
+
+    :param length: the length of the cypher phrase.
+    :type length: int
+    :param tuples_by_two: a list of tuples containing two tuples with the same length.
+    :return: the total sum of integers of the text and the decrypted text it self.
+    """
+    total_sum = 0
+    decrypted_text = ""
+    for sets in tuples_by_two:
+        for i in range(0, length):
+            helper: int = cipher(sets[0][i], sets[1][i])
+            total_sum += helper
+            decrypted_text += chr(helper)
+
+    return total_sum, decrypted_text
+
+
+def the_test(length, tuples_by_two):
+    """This is an assumption method that tests if the is occurring in the decryption of the first 150 characters,
+        ea assuming 4,7 letter length and 10 words in a sentence
+
+    :param length: cypher length
+    :type length: int
+    :param tuples_by_two: a list of tuples containing two tuples with the same length.
+    :return: boolean
+    """
+    _, decrypted_text = decrypt_text(length, tuples_by_two)
+    return decrypted_text.count(the_word) > average_the_occurrence
+
+
 def eproblem59(file_in, decrypt_str, length):
     """This is the main control method to guide the logic programing by brute force and then based on the occurrence
      of the word "the" (one of the most words used in English sentences) to select the best guess for the cipher.
@@ -105,25 +141,23 @@ def eproblem59(file_in, decrypt_str, length):
     with open(file_in, "r") as f:
         for line in f:
             chars = line.split(",")
+            the_guess = (len(chars)) // (average_words_lng * average_sentence_lng)
 
         for cur_combo in brute_combo:
             cur_repeated_cipher = expand_cipher(cur_combo, len(chars))
             by_tuples = read_by_chars(chars, length)
             tuples_by_two = list(zip(by_tuples, cur_repeated_cipher))
-            decrypted_text = ""
-            total_sum = 0
 
-            for sets in tuples_by_two:
-                for i in range(0, length):
-                    helper: int = cipher(sets[0][i], sets[1][i])
-                    total_sum += helper
-                    decrypted_text += chr(helper)
-
-            if decrypted_text.count('the') > best_match:
-                print(concatenate(list(cur_combo)), " : the count = ", decrypted_text.count('the'), " :", total_sum)
-                best_match = decrypted_text.count('the')
-                best_sum = total_sum
-                result = concatenate(list(cur_combo))
+            if the_test(length, tuples_by_two[0:average_words_lng * average_sentence_lng]):
+                total_sum, decrypted_text = decrypt_text(length, tuples_by_two)
+                count_the = decrypted_text.count(the_word)
+                if count_the > best_match:
+                    print(concatenate(list(cur_combo)), ":", the_word, "count =", count_the, ":", total_sum)
+                    best_match = count_the
+                    best_sum = total_sum
+                    result = concatenate(list(cur_combo))
+                    if count_the > the_guess:
+                        break  # Anti-pattern to knock-out the brute  if the word "the" seems to be average in the text.
 
     f.close()
     return result + ": " + str(best_sum)

@@ -158,3 +158,5 @@ Building this framework to demonstrate the solutions was a challenge on its own,
 * https://en.wikipedia.org/wiki/Divisibility_rule
 * https://docs.python.org/3/library/itertools.html#itertools.permutation
 * https://deepsource.io/docs/
+* https://techcomm.nz/Story?Action=View&Story_id=106
+* https://medium.com/@wolfgarbe/the-average-word-length-in-english-language-is-4-7-35750344870f
