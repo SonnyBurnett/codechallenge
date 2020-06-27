@@ -11,7 +11,7 @@ Project Euler Problems in Jupyter Notebooks and using Python 3.8+
     * [Beginner problems](#Beginner-problems)
     * [Expert problems](#Expert-problems)
 * [Deployment](#Deployment)
-* [Built With](#Built-With)
+* [Build With](#Build-With)
 * [Tests](#Tests)
 * [Contributing](#Contributing)
 * [Versioning](#Versioning)
@@ -54,14 +54,16 @@ You can use the relative link to jump to the Jupyler Notebook preview, no local 
     is for guiding you through the solution for the first project Euler assignment.  
 2\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%202.ipynb): 'notebooks\Project Euler Problem 2.ipymb'
     is for guiding you through the solution for the second project Euler assignment.  
-41\. [Project Euler Problem 2 notebook](notebooks/Project%20Euler%20Problem%2041.ipynb): 'notebooks\Project Euler Problem 41.ipymb'
+41\. [Project Euler Problem 41 notebook](notebooks/Project%20Euler%20Problem%2041.ipynb): 'notebooks\Project Euler Problem 41.ipymb'
     is for guiding you through the solution for the third project Euler assignment. 
 
 #### Expert problems:  
 12\. [Project Euler Problem 12 notebook](notebooks/Project%20Euler%20Problem%2012.ipynb): 'notebooks\Project Euler Problem 12.ipymb'
     is for guiding you through the solution for the twelfth project Euler assignment.  
 54\. [Project Euler Problem 54 notebook](notebooks/Project%20Euler%20Problem%2054.ipynb): 'notebooks\Project Euler Problem 54.ipymb'
-    is for guiding you through the solution for the fifty-fourth project Euler assignment. 
+    is for guiding you through the solution for the fifty-fourth project Euler assignment.  
+59\. [Project Euler Problem 59 notebook](notebooks/Project%20Euler%20Problem%2059.ipynb): 'notebooks\Project Euler Problem 59.ipymb'
+    is for guiding you through the solution for the fifty-fourth project Euler assignment.
 
 ## Deployment
 
@@ -103,13 +105,14 @@ The project is structured as following if you want to run the cells in the noteb
 └── requirements.txt        The requirements file for reproducing the environment, e.g.
                               generated with `conda list` and appended with PyCharm feedback.
 ```
-## Built With
+## Build With
 
 Anything that was used to write, compile, execute and stored for this project:
 * [Anaconda individual edition](https://www.anaconda.com/products/individual) - Python distribution platform.
 * [Jupyter Notebook](https://jupyter.org/) - The Jupyter Notebook.
 * [JetBrains PyCharm](https://www.jetbrains.com/pycharm/) - PC PyCharm - The Python IDE for Professional Developers.
 * [GitHub](https://github.com/) - A Git repository hosting service.
+* [deepsource](https://deepsource.io/) - Find and fix issues during code reviews.
 
 ## Tests
 
@@ -153,4 +156,7 @@ Building this framework to demonstrate the solutions was a challenge on its own,
 * https://docs.python.org/3/library/unittest.html
 * https://docs.python.org/3/library/collections.html#collections.Counter
 * https://en.wikipedia.org/wiki/Divisibility_rule
-* https://docs.python.org/3/library/itertools.html#itertools.permutations
+* https://docs.python.org/3/library/itertools.html#itertools.permutation
+* https://deepsource.io/docs/
+* https://techcomm.nz/Story?Action=View&Story_id=106
+* https://medium.com/@wolfgarbe/the-average-word-length-in-english-language-is-4-7-35750344870f
