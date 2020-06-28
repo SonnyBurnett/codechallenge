@@ -3,7 +3,7 @@ import sys
 
 sys.path.insert(1, '../eproblems')  # Weird this is needed for pipelines to resolve the path.
 
-from eproblems.eproblem12 import prime_factors
+from eproblem12 import prime_factors
 
 
 class Tep12(unittest.TestCase):
