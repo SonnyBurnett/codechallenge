@@ -12,9 +12,8 @@ class EncryptionBreaker:
     def run(self):
         self.__read_cypher_text()
         self.__find_candidate_solutions()
-        solution = self.__pick_solution()
 
-        return solution
+        return self.__pick_solution()
 
     def __read_cypher_text(self):
         with open(self.__file_name, 'r') as input_file:
@@ -26,8 +25,7 @@ class EncryptionBreaker:
                           for b in self.__candidate_key_parts
                           for c in self.__candidate_key_parts]
 
-        for candidate_key in candidate_keys:
-            self.__solutions.append(Solution(candidate_key, self.__cypher_text))
+        self.__solutions = map(lambda candidate_key: Solution(candidate_key, self.__cypher_text), candidate_keys)
 
     def __pick_solution(self):
         return sorted(self.__solutions, reverse=True, key=lambda solution: solution.get_letter_count())[0]

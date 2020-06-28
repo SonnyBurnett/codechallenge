@@ -6,7 +6,8 @@ class Solution:
         self.__key = key
         self.__decrypted_integers = [a ^ b for a, b in zip(cycle(key), cypher_text)]
 
-    def __is_letter(self, letter):
+    @staticmethod
+    def __is_letter(letter):
         return (ord('a') <= letter <= ord('z')) or (ord('A') <= letter <= ord('Z'))
 
     def get_key(self):
