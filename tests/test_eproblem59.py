@@ -1,14 +1,17 @@
 from unittest import TestCase
+import sys
 
-from eproblems.eproblem59 import eproblem59
-from eproblems.eproblem59 import all_combos
-from eproblems.eproblem59 import concatenate
-from eproblems.eproblem59 import chr_tuple2int_tuple
-from eproblems.eproblem59 import cipher
-from eproblems.eproblem59 import expand_cipher
-from eproblems.eproblem59 import read_by_chars
-from eproblems.eproblem59 import the_test
-from eproblems.eproblem59 import decrypt_text
+sys.path.insert(1, '../eproblems')  # Weird this is needed for pipelines to resolve the path.
+
+from eproblem59 import eproblem59
+from eproblem59 import all_combos
+from eproblem59 import concatenate
+from eproblem59 import chr_tuple2int_tuple
+from eproblem59 import cipher
+from eproblem59 import expand_cipher
+from eproblem59 import read_by_chars
+from eproblem59 import the_test
+from eproblem59 import decrypt_text
 
 lower_case_letters = "abcdefghijklmnopqrstuvwyxz"
 
