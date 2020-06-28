@@ -19,5 +19,5 @@ class Solution:
     def get_text(self):
         return ''.join(map(chr, self.__decrypted_integers))
 
-    def get_asci_value(self):
+    def get_ascii_sum_of_text(self):
         return sum(self.__decrypted_integers)

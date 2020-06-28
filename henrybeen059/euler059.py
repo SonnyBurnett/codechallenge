@@ -12,7 +12,7 @@ def main():
 
     print(f'Solution key: {solution.get_key()}')
     print(f'Solution text: {solution.get_text()}')
-    print(f'Solution asci value: {solution.get_asci_value()}')
+    print(f'Solution ascii value: {solution.get_ascii_sum_of_text()}')
     print(f'Duration: {end - start}')
 
 
