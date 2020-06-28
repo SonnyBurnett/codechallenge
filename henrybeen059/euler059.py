@@ -10,7 +10,7 @@ def main():
 
     end = time.time()
 
-    print(f'Solution key: {solution.key}')
+    print(f'Solution key: {solution.__key}')
     print(f'Solution text: {solution.get_text()}')
     print(f'Solution asci value: {solution.get_asci_value()}')
     print(f'Duration: {end - start}')
