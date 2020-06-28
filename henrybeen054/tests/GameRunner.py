@@ -8,7 +8,7 @@ from classes.GameRunner import GameRunner
 
 class TestGameRunner(unittest.TestCase):
     def test_run_on_example(self):
-        game_runner = GameRunner('../sample.txt')
+        game_runner = GameRunner('../test_hii.txt')
 
         game_result = game_runner.run()
 
