@@ -120,7 +120,9 @@ The tests where executed with PyCharm:
 The CI on the unittests is executed by using Azure Pipelines:
 [Pipeline sre14-ep](https://dev.azure.com/SreckoSuznjevic0449/sre14-ep)  
 *Note: some additional sys to fix the unittest in the Pipeline test files required sys.path.insert(1, '../eproblems') 
-to resolve the eproblems path import of the python programs.*
+to resolve the eproblems path import of the python programs. Second issue is that the unittest discovery and Azure 
+logging did not match, therefore the tests needed to be added one by one in the Pipeline definition (TODO: for now as 
+part of this assignment is fine, but for real automation it should be investigated).*
 
 ## Contributing
 
