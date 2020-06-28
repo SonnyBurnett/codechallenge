@@ -1,0 +1,12 @@
+version = 1
+
+test_patterns = ["damir2/*_test.py"]
+
+exclude_patterns = ["euler/**"]
+
+[[analyzers]]
+name = "python"
+enabled = true
+
+  [analyzers.meta]
+  runtime_version = "3.x.x"
