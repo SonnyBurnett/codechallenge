@@ -1,7 +1,7 @@
 import csv
 
 def wordvalue(name: str):
-  if not type(name)==str:
+  if not type(name) is str:
     raise TypeError("Input should be a string of characters in the alphabet")
   if not name.isascii():
     raise ValueError("Input should be a string of characters in the alphabet")
@@ -12,8 +12,8 @@ def main():
     names = sorted([row for row in csv.reader(f)][0])
 
   total=0
-  for i in range(len(names)):
-    total+=(i+1)*wordvalue(names[i])
+  for index, name in enumerate(names,1):
+    total+=(index)*wordvalue(name)
 
   print("The sum of all name scores is: " + str(total))
 
