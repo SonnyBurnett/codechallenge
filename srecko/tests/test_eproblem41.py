@@ -3,9 +3,9 @@ import sys
 
 sys.path.insert(1, '../eproblems')  # Weird this is needed if the original python file has a local include.
 
-from eproblems.eproblem41 import convert
-from eproblems.eproblem41 import last_prime
-from eproblems.eproblem41 import eproblem41
+from eproblem41 import convert
+from eproblem41 import last_prime
+from eproblem41 import eproblem41
 
 
 class Tep41(unittest.TestCase):

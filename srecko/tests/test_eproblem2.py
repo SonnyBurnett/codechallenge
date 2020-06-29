@@ -1,7 +1,10 @@
 from unittest import TestCase
+import sys
 
-from eproblems.eproblem2 import sum_fibo_div3
-from eproblems.eproblem2 import eproblem2
+sys.path.insert(1, '../eproblems')  # Weird this is needed for pipelines to resolve the path.
+
+from eproblem2 import sum_fibo_div3
+from eproblem2 import eproblem2
 
 
 class Tep2(TestCase):

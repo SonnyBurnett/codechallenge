@@ -1,2 +1,0 @@
-# TODO: Add the specific examples to solve in this directory, for now it is guided by the notebooks
-# TODO: The examples are now included in the tests as test_sol##(self) this needs to be called from here.

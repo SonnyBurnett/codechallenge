@@ -79,18 +79,11 @@ The project is structured as following if you want to run the cells in the noteb
 │   └── #054_poker.txt          These are the data files for Eukel problem 54 prefix p is the real data and the others
 |                                 are test data (prefix c, e, t and z).
 |
-├── docs                    A documentation directory for reusable documentation text in the future.
-│   └── none.txt                Contains the todo for reusable text and documentation in the future.
-|
 ├── eproblems               Sources for use in this project for the solutions, 
 |   |                         Naming convention is a tailing number behind "eproblem".
 |   |                         This number is not a version, but indicates the project Euler problem identification.
 │   ├── __init__.py             Makes eproblems a Python module.
 │   └── eproblem##.py           One or more numbered python scripts for the specific project Euler problem.
-|
-├── example                 A directory for automatically running the project Euler problems using either
-|   |                        examples given in the assignments and/or using the correct parameters for the solutions.
-│   └── none.txt                Contains the todo for example in the future.
 |
 ├── notebooks               Jupyter notebooks. Naming convention is a tailing number behind "Project Euler Problem ".ipymb,
 │                             the project euler problem identification.
@@ -113,6 +106,8 @@ Anything that was used to write, compile, execute and stored for this project:
 * [JetBrains PyCharm](https://www.jetbrains.com/pycharm/) - PC PyCharm - The Python IDE for Professional Developers.
 * [GitHub](https://github.com/) - A Git repository hosting service.
 * [deepsource](https://deepsource.io/) - Find and fix issues during code reviews.
+* [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) - Continuously build, test,
+ and deploy to any platform and cloud.
 
 ## Tests
 
@@ -121,6 +116,13 @@ The tests where executed with PyCharm:
      you want to test.
   * Last test line of the test include the solution of the Euler problem assignment as method test_sol## where ## 
     indicates the project Euler ID number, with the correct found answer.
+
+The CI on the unittests is executed by using Azure Pipelines:
+[Pipeline sre14-ep](https://dev.azure.com/SreckoSuznjevic0449/sre14-ep)  
+*Note: some additional sys to fix the unittest in the Pipeline test files required sys.path.insert(1, '../eproblems') 
+to resolve the eproblems path import of the python programs. Second issue is that the unittest discovery and Azure 
+logging did not match, therefore the tests needed to be added one by one in the Pipeline definition (TODO: for now as 
+part of this assignment is fine, but for real automation it should be investigated).*
 
 ## Contributing
 

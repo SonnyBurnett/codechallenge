@@ -1,12 +1,15 @@
 from unittest import TestCase
 from collections import Counter
+import sys
 
-from eproblems.eproblem54 import get_list_id
-from eproblems.eproblem54 import get_sublist_id
-from eproblems.eproblem54 import sequence
-from eproblems.eproblem54 import ranked_as
-from eproblems.eproblem54 import eproblem54
-from eproblems.eproblem54 import is_subranked
+sys.path.insert(1, '../eproblems')  # Weird this is needed for pipelines to resolve the path.
+
+from eproblem54 import get_list_id
+from eproblem54 import get_sublist_id
+from eproblem54 import sequence
+from eproblem54 import ranked_as
+from eproblem54 import eproblem54
+from eproblem54 import is_subranked
 
 
 class Tep52(TestCase):
