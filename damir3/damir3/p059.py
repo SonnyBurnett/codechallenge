@@ -64,7 +64,9 @@ class Cipher():
     self.__minimum_length_words = minimum_length_words
     self.__minimum_confidence_factor = minimum_confidence_factor / 100
 
-  def __load_file(self, filename):
+  def __load_file(self, filename: str) -> str:
+    if not isinstance(filename, str):
+      raise TypeError('Expected filename as a string.')
     if not os.path.exists(os.path.join(self.__location, filename)):
       raise FileNotFoundError("File specified does not exists.")
 
@@ -74,7 +76,7 @@ class Cipher():
 
     return content
 
-  def decode_file_message(self, filename):
+  def decode_file_message(self, filename: str) -> int:
     data = self.__load_file(filename)
     decoded_messsage = self.decode_data(data)
     return Cipher.sum_ascii_codes(decoded_messsage)
