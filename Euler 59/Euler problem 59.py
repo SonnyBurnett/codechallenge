@@ -4,11 +4,11 @@ def asc2bin(asc):
 
     result = ""
 
-    for i in range(7,0,-1):
+    for j in range(7,0,-1):
 
-        result += str(asc//(2**i))
+        result += str(asc//(2**j))
 
-        asc = asc%(2**i)
+        asc = asc%(2**j)
 
     result += str(asc//1)
 
@@ -16,17 +16,17 @@ def asc2bin(asc):
 
 
 
-def xor(key1,key2):
+def xor(key1asc,key2asc):
 
-    key1bin = asc2bin(key1)
+    key1bin = asc2bin(key1asc)
 
-    key2bin = asc2bin(key2)
+    key2bin = asc2bin(key2asc)
 
     binstring =""
 
-    for i in range(8):
+    for k in range(8):
 
-        if key1bin[i]==key2bin[i]:
+        if key1bin[k]==key2bin[k]:
 
             binstring += "0"
 
@@ -36,9 +36,9 @@ def xor(key1,key2):
 
     result = 0
 
-    for i in range(8):
+    for k in range(8):
 
-        result += (2**(7-i))*int(binstring[i])
+        result += (2**(7-k))*int(binstring[k])
 
     return int(result)
 
@@ -46,7 +46,7 @@ def xor(key1,key2):
 
 def most_frequent(List):
 
-    countList = [List.count(i) for i in List]
+    countList = [List.count(n) for n in List]
 
     maxcount = max(countList)
 
