@@ -3,9 +3,8 @@ from itertools import permutations
 def __isPrime(n: int):
   if n<=3:
     return n > 1
-  else:
-    if n%2==0 or n%3==0:
-      return False
+  if n%2==0 or n%3==0:
+    return False
 
   i=5
   while i*i<=n:
@@ -17,7 +16,7 @@ def __isPrime(n: int):
 
 def calculate_pandigital_prime():
   digits='987654321'
-  for j in range(len(digits)):
+  for _ in range(len(digits)):
     generator=list(permutations(digits))
     for i in generator:
       if __isPrime(int(''.join(i))):

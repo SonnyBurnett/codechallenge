@@ -4,7 +4,7 @@ from math import sqrt
 def __list_of_divisors(inp: int):
   l = list(chain.from_iterable((i,inp/i) for i in range(2,int(sqrt(inp))+1) if inp%i == 0))
   l.append(1)
-  s = set((int(x) for x in l))
+  s = {int(x) for x in l}
   return list(s)
 
 def sum_of_amicable_numbers(maximum: int):
