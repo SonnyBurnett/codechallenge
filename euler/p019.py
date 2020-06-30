@@ -20,7 +20,8 @@ class Days():
   def __init__(self):
     self.__first_monday = 0
 
-  def get_number_of_days_in_range(self, day_to_return: int, starting_date: date, ending_date: date) -> int:
+  @staticmethod
+  def get_number_of_days_in_range(day_to_return: int, starting_date: date, ending_date: date) -> int:
     if not isinstance(day_to_return, int):
       raise TypeError('Expected integer between 1 and 7, representing a day in the week')
     if day_to_return < 1 or day_to_return > 8:
@@ -32,6 +33,21 @@ class Days():
     if starting_date.year < 1900 or ending_date.year < 1900:
       ValueError('Starting date must be before the ending date and not before the year 1900.')
 
-    years_diff = [x for x in range(starting_date.year, ending_date.year + 1)]
+    return len([1 for x in range(starting_date.year, ending_date.year + 1) for y in range(1, 13) if date(x, y, 1).isoweekday() == day_to_return])
 
-    return 0
+  @staticmethod
+  def euler_solution():
+    return Days.get_number_of_days_in_range(7, date(1901, 1, 1), date(2000, 12, 31))
+
+
+def main():
+  '''
+  main function
+  '''
+  print('Solution for the Euler 019 problem:')
+  # prints: 171
+  print(Days.euler_solution())
+
+
+if __name__ == "__main__":
+  main()
