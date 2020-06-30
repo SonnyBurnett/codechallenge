@@ -14,17 +14,20 @@ def __isPrime(n: int):
 
   return True
 
-def calculate_pandigital_prime():
-  digits='987654321'
+def calculate_pandigital_prime(n):
+  if not 0<n<10:
+    raise ValueError("Input should be an integer between 0 and 10")
+  digits=''.join([str(x) for x in range(n,0,-1)])
   for _ in range(len(digits)):
     generator=list(permutations(digits))
     for i in generator:
       if __isPrime(int(''.join(i))):
         return(''.join(i))
     digits=digits[1:]
+  return 'not in range'
 
 def main():
-  print("The largest pandigital prime is: " + calculate_pandigital_prime())
+  print("The largest pandigital prime is: " + calculate_pandigital_prime(9))
 
 if __name__ == '__main__':
     main()

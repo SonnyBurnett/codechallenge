@@ -12,7 +12,13 @@ class TestFunction(unittest.TestCase):
         self.assertIn("7652413",capturedOutput.getvalue())
 
     def test_function(self):
-        self.assertEqual(calculate_pandigital_prime(),'7652413')
+        self.assertEqual(calculate_pandigital_prime(4),'4231')
+        self.assertEqual(calculate_pandigital_prime(1),'not in range')
+
+    def test_value_errors(self):
+        self.assertRaises(ValueError, calculate_pandigital_prime, -1)
+        self.assertRaises(ValueError, calculate_pandigital_prime, 0)
+        self.assertRaises(ValueError, calculate_pandigital_prime, 10)
 
     def test_type_errors(self):
         self.assertRaises(TypeError, calculate_pandigital_prime, "Test")
