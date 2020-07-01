@@ -19,6 +19,7 @@ Answer: 376
 ## Problem 3
 
 ### Easy - Euler 041
+Answer: 7652413
 
 ### Experts - Euler 059
 Answer: 129448
