@@ -3,11 +3,22 @@ class Triangle():
     pass
 
   def calc_max_path_sum(self, traingle_numbers):
-    return 2
+    data = traingle_numbers.split('\n')
+    curent_row = []
+    for i in range(len(data) - 1):
+      row_i = [int(x) for x in data[i].split()] if i == 0 else curent_row
+      row_i_1 = [int(x) for x in data[i + 1].split()]
+      curent_row = []
+      for j in range(len(row_i_1)):
+        sum_1 = 0 if j == 0 else row_i[j - 1] + row_i_1[j]
+        sum_2 = row_i[j] + row_i_1[j] if j < len(row_i) else 0
+        curent_row.append(max(sum_1, sum_2))
+
+    max_path = max(curent_row)
+    return max_path
 
   def euler_solution(self):
-    data = '''
-75
+    traingle_numbers = '''75
 95 64
 17 47 82
 18 35 87 10
@@ -22,7 +33,7 @@ class Triangle():
 91 71 52 38 17 14 91 43 58 50 27 29 48
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23'''
-    return self.calc_max_path_sum(data)
+    return self.calc_max_path_sum(traingle_numbers)
 
 
 def main():
