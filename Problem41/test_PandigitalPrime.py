@@ -13,7 +13,7 @@ class TestFunction(unittest.TestCase):
 
     def test_function(self):
         self.assertEqual(calculate_pandigital_prime(4),'4231')
-        self.assertEqual(calculate_pandigital_prime(1),'not in range')
+        self.assertEqual(calculate_pandigital_prime(1),'not found in this range')
 
     def test_value_errors(self):
         self.assertRaises(ValueError, calculate_pandigital_prime, -1)
