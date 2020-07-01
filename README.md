@@ -15,3 +15,10 @@ Answer: 4613732
 
 ### Experts - Euler 054
 Answer: 376
+
+## Problem 3
+
+### Easy - Euler 041
+
+### Experts - Euler 059
+Answer: 129448
