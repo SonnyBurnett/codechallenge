@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 
 class Triangle():
@@ -9,7 +10,7 @@ class Triangle():
 
   def calc_max_path_sum(self, data):
     # data = traingle_numbers.split('\n')
-    curent_row = []
+    curent_row: List[int] = []
     for i in range(len(data) - 1):
       row_i = [int(x) for x in data[i].split()] if i == 0 else curent_row
       row_i_1 = [int(x) for x in data[i + 1].split()]
@@ -25,7 +26,7 @@ class Triangle():
   def process_data_from_file(self, filename):
     if not os.path.exists(os.path.join(self._location, filename)):
       raise FileNotFoundError("File specified does not exists.")
-    
+
     traingle_numbers = []
     with open(os.path.join(self._location, filename)) as triangle_file:
       row = triangle_file.readline()

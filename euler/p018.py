@@ -1,10 +1,13 @@
+from typing import List
+
+
 class Triangle():
   def __init__(self):
     pass
 
   def calc_max_path_sum(self, traingle_numbers):
     data = traingle_numbers.split('\n')
-    curent_row = []
+    curent_row: List[int] = []
     for i in range(len(data) - 1):
       row_i = [int(x) for x in data[i].split()] if i == 0 else curent_row
       row_i_1 = [int(x) for x in data[i + 1].split()]
