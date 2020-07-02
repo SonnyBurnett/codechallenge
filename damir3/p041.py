@@ -13,19 +13,19 @@ from itertools import permutations
 
 class Pandigit():
   @staticmethod
-  def get_max_pandigital_prime_for_n_digit(n_digit: int) -> Optional[int]:
-    if not isinstance(n_digit, int):
+  def get_max_pandigital_prime_for_n_base(n_base: int) -> Optional[int]:
+    if not isinstance(n_base, int):
       raise TypeError('Integer larger than 2 expected')
-    if n_digit <= 2:
+    if n_base <= 2:
       raise ValueError('Integer larger than 2 expected')
 
-    longest_pandigitals = Pandigit.get_longest_pandigital_prime_permutations(n_digit)
+    longest_pandigitals = Pandigit.get_longest_pandigital_primes(n_base)
     if len(longest_pandigitals) > 0:
       return max(longest_pandigitals)
     return None
 
   @staticmethod
-  def get_pandigital_prime_permutations(pandigital_number: int) -> List[int]:
+  def get_pandigital_primes(pandigital_number: int) -> List[int]:
     if not isinstance(pandigital_number, int):
       raise TypeError('Integer longer than 2 digits expected')
     if len(str(pandigital_number)) <= 2:
@@ -35,16 +35,16 @@ class Pandigit():
     return [x for x in pandigital_permutations if Pandigit.is_prime(x)]
 
   @staticmethod
-  def get_longest_pandigital_prime_permutations(n_digit: int) -> List[int]:
-    if not isinstance(n_digit, int):
+  def get_longest_pandigital_primes(n_base: int) -> List[int]:
+    if not isinstance(n_base, int):
       raise TypeError('Integer larger than 2 expected')
-    if n_digit <= 2:
+    if n_base <= 2:
       raise ValueError('Integer larger than 2 expected')
 
     pandigits = []
-    for i in range(n_digit, 2, -1):
-      pandigit_i_long = int(''.join([str(x) for x in range(i + 1)]))
-      pandigits += Pandigit.get_pandigital_prime_permutations(pandigit_i_long)
+    for i in range(n_base, 2, -1):
+      pandigit_i_base_long = int(''.join([str(x) for x in range(i + 1)]))
+      pandigits += Pandigit.get_pandigital_primes(pandigit_i_base_long)
       if len(pandigits) > 0:
         break
     return pandigits
@@ -74,7 +74,7 @@ class Pandigit():
 
   @staticmethod
   def euler_solution() -> Optional[int]:
-    return Pandigit.get_max_pandigital_prime_for_n_digit(9)
+    return Pandigit.get_max_pandigital_prime_for_n_base(9)
 
 
 def main():
