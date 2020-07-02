@@ -11,8 +11,7 @@ def make_num_from_list(lst):
 
 
 def get_prime_permutations(s):
-    return [make_num_from_list(p) for p in itertools.permutations(str(s), len(s))
-            if sympy.isprime(make_num_from_list(p))]
+    return [make_num_from_list(p) for p in itertools.permutations(str(s), len(s)) if sympy.isprime(make_num_from_list(p))]
 
 
 def get_max_num_from_list(ls):
