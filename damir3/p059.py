@@ -79,7 +79,7 @@ class CipherDecoder():
     data = self.__load_file(filename)
     return self.decode_data(data)
 
-  def decode_data(self, data: str) -> str:
+  def decode_data(self, data: str):
     if not isinstance(data, str):
       raise TypeError('Expecting a non-empty string.')
     if len(data) == 0:
