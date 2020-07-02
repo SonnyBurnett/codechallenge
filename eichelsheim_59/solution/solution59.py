@@ -22,10 +22,8 @@ def start():
         string_list = [value.rstrip().split(",") for value in input_file]
         ascii_code_list = [int(ascii_code_string) for ascii_code_string in string_list[0]]
 
-        # Create set of keys for all three lowercase letter combinations
         keys = ([ord(a), ord(b), ord(c)] for a, b, c in product(string.ascii_lowercase, repeat=3))
 
-        # Iterate over keys and check if decrypted text contains all words from the words_list
         [print(sum_of_ascii_codes(decrypt_list_of_ascii_codes(key, ascii_code_list))) for key in keys
          if contains_all_words(words_list, decrypt_list_of_ascii_codes(key, ascii_code_list))]
 
