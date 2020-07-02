@@ -16,7 +16,7 @@ def longest_reciprocal_cycle(n: int):
         mg1=match.group(1)
         if not mg1==len(mg1)*mg1[0]:
           if len(mg1)>maximum:
-            xmax,mgmax,maximum=x,mg1,len(mg1)
+            xmax,maximum=x,len(mg1)
   return xmax
 
 def main():
