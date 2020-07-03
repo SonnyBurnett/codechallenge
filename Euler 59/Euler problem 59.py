@@ -33,7 +33,7 @@ def decrypt(text):
     
     for i in range(int(len(text))):
         if i%3 == 0:
-            position1.append(text[i]
+            position1.append(text[i])
         if i%3 == 1:
             position2.append(text[i])
         if i%3 == 2:
