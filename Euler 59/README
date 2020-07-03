@@ -21,6 +21,11 @@ And by similar reasoning I have likewise been able to determine the sums of the 
 result =  129448
 0.037436178  seconds
 
+Unit test output
+Test asc2bin() completed
+Test xor() completed
+Test most_frequent() completed
+
 Deep Source result: 1 issue - ANTI-PATTERN
 Consider using enumerate instead of iterating with range and len
 Euler 59/Euler problem 59.py
