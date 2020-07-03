@@ -22,14 +22,4 @@ result =  129448
 0.037436178  seconds
 
 Deep Source result:
-1 issue - ANTI-PATTERN
-Consider using enumerate instead of iterating with range and len
-Euler 59/Euler problem 59.py
-Seen 5 minutes ago
-54
-55decrypt = ""
-56
-57for i in range(len(decrypt1)):
-58    decrypt += chr(decrypt1[i])
-59    if i < len(decrypt2):
-60        decrypt += chr(decrypt2[i])
+No issues
