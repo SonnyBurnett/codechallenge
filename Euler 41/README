@@ -28,6 +28,11 @@ Output, programme runs in 0.003 seconds
 7652413
 0.003333565
 
+Output unit test:
+Test isPrime() completed
+Test checkPandigital() completed
+Test generatePandigital() completed
+
 Deep Source Output:
 Performance issue in line 10
 Unnecessary comprehension - `all` can take a generator
