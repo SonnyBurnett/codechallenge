@@ -47,16 +47,16 @@ def decrypt(text):
     decrypt2 = [xor(i,key2) for i in position2]
     decrypt3 = [xor(i,key3) for i in position3]
     
-    decrypt = ""
+    decryptedText = ""
     
     for i in range(len(decrypt1)):
-        decrypt += chr(decrypt1[i])
+        decryptedText += chr(decrypt1[i])
         if i < len(decrypt2):
-            decrypt += chr(decrypt2[i])
+            decryptedText += chr(decrypt2[i])
         if i < len(decrypt3):
-            decrypt += chr(decrypt3[i])
+            decryptedText += chr(decrypt3[i])
         
-    print(decrypt)
+    print(decryptedText)
     print(sum(decrypt1)+sum(decrypt2)+sum(decrypt3))
 
 
