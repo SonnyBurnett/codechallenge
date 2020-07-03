@@ -21,5 +21,14 @@ And by similar reasoning I have likewise been able to determine the sums of the 
 result =  129448
 0.037436178  seconds
 
-Deep Source result:
-No issues
+Deep Source result: 1 issue - ANTI-PATTERN
+Consider using enumerate instead of iterating with range and len
+Euler 59/Euler problem 59.py
+Seen a few seconds ago
+49    
+50    decryptedText = ""
+51    
+52    for i in range(len(decrypt1)):
+53        decryptedText += chr(decrypt1[i])
+54        if i < len(decrypt2):
+55            decryptedText += chr(decrypt2[i])
