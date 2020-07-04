@@ -49,6 +49,10 @@ def decrypt_txt(dt):
     return make_text_from_lists(decrypt_lists)
 
 
-if __name__ == '__main__':
+def main():
     print(count_ascii_values(decrypt_txt(read_csv_in_list('p059_cipher.txt'))))
+
+
+if __name__ == '__main__':
+    main()
 
