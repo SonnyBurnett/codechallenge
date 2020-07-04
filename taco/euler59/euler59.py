@@ -3,7 +3,7 @@ import csv
 KEY_LEN = 3
 
 
-def read_csv_in_list(fn):
+def read_encrypted_txt_in_list(fn):
     with open(fn) as csv_file:
         x = [r for r in csv.reader(csv_file, delimiter=',')]
     return [int(i) for i in x[0]]
@@ -50,7 +50,7 @@ def decrypt_txt(dt):
 
 
 def main():
-    print(count_ascii_values(decrypt_txt(read_csv_in_list('p059_cipher.txt'))))
+    print(count_ascii_values(decrypt_txt(read_encrypted_txt_in_list('p059_cipher.txt'))))
 
 
 if __name__ == '__main__':
