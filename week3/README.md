@@ -16,7 +16,9 @@ Tests can be run like so: ```python -m unittest```
 
 ### Answer Euler 59
 
-TODO
+129448
+
+Duration: 2.559589 seconds.
 
 ### Answer Euler 41
 
