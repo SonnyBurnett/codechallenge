@@ -144,3 +144,4 @@ Code analyzers used
 -------------------
 - InteliJ Code Inspect
 - flake8
+- GitHub DeepSource scan
