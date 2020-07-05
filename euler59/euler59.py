@@ -37,6 +37,7 @@ def xor_strings(s, t):
         # Python 3 bytes objects contain integer values in the range 0-255
         return bytes([a ^ b for a, b in zip(s, t)])
     
+#https://www.mathblog.dk/project-euler-59-xor-encryption/
 
 def analysis(message, keyLenght):
     maxsize = 0
