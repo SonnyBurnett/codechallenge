@@ -34,4 +34,10 @@ class solution59TestCase(unittest.TestCase):
          'Let's explore because it's fun.' It was, 'Let's explore so that we can claim lands for our country,
           so that we can open up new trade routes; let's explore so we can become more powerful.'"""
         foundTop10EnglishWords = 5
-        self.assertEquals(foundTop10EnglishWords, testSubject.scoreEnglish(deGrasseIpsum))
+        self.assertEqual(foundTop10EnglishWords, testSubject.scoreEnglish(deGrasseIpsum))
+
+    def testSumIfEnglish(self):
+        # Official euluer file
+        with open('resources/p059_cipher.txt') as file:
+            message = [ int(x) for x in file.readline().split(',') ]
+        self.assertEqual(129448, testSubject.sumIfEnglish(message))

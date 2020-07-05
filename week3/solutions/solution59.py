@@ -25,4 +25,19 @@ def scoreEnglish(text):
     Returns a score as an integer between 0 and 10
     """
     top10 = ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'it']
-    return sum([1 for x in top10 if x in text.lower().split(' ')])
+    return sum([1 for x in top10 if x in text.lower().split()])
+
+
+def sumIfEnglish(message):
+    mostLikely = (0, None)
+    for key in keyGen():
+        originaltext = decryptMessage(message, key)
+        score = scoreEnglish(originaltext)
+        if score > mostLikely[0]:
+            mostLikely = (score, originaltext)
+    return sum([ ord(x) for x in mostLikely[1] ])
+
+def main():
+    with open('../resources/p059_cipher.txt') as file:
+        message = [ int(x) for x in file.readline().split(',') ]
+    print(sumIfEnglish(message))
