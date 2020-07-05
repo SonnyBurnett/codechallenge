@@ -4,6 +4,18 @@ Structered per week of the Code Challenge.
 Each week is an exact copy of the full Euler project. ie. README, wrapper, util modules are all duplicated.
 Clearly not for mine but Taco's sanity.
 
+## Week3
+
+### Answer Euler 59
+
+129448
+
+Duration: 2.559589 seconds.
+
+### Answer Euler 41
+
+TODO
+
 ## Week2
 
 ### Answer Euler 54
