@@ -37,7 +37,7 @@ def is_prime_number(number):
         return False
     elif number == 2 or number == 3:
         return True
-    elif number > 3:
+    else:
         for i in range(2, max_factor):
             if number % i == 0:
                 return False
