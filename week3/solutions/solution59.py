@@ -7,11 +7,11 @@ def keyGen():
 
 
 def xorMessage(message, key):
-    return [ x^y for x, y in zip(message, cycle(key)) ]
+    return [x ^ y for x, y in zip(message, cycle(key))]
 
 
 def convertToAscii(message):
-    return [ chr(x) for x in message ]
+    return [chr(x) for x in message]
 
 
 def decryptMessage(encrypted, key):
@@ -19,7 +19,8 @@ def decryptMessage(encrypted, key):
 
 
 def scoreEnglish(text):
-    """Give a text a score based on the occurence of the top 10 most common English words.
+    """Give a text a score based on the occurence of the top 10
+    most common English words.
     Based on: https://en.wikipedia.org/wiki/Most_common_words_in_English
 
     Returns a score as an integer between 0 and 10
@@ -35,9 +36,10 @@ def sumIfEnglish(message):
         score = scoreEnglish(originaltext)
         if score > mostLikely[0]:
             mostLikely = (score, originaltext)
-    return sum([ ord(x) for x in mostLikely[1] ])
+    return sum([ord(x) for x in mostLikely[1]])
+
 
 def main():
     with open('../resources/p059_cipher.txt') as file:
-        message = [ int(x) for x in file.readline().split(',') ]
+        message = [int(x) for x in file.readline().split(',')]
     print(sumIfEnglish(message))

@@ -1,11 +1,12 @@
 import unittest
 import solutions.solution59 as testSubject
 
+
 class solution59TestCase(unittest.TestCase):
 
     def testKeyGen(self):
         keygen = testSubject.keyGen()
-        
+
         self.assertIsNotNone(keygen)
         self.assertEqual((97, 97, 97), next(keygen))
         self.assertEqual((97, 97, 98), next(keygen))
@@ -24,9 +25,9 @@ class solution59TestCase(unittest.TestCase):
         deGrasseIpsum = """The history of exploration across nations and across time is not one where nations said,
          'Let's explore because it's fun.' It was, 'Let's explore so that we can claim lands for our country,
           so that we can open up new trade routes; let's explore so we can become more powerful.'"""
-        converted = [ ord(x) for x in deGrasseIpsum ]
+        converted = [ord(x) for x in deGrasseIpsum]
         encypted = testSubject.xorMessage(converted, (97, 97, 97))
-        
+
         self.assertEqual(deGrasseIpsum, testSubject.decryptMessage(encypted, (97, 97, 97)))
 
     def testScoreEnglish(self):
@@ -39,5 +40,5 @@ class solution59TestCase(unittest.TestCase):
     def testSumIfEnglish(self):
         # Official euluer file
         with open('resources/p059_cipher.txt') as file:
-            message = [ int(x) for x in file.readline().split(',') ]
+            message = [int(x) for x in file.readline().split(',')]
         self.assertEqual(129448, testSubject.sumIfEnglish(message))
