@@ -66,7 +66,8 @@ if run_test :
 #   Solution Euler problem 2 result
 x                       =   calc_fib_sum( fib_euler )
 print( "\nSolution Euler problem 02:", x )
-assert x == 4613732, "Answer Euler problem 2 should be 4613732"
+if x != 4613732:
+    raise AssertionError("Answer Euler problem 2 should be 4613732")
 
 
 if show_exec_time :
