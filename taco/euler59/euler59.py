@@ -3,48 +3,57 @@ import csv
 KEY_LEN = 3
 
 
-def read_encrypted_txt_in_list(fn):
-    with open(fn) as csv_file:
-        x = [r for r in csv.reader(csv_file, delimiter=',')]
-    return [int(i) for i in x[0]]
+def read_encrypted_txt_in_list(file_name):
+    try:
+        with open(file_name) as csv_file:
+            x = [r for r in csv.reader(csv_file, delimiter=',')]
+        return [int(i) for i in x[0]]
+    except:
+        print("File not found!")
+        return []
 
 
-def split_list(cl, n):
-    return cl[n::KEY_LEN]
+def split_list(original_list, start_pos):
+    return original_list[start_pos::KEY_LEN]
 
 
-def count_occurrences(cl):
-    return [(x, cl.count(x)) for x in range(min(cl), max(cl)+1)]
+def count_occurrences(input_list):
+    return [(x, input_list.count(x)) for x in range(min(input_list), max(input_list)+1)]
 
 
-def sort_the_list(sc):
-    return sorted(sc, key=lambda x: x[1], reverse=True)
+def sort_list(unsorted_list):
+    return sorted(unsorted_list, key=lambda x: x[1], reverse=True)
 
 
-def find_most_common(cl):
-    return cl[0][0]
+def get_first(sorted_list):
+    return sorted_list[0][0]
 
 
-def decrypt_list(cl, kl):
-    return [chr(x ^ kl) for x in cl]
+def decrypt_list(encrypted_list, key):
+    return [chr(x ^ key) for x in encrypted_list]
 
 
-def make_text_from_lists(sp):
+def make_text_from_lists(list_of_lists):
     decrypted_txt = ""
-    for i in range(len(sp[0])):
-        decrypted_txt += sp[0][i] + sp[1][i] + sp[2][i]
+    for i in range(len(list_of_lists[0])):
+        for x in range(KEY_LEN):
+            decrypted_txt += list_of_lists[x][i]
     return decrypted_txt
 
 
-def count_ascii_values(st):
-    return sum([ord(char) for char in st])
+def count_ascii_values(text_string):
+    return sum([ord(char) for char in text_string])
 
 
-def decrypt_txt(dt):
+def find_key(encrypted_char):
+    return encrypted_char ^ ord(' ')
+
+
+def decrypt_txt(encrypted_txt_in_list):
     encrypted_lists, decrypt_lists, key_lists = ([] for i in range(3))
     for a in range(KEY_LEN):
-        encrypted_lists.append(split_list(dt, a))
-        key_lists.append(find_most_common(sort_the_list(count_occurrences(encrypted_lists[a]))) ^ ord(' '))
+        encrypted_lists.append(split_list(encrypted_txt_in_list, a))
+        key_lists.append(find_key(get_first(sort_list(count_occurrences(encrypted_lists[a])))))
         decrypt_lists.append(decrypt_list(encrypted_lists[a], key_lists[a]))
     return make_text_from_lists(decrypt_lists)
 
