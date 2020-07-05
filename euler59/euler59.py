@@ -11,7 +11,7 @@ ASCII bytes <> [XOR, key] <> decrypted value
 
 '''
 
-def pwd_string(message, key):
+def genkey(message, key) -> bytes:
 
     keyString = ""
     tmp = 0
@@ -25,10 +25,10 @@ def pwd_string(message, key):
             keyString += key[tmp]
             tmp +=1
 
-    return(keyString)
+    return(bytes(keyString.encode('utf8')))
 
 
-def xor_strings(s, t) -> bytes:
+def xor_strings(s, t):
     """xor two strings together."""
     if isinstance(s, str):
         # Text strings contain single characters
@@ -42,17 +42,33 @@ def xor_strings(s, t) -> bytes:
 
 if __name__ == "__main__": 
 
-    key = pwd_string("THis is a message", "xor")
+    #myString = "Test message" 
+    #key = genkey(myString, "xor")
 
-    
+    """ ciphertext = xor_strings(myString.encode('utf8'), key)
+    print(ciphertext)
+
+    deciphertext = xor_strings(ciphertext, key)
+    print(deciphertext.decode('utf8'))
+ """
 
     with open("euler59/p059_cipher.txt") as f:
-        
+    
         line  = f.readlines()
-        #data = line[0].split(',')
+        data = line[0].split(',')
+        print(len(data))
+        bstr = b"".join(chr(int(d)).encode('utf8') for d in data)
 
+        #print(bstr)
 
-        ciphertext = xor_strings(line, key)
+        ciphertext = xor_strings(bstr, "xor")
 
-        print(ciphertext)
+        """
+        for d in data:
+            print(d)
+            print(chr(int(d)).encode('utf8'))
+        """
+        #ciphertext = xor_strings(data, key)
+
+        #print(ciphertext)
             
