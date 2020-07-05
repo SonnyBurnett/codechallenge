@@ -37,38 +37,36 @@ def xor_strings(s, t):
         # Python 3 bytes objects contain integer values in the range 0-255
         return bytes([a ^ b for a, b in zip(s, t)])
     
-  
 
+def analysis(message, keyLenght):
+    maxsize = 0
+
+    for m in message:
+        if int(m) > maxsize:
+            maxsize = m
+    print(maxsize)
+
+    aMessage = [keyLenght][maxsize+1]
+    #print(len(aMessage))
 
 if __name__ == "__main__": 
 
-    #myString = "Test message" 
-    #key = genkey(myString, "xor")
+   
+    
 
-    """ ciphertext = xor_strings(myString.encode('utf8'), key)
-    print(ciphertext)
 
-    deciphertext = xor_strings(ciphertext, key)
-    print(deciphertext.decode('utf8'))
- """
+
+
+
 
     with open("euler59/p059_cipher.txt") as f:
     
         line  = f.readlines()
-        data = line[0].split(',')
-        print(len(data))
-        bstr = b"".join(chr(int(d)).encode('utf8') for d in data)
-
-        #print(bstr)
-
-        ciphertext = xor_strings(bstr, "xor")
-
-        """
-        for d in data:
-            print(d)
-            print(chr(int(d)).encode('utf8'))
-        """
-        #ciphertext = xor_strings(data, key)
-
-        #print(ciphertext)
+        message = line[0].split(',')
+        
+        for ind, m in enumerate(message):
+            message[ind] = int(m)
+        
+        analysis(message,3)
             
+       
