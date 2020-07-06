@@ -12,7 +12,7 @@ ASCII bytes <> [XOR, key] <> decrypted value
 '''
 from string import ascii_lowercase as lowc
 from string import ascii_letters as asciilet
-import pdb
+from nltk.corpus import words
 
 def genkey(message, key):
 
@@ -157,18 +157,50 @@ def sum(list):
         sum += c
     print(sum)  
 
+def bruteForce(message, keyLenght):
+    
+    for i in range(0, keyLenght):
+        for k1 in lowc:
+            for k2 in lowc:
+               for k3 in lowc:
+                    #print(f'#{cnt} {k1}{k2}{k3}')
+                    key = k1+k2+k3
+                    gkey = genkey(message,key)
+                    decryptedtext = xor_strings(message,gkey)
+                    wrds = "".join(chr(a) for a in decryptedtext).split()
+                    cntw = 0
+                    for w in wrds[0:10]:
+                        if w in words.words():
+                            cntw+=1
+                    if cntw/10 > 0.7:
+                        print(key)
+                    else:
+                        print(".", end="")
+                    
+                    
 
+                    
+
+
+                    
 
 
 if __name__ == "__main__": 
 
-    message = "This is a secret message"
-    key = "test"
-    #print([ord(c) for c in key])
+    #print("fine" in words.words())
+    # message = "This is a secret message"
 
-    gkey = genkey(message,key)
-    encryptedtext = xor_strings(message,gkey)
-    
+    # key = "tes"
+    # fkey = "aaa"
+    # gkey = genkey(message,key)
+    # encryptedtext = xor_strings(message,gkey)
+    # print(f'Encrypted: {encryptedtext}')
+    # #res = bruteForce(message,3)
+    # #print(res)
+    # back = xor_strings(encryptedtext,genkey(message,fkey))
+    # print(f'Back: {back}')
+    # wrds = "".join(chr(a) for a in back).split()
+    # print(wrds)
     
     #print(analysis(encryptedtext))
 
@@ -181,13 +213,12 @@ if __name__ == "__main__":
         for ind, m in enumerate(message):
             message[ind] = int(m)
         
-        print(analysis(message))
-        #decryptedtext = xor_strings(message,genkey(message,"pex"))
+        #bruteForce(message, 3)
 
-        
-        
-        
-        #print("".join(chr(a) for a in decryptedtext))
+    
+
+
+      
 
 
 
