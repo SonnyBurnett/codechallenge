@@ -2,7 +2,7 @@
 GEP Coding Python Challenge
 
 This is a repository for the GEP Python Coding Challenge Assignments.  
-Each function is developed to handle small changes the problem definition.
+Each function is developed to handle small changes in the problem definition.
 
 1.  Assignment 1 is a Python program to solve Project Euler problem 1.  
     https://projecteuler.net/problem=1
@@ -59,7 +59,8 @@ Each function is developed to handle small changes the problem definition.
     heard of this rule, you can find a nice explanation here:  
     https://www.khanacademy.org/math/pre-algebra/pre-algebra-factors-multiples/pre-algebra-divisibility-tests/v/the-why-of-the-3-divisibility-rule  
     It is still possible to select a range that includes pandigitals with the excluded number of digits, 
-    but they will be skipped in the function.  
+    but they will be skipped in the function. This is done to speed up performance. There is no
+    use finding pandigitals that you know can never be prime numbers.  
     The function returns the largest prime pandigital number for numbers with a number of digits 
     that is in the specified range. If the range is (7,7), then only the largest pandigital 
     prime number with 7 digits is returned.
