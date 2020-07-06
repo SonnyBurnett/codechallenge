@@ -24,7 +24,9 @@ def decrypt(message, key):
 
 
 def analysis(bmsg, keylength=3):
-    maxsize = int(max(bmsg))
+    # convert array of string to array of integer
+    bmsg = [int(b) for b in bmsg]
+    maxsize = max(bmsg)
     # create 3 piles corresponding to the encryption of a character by each key character
     piles = [[0 for x in range(maxsize+1)] for y in range(keylength)]
     # 3-items array for the key
@@ -69,4 +71,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+   # main()
+    txt = "a b  c   d    e     f      g "
+    key = 'aaa'
+    bm = encrypt(txt, key)
+    print(bm)
+    guessed_key = analysis(bm)
+    assert key == guessed_key
