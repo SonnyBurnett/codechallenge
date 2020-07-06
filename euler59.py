@@ -30,7 +30,7 @@ def analysis(bmsg, keylength=3):
     # create 3 piles corresponding to the encryption of a character by each key character
     piles = [[0 for x in range(maxsize+1)] for y in range(keylength)]
     # 3-items array for the key
-    key = [0 for x in range(3)]
+    top3 = [0 for x in range(3)]
     i = 0
     # loop on the encrypted message
     for b in bmsg:
@@ -46,7 +46,7 @@ def analysis(bmsg, keylength=3):
     # Assume the space character is the most frequent in a text
     space = ord(' ')
     # and decrypt the key
-    key = [k ^ space for k in key]
+    key = [k ^ space for k in top3]
     # get the key as a string
     the_key = ''
     for k in key:
