@@ -29,7 +29,7 @@ def analysis(bmsg, keylength=3):
     maxsize = max(bmsg)
     # create 3 piles corresponding to the encryption of a character by each key character
     piles = [[0 for x in range(maxsize+1)] for y in range(keylength)]
-    # 3-items array for the key
+    # top 3-items array
     top3 = [0 for x in range(3)]
     i = 0
     # loop on the encrypted message
@@ -39,8 +39,8 @@ def analysis(bmsg, keylength=3):
         # count the frequency of each encrypted byte
         piles[j][b] += 1
         # and retain the most frequent ones for each key
-        if piles[j][b] > piles[j][key[j]]:
-            key[j] = b
+        if piles[j][b] > piles[j][top3[j]]:
+            top3[j] = b
         i += 1
 
     # Assume the space character is the most frequent in a text

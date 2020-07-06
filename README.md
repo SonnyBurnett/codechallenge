@@ -1,6 +1,6 @@
 # Code Context - EULER 59 problem
 
-[![Build Status](https://dev.azure.com/xmayeur/Euler59/_apis/build/status/xmayeur.euler59?branchName=master)](https://dev.azure.com/xmayeur/Euler59/_build/latest?definitionId=16&branchName=master)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/xmayeur/euler59/?ref=repository-badge) [![Build Status](https://dev.azure.com/xmayeur/Euler59/_apis/build/status/xmayeur.euler59?branchName=master)](https://dev.azure.com/xmayeur/Euler59/_build/latest?definitionId=16&branchName=master)
 
 
 
