@@ -1,6 +1,5 @@
 
 import unittest
-import pytest
 from euler59 import analysis, encrypt, decrypt
 
 
