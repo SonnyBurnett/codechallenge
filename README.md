@@ -1,5 +1,9 @@
 # Code Context - EULER 59 problem
 
+[![Build Status](https://dev.azure.com/xmayeur/Euler59/_apis/build/status/xmayeur.euler59?branchName=master)](https://dev.azure.com/xmayeur/Euler59/_build/latest?definitionId=16&branchName=master)
+
+
+
 ## Problem description
     Your task has been made easy, as the encryption key consists of three lower case characters. 
     Using p059_cipher.txt (right click and 'Save Link/Target As...'), a file containing 
