@@ -10,6 +10,9 @@ ASCII bytes <> [XOR, key] <> decrypted value
 
 
 '''
+from string import ascii_lowercase as lowc
+from string import ascii_letters as asciilet
+import pdb
 
 def genkey(message, key):
 
@@ -62,60 +65,114 @@ def analysis(message):
 
     return charDictSorted
 
+def findKey(message, keyLenght):
+    maxSize = 0
+    for m in message:
+        if m > maxSize:
+            maxSize = m
 
-
+    print(f'MaxSize: {maxSize}')
 
     
+    aMessage = {}
+    for i in range(0, keyLenght):
+        aMessage[i] = []
+        for j in range(0,maxSize+1):
+            aMessage[i].append(0)
+    
+    print(f'aMessage size is {len(aMessage[0])}')
+
+    key = []
+    for i in range(0,keyLenght):
+        key.append(0)
+    print(f'Key entries = {len(key)}')
+    
+
+    for ind, m in enumerate(message):
+        j = ind % keyLenght
+        #print(f'Letter is {m} j is {j} and index = {ind}')
+        aMessage[j][ind] += 1
+
+    
+    for ind, m in enumerate(message):
+        j = ind % keyLenght
+        #print(f'{aMessage[j][message[ind]]} compared to {aMessage[j][key[j]]}')
+        if aMessage[j][message[ind]] > aMessage[j][key[j]]:
+            #print(f'Add to key {message[ind]}')
+            key[j] = message[ind]
+
+
+    """ spaceASCII = 32
+    for i, c in enumerate(key):
+        key[i] = c ^ spaceASCII """
+
+
+    print(aMessage)
+    print(key)
         
+
+def findKey2(message, keyLenght):
+    '''
+    Pass each lowercase letter through the encrypted message and xor the ASCII characters. 
+    if the xor result is a lowercase character then it is a pass. Summ all the results and provide a score %.
+    '''
     
+    keys = {}
+    for k in range(0, keyLenght):
+        lowcDict = {}
+        for lc in lowc:
+            lowcDict[lc] = 0
+        keys[k] = lowcDict
+
+       
+    #print(len(keys[0][1]))
+
+    for i, c in enumerate(message):
+        #For each letter in a message
+        j = i % keyLenght
+        #Get value of a keys dictionary 
+        #Loop through the alphabet and xor the value
+        for l in lowc:
+            x = ord(l) ^ c
+            #print(chr(x))
+            if chr(x) in asciilet:
+                #print(f'Index: {i} Letter: {chr(c)}, Key: {j}, Lowc: {l}, xor: {chr(x)}')
+                keys[j][l] += 1
+
+    for x in keys:
+        print(x)
+        print({k: v for k, v in sorted(keys[x].items(), key=lambda item: item[1],reverse=True)})
+        sum(keys[x].values())
+
+
+
+
+
+    
+
+
+def sum(list):
+    sum = 0
+    for c in list:
+        sum += c
+    print(sum)  
+
+
+
 
 if __name__ == "__main__": 
 
-    """  message = "This is a secret message"
+    message = "This is a secret message"
     key = "test"
+    #print([ord(c) for c in key])
 
     gkey = genkey(message,key)
-   
-
     encryptedtext = xor_strings(message,gkey)
-
-    print(f'Encrypted: {encryptedtext}')
-
-    decreptedtext = xor_strings(encryptedtext,gkey)
     
-
-    print(f'Decrypted: {decreptedtext}')
-
-    print("".join(chr(a) for a in decreptedtext)) """
     
+    #print(analysis(encryptedtext))
 
-
-
-    """ output = []
-    for a, b in zip(message,genkey):
-        x = ord(a) ^ ord(b)
-        output.append(x)
-        #print(f'A: {ord(a)} B: {ord(b)} xor: {x}')
-        
-    print(output)
-    
-
-    for a, b in zip(output,genkey):
-        x = a ^ ord(b)
-        #output.append(x)
-        print(f'A: {a} B: {b} xor: {chr(x)}') """
-
-
-
-    
-
-
-
-
-
-
-
-
+     
     with open("euler59/p059_cipher.txt") as f:
     
         line  = f.readlines()
@@ -124,8 +181,19 @@ if __name__ == "__main__":
         for ind, m in enumerate(message):
             message[ind] = int(m)
         
-        #print(message)
-        #print(genkey(message,"god"))
-        decryptedtext = xor_strings(message,genkey(message,"fur"))
-        print("".join(chr(a) for a in decryptedtext))
+        print(analysis(message))
+        #decryptedtext = xor_strings(message,genkey(message,"pex"))
+
+        
+        
+        
+        #print("".join(chr(a) for a in decryptedtext))
+
+
+
+
+
+
+
+    
        
