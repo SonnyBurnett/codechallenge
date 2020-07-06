@@ -5,14 +5,11 @@ from itertools import product
 import sys
 
 
-def xor_decrypt_encrypt_ascii_list(input_data, key, encryption):
-    # if not encryption:
-    #     input_data = []
-    new_data = ''.join(chr(int(x) ^ ord(y)) for (x, y) in zip(input_data.split(","), cycle(key)))
+def xor_decrypt_encrypt_ascii_list(input_data, key):
+    return ''.join(chr(int(x) ^ ord(y)) for (x, y) in zip(input_data.split(","), cycle(key)))
 
-    return new_data
 
-def is_english_line(input_data):
+def is_english(input_data):
     common_words = ["a", "the", "I", "and", "if", "of", "or", "to", "is", "you", "that", "it", "he", "was", "for", "are"
                     , "as", "with", "his", "they", "at", "be", "this", "have", "from", "one", "had", "by", "word", "but"
                     , "not", "what", "were", "all", "we", "when", "your", "can", "said", "there", "some", "my", "use"
@@ -22,23 +19,27 @@ def is_english_line(input_data):
                     , "out", "see", "did", "many", "number", "get", "then", "no", "come", "them", "way", "made", "these"
                     , "could", "may", "so", "people", "part"]
 
-    return [(word.lower() in input_data.lower().split()) for word in common_words].count(True) >= len(common_words)/4
+    return [(word.lower() in input_data.lower().split()) for word in common_words].count(True)
 
 
-def is_english2(input_data, language):
+def is_english1(input_data, language):
     d = enchant.Dict(language)
-    return [d.check(word) for word in input_data.split()].count(True) >= (len(input_data.split()) * 2 / 3)
+    return [d.check(word) for word in input_data.split()].count(True)
 
 
 def decrypt_using_three_lower_letters(input_data):
+    nr_common_words = 0
     letters = string.ascii_lowercase
+    english_decrypted = None
     for i, j, k in product(letters, repeat=3):
-        decrypted = xor_decrypt_encrypt_ascii_list(input_data, i + j + k, False)
+        decrypted = xor_decrypt_encrypt_ascii_list(input_data, i + j + k)
 
-        if is_english_line(decrypted):
-            return decrypted
+        this_nr_common_words = is_english(decrypted)
+        if this_nr_common_words > nr_common_words:
+            nr_common_words = this_nr_common_words
+            english_decrypted = decrypted
 
-    sys.exit("No three lower lettered key found, that encrypts data to correct english")
+    return english_decrypted
 
 
 if __name__ == "__main__":
@@ -52,6 +53,5 @@ if __name__ == "__main__":
     decrypted_data = decrypt_using_three_lower_letters(data)
     ascii_sum = sum([ord(character) for character in decrypted_data])
 
-    print(len(decrypted_data.split()))
     print(ascii_sum)
 
