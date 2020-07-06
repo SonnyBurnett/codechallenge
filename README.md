@@ -1,5 +1,8 @@
 # Code Context - EULER 59 problem
 
+## "De summis serierum reciprocarum"
+
+
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/xmayeur/euler59/?ref=repository-badge) [![Build Status](https://dev.azure.com/xmayeur/Euler59/_apis/build/status/xmayeur.euler59?branchName=master)](https://dev.azure.com/xmayeur/Euler59/_build/latest?definitionId=16&branchName=master)
 
 
@@ -16,8 +19,7 @@ Result is: 129448
 
 ![](.images/waldorf_statler.jpg)
 
-    - "Do you really think that this dummy old chap 
-    looking like Einstein would ever find the solution?"
+    - "Do you really think that this dummy old chap looking like Einstein would ever find the solution?"
     - "I will eat my hat if he does!! Hahaha!"
 
 ## Approach
@@ -40,9 +42,11 @@ If the decrypted text is still unreadable, we will try another receipt from the 
 
 ![](.images/swedish_chef.jpg)
 
+And finally, we we have the clear message text, we just have to sum up the ascii values as requested
 
 # Test
 All tests passed:
 - testing the encryption/decryption mechanism
 - testing the key finding based on analysis
- 
+
+See:  [Test Results on Azure DevOps](https://dev.azure.com/xmayeur/Euler59/_build/results?buildId=262&view=ms.vss-test-web.build-test-results-tab)
