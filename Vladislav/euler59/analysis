@@ -1,0 +1,22 @@
+private int[] Analysis(int[] message, int keyLength) {
+    int maxsize = 0;
+    for (int i = 0; i < message.Length; i++) { if (message[i] > maxsize) maxsize = message[i];
+    }
+ 
+    int[,] aMessage = new int[keyLength, maxsize+1];
+    int[] key = new int[keyLength];
+ 
+    for (int i = 0; i < message.Length; i++) { int j = i % keyLength; aMessage[j, message[i]]++; if (aMessage[j, message[i]] > aMessage[j, key[j]])
+            key[j] = message[i];
+    }
+    
+
+    
+
+    int spaceAscii = 32;
+    for (int i = 0; i < keyLength; i++) {
+        key[i] = key[i] ^ spaceAscii;
+    }
+ 
+    return key;
+}
