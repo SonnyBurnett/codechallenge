@@ -13,6 +13,7 @@ ASCII bytes <> [XOR, key] <> decrypted value
 from string import ascii_lowercase as lowc
 from string import ascii_letters as asciilet
 from nltk.corpus import words
+import time
 
 def genkey(message, key):
 
@@ -157,14 +158,18 @@ def sum(list):
         sum += c
     print(sum)  
 
-def bruteForce(message, keyLenght):
-    
-    for i in range(0, keyLenght):
+def bruteForce(message):
+    start = time.time()
+    cnt = 0
+    answ = []
+    try:
         for k1 in lowc:
+            
             for k2 in lowc:
-               for k3 in lowc:
-                    #print(f'#{cnt} {k1}{k2}{k3}')
+                for k3 in lowc:
+                    
                     key = k1+k2+k3
+                    #print(f'{cnt}', end=",", flush=True)
                     gkey = genkey(message,key)
                     decryptedtext = xor_strings(message,gkey)
                     wrds = "".join(chr(a) for a in decryptedtext).split()
@@ -173,12 +178,15 @@ def bruteForce(message, keyLenght):
                         if w in words.words():
                             cntw+=1
                     if cntw/10 > 0.7:
-                        print(key)
-                    else:
-                        print(".", end="")
-                    
-                    
+                        answ.append(key)
 
+
+                    cnt +=1
+                print("---Total %s seconds ---" % (time.time() - start))
+        print(answ)
+            
+    except:
+        print(f'Error #{cnt} and {key}')
                     
 
 
@@ -212,8 +220,15 @@ if __name__ == "__main__":
         
         for ind, m in enumerate(message):
             message[ind] = int(m)
-        
-        #bruteForce(message, 3)
+        back = xor_strings(message,genkey(message,genkey(message,"exp")))
+        #print(f'Back: {back}')
+        wrds = "".join(chr(a) for a in back)
+        print(wrds)
+
+        sum(back)
+
+
+        #bruteForce(message)
 
     
 
