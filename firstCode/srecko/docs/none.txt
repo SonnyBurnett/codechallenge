@@ -1,0 +1,3 @@
+# TODO: Add the specific documentation in this directory, for now it is guided by the notebooks.
+#   But I already see re-usability of text.
+# TODO: is how to auto load predefined markup language text and render it in notebooks on load.

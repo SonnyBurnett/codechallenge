@@ -1,0 +1,17 @@
+x = 0
+for i in range(1,1000):
+    if i%3 == 0 or i%5 == 0:
+        x += i
+print(x)
+"""
+Score:
+    Run1
+    NamesOK 0  / x is a loop variablem not a total
+    Linted1
+    Libraries list / 1 nice use of for loop
+    SingleResponsibility/0
+    Deepsource/1
+    Testing 0/3
+    
+Score 4/10
+"""

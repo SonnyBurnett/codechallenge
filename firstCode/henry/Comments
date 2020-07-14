@@ -1,0 +1,10 @@
+7
+
+Does it run 1
+Name 1
+Linting 1
+Language features 1  (liked the main method, didn't like while/break, could have used more for loops instead of roll your own, but mostly was nice)
+Single 2
+Deep Source (couple of problems: import functions we don't use, unused variables, ) 0.5
+Evaluate Tests 0.5  because didn't test the actual example given in the sample  
+
